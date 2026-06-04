@@ -277,3 +277,63 @@ section { position: relative; }
   .footer-grid { grid-template-columns: 1fr; }
   .spotlight .panel { padding: 28px 22px; }
 }
+
+/* =========================================================================
+   DUNA directory (dunas.html) + profile (duna.html) + auth modal
+   ========================================================================= */
+.duna-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+.duna-search { flex: 1 1 280px; position: relative; }
+.duna-search input { width: 100%; padding: 0.72rem 1rem 0.72rem 2.4rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); color: var(--fg); font-family: var(--font-sans); font-size: 0.98rem; }
+.duna-search input:focus { outline: none; border-color: var(--accent); }
+.duna-search .ico { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--fg-soft); pointer-events: none; }
+.sort-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-soft); font-weight: 700; margin-right: 2px; }
+.sort-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.sort-btn { font-family: var(--font-sans); font-weight: 700; font-size: 0.84rem; padding: 0.5rem 0.9rem; border-radius: var(--radius-pill); background: var(--surface); border: 1px solid var(--border); color: var(--fg-muted); cursor: pointer; transition: 160ms; display: inline-flex; align-items: center; gap: 0.4rem; }
+.sort-btn:hover { border-color: var(--border-strong); color: var(--fg); }
+.sort-btn.active { background: var(--wv-gold-soft); border-color: rgba(234,170,0,0.5); color: var(--accent); }
+.sort-btn .arrow { font-size: 0.85rem; line-height: 1; }
+.result-count { font-size: 0.82rem; color: var(--fg-soft); margin: 0 0 18px; }
+
+.duna-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.duna-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: 160ms; }
+.duna-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.duna-cover { position: relative; height: 120px; display: flex; align-items: center; justify-content: center; }
+.duna-card.accent-cyan    .duna-cover { background: radial-gradient(circle at 50% 38%, #03CCD9 0%, #0d2f4e 55%, #09073A 100%); }
+.duna-card.accent-magenta .duna-cover { background: radial-gradient(circle at 50% 38%, #EC008C 0%, #5d1140 55%, #09073A 100%); }
+.duna-card.accent-lime    .duna-cover { background: radial-gradient(circle at 50% 38%, #BEEF00 0%, #3a5400 55%, #09073A 100%); }
+.duna-card.accent-gold    .duna-cover { background: radial-gradient(circle at 50% 38%, #EAAA00 0%, #7B3F00 50%, #09073A 100%); }
+.duna-card.accent-violet  .duna-cover { background: radial-gradient(circle at 50% 38%, #6536BB 0%, #2c1a52 55%, #09073A 100%); }
+.duna-cover .tag { position: absolute; top: 12px; left: 12px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--radius-pill); background: rgba(0,0,0,0.45); color: #fff; backdrop-filter: blur(6px); }
+.vis-badge { position: absolute; top: 12px; right: 12px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--radius-pill); backdrop-filter: blur(6px); }
+.vis-public { background: rgba(3,204,217,0.22); color: #9beef4; border: 1px solid rgba(3,204,217,0.5); }
+.vis-private { background: rgba(255,255,255,0.16); color: #fff; border: 1px solid var(--border-strong); }
+.coin { width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.8rem; color: var(--on-accent); background: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.3); }
+.coin-lg { width: 86px; height: 86px; font-size: 1.1rem; }
+.duna-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.duna-body h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0; color: var(--fg); line-height: 1.1; }
+.duna-body .by { font-size: 0.78rem; color: var(--fg-soft); margin-top: -4px; }
+.duna-body .by b { color: var(--fg-muted); font-weight: 700; }
+.duna-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.duna-stats .v { font-family: var(--font-display); font-size: 1.1rem; color: var(--fg); line-height: 1; display: block; }
+.duna-stats .k { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-soft); }
+.duna-ctas { display: flex; gap: 8px; margin-top: auto; }
+.duna-ctas .btn { flex: 1; }
+.no-results { grid-column: 1 / -1; padding: 44px; text-align: center; color: var(--fg-soft); border: 1px dashed var(--border); border-radius: var(--radius-lg); }
+
+/* Profile */
+.profile-head { display: flex; align-items: center; gap: 22px; }
+
+/* Auth modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(3,1,27,0.72); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 30px; max-width: 420px; width: 100%; box-shadow: var(--shadow-lg); position: relative; }
+.modal .close { position: absolute; top: 10px; right: 14px; background: none; border: 0; color: var(--fg-soft); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.modal .close:hover { color: var(--fg); }
+.modal h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin: 0 0 0.3rem; }
+.modal .sub { color: var(--fg-muted); font-size: 0.92rem; margin: 0 0 1.2rem; }
+.modal .tabs { display: flex; gap: 6px; margin-bottom: 1.2rem; background: var(--bg-deep); padding: 4px; border-radius: var(--radius-pill); }
+.modal .tabs button { flex: 1; padding: 0.5rem; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--fg-muted); font-family: var(--font-sans); font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: 160ms; }
+.modal .tabs button.active { background: var(--accent); color: var(--on-accent); }
+
+@media (max-width: 920px) { .duna-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .duna-grid { grid-template-columns: 1fr; } .profile-head { flex-direction: column; text-align: center; } }

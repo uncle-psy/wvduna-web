@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DUNAs — WV DUNA</title>
-<meta name="description" content="Browse every registered DUNA. Search, sort by creation date, treasury, members, or token market cap, and join a movement.">
+<title>DUNA — WV DUNA</title>
+<meta name="description" content="A registered DUNA on WV DUNA: treasury, members, token, and how to join.">
 <link rel="stylesheet" href="assets/colors_and_type.css">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -29,34 +29,7 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="eyebrow">The registry <span class="dot">·</span> DUNAs in motion</div>
-    <h1 class="display">Browse every <em class="wv-emph">DUNA</em></h1>
-    <p class="lede">Every DUNA here is a separate legal entity registered at the West Virginia Secretary of State, run online by its members and their agents. Search, sort, and join one.</p>
-  </div>
-</section>
-
-<section class="section" style="padding-top:28px">
-  <div class="wrap">
-
-    <div class="duna-toolbar">
-      <div class="duna-search">
-        <span class="ico" aria-hidden="true">⌕</span>
-        <input id="duna-search-input" type="search" placeholder="Search DUNAs by name, cause, or token…" aria-label="Search DUNAs">
-      </div>
-      <span class="sort-label">Sort</span>
-      <div class="sort-group">
-        <button class="sort-btn" data-sort="created">Creation date <span class="arrow"></span></button>
-        <button class="sort-btn" data-sort="treasury">Treasury <span class="arrow"></span></button>
-        <button class="sort-btn" data-sort="members">Members <span class="arrow"></span></button>
-        <button class="sort-btn" data-sort="mcap">Market cap <span class="arrow"></span></button>
-      </div>
-    </div>
-
-    <p class="result-count" id="duna-result-count"></p>
-
-    <div class="duna-grid" id="duna-grid"><!-- rendered by dunas.js --></div>
-
-    <p class="faint" style="margin-top:20px;font-size:0.82rem">Sample directory for this draft. The live registry links each entity to its public record on the West Virginia business registry, and Join connects you to the on-chain membership.</p>
+    <div id="duna-profile"><!-- rendered by dunas.js from ?id= --></div>
   </div>
 </section>
 
