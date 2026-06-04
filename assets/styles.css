@@ -390,3 +390,8 @@ section { position: relative; }
 /* Search band (full-width, directly under the header) */
 .search-band { background: var(--bg-deep); border-bottom: 1px solid var(--border); padding: 14px 0; position: relative; z-index: 40; }
 .search-band .site-search { margin-top: 0; max-width: 680px; }
+
+/* Full WV DUNA logo (replaces the star mark + wordmark lockup) */
+.brand-logo { height: 30px; width: auto; display: block; }
+.footer-logo { height: 34px; margin-bottom: 6px; }
+@media (max-width: 480px) { .brand-logo { height: 26px; } }
