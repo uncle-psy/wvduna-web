@@ -62,6 +62,6 @@ no output directory override needed. Point `wvduna.com` at the project in Vercel
 
 - This is a DRAFT. Stat counts, featured DUNAs, and treasury figures are illustrative samples.
 - Forms are front-end only previews; no backend or auth is wired up.
-- Fonts load from Google Fonts (Chonburi, Bitter, Inter).
+- Fonts are self-hosted from `assets/fonts/` (Goudy Heavyface display + Avenir body), declared in `assets/colors_and_type.css`.
 - The West Virginia outline in `assets/wv.svg` is a stylized approximation; swap in an exact
   outline when one is available.

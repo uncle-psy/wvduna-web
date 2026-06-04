@@ -93,7 +93,6 @@ h2.display { font-size: clamp(1.9rem, 4vw, 2.5rem); margin: 0 0 0.4em; }
 .nav-toggle { display: none; background: none; border: 0; color: var(--fg); font-size: 1.6rem; cursor: pointer; margin-left: auto; }
 
 /* ---------- Decorative motifs ---------- */
-.motif-circles { display: none; }              /* replaced by radial glows */
 .ridge, .mountains { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 180px; object-fit: cover; opacity: 0.9; z-index: 0; pointer-events: none; }
 
 /* ---------- Sections ---------- */
@@ -136,7 +135,6 @@ section { position: relative; }
   position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
   border-radius: var(--radius-lg);
   padding: 24px 22px;
   transition: 160ms ease;
@@ -148,23 +146,14 @@ section { position: relative; }
 .acard .stat-line { margin-top: 1rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-soft); font-weight: 700; }
 .acard .big { font-family: var(--font-display); font-size: 1.7rem; color: var(--accent); line-height: 1.1; }
 
-/* Accent hues map onto the official palette (decorative card accents). */
-.accent-cyan    { --accent: var(--kin-skyblue); }
-.accent-magenta { --accent: var(--kin-magenta); }
-.accent-lime    { --accent: var(--kin-lime); }
-.accent-gold    { --accent: var(--wv-gold); }
-.accent-violet  { --accent: var(--kin-accent-purple); }
-.accent-orange  { --accent: var(--kin-orange-live); }   /* imagery/editorial only */
+/* WV DUNA uses ONE accent. Category is shown via icon + tag, never color. */
+.accent-cyan, .accent-magenta, .accent-lime,
+.accent-gold, .accent-violet, .accent-orange { --accent: var(--wv-gold); }
 
 /* ---------- Featured / movement cards ---------- */
 .featured-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: 160ms ease; }
 .featured-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.featured-card .top { height: 130px; position: relative; display: flex; align-items: center; justify-content: center; }
-.featured-card.accent-cyan .top    { background: radial-gradient(circle at 70% 40%, #03CCD9 0%, #100E59 60%, #09073A 100%); }
-.featured-card.accent-magenta .top { background: radial-gradient(circle at 30% 35%, #EC008C 0%, #5D1140 55%, #09073A 100%); }
-.featured-card.accent-lime .top    { background: radial-gradient(circle at 50% 35%, #BEEF00 0%, #3a5400 55%, #09073A 100%); }
-.featured-card.accent-gold .top    { background: radial-gradient(circle at 30% 30%, #EAAA00 0%, #7B3F00 48%, #09073A 100%); }
-.featured-card.accent-violet .top  { background: radial-gradient(circle at 50% 70%, #6536BB 0%, #2c1a52 55%, #09073A 100%); }
+.featured-card .top { height: 130px; position: relative; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 32%, var(--surface-elev), var(--bg) 70%); }
 .featured-card .badge { font-family: var(--font-display); font-size: 1.4rem; color: var(--on-accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--accent); }
 .featured-card .body { padding: 18px 20px 22px; }
 .featured-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; margin: 0 0 0.3rem; color: var(--fg); }
@@ -297,12 +286,7 @@ section { position: relative; }
 .duna-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .duna-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: 160ms; }
 .duna-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.duna-cover { position: relative; height: 120px; display: flex; align-items: center; justify-content: center; }
-.duna-card.accent-cyan    .duna-cover { background: radial-gradient(circle at 50% 38%, #03CCD9 0%, #0d2f4e 55%, #09073A 100%); }
-.duna-card.accent-magenta .duna-cover { background: radial-gradient(circle at 50% 38%, #EC008C 0%, #5d1140 55%, #09073A 100%); }
-.duna-card.accent-lime    .duna-cover { background: radial-gradient(circle at 50% 38%, #BEEF00 0%, #3a5400 55%, #09073A 100%); }
-.duna-card.accent-gold    .duna-cover { background: radial-gradient(circle at 50% 38%, #EAAA00 0%, #7B3F00 50%, #09073A 100%); }
-.duna-card.accent-violet  .duna-cover { background: radial-gradient(circle at 50% 38%, #6536BB 0%, #2c1a52 55%, #09073A 100%); }
+.duna-cover { position: relative; height: 120px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 32%, var(--surface-elev), var(--bg) 70%); }
 .duna-cover .tag { position: absolute; top: 12px; left: 12px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--radius-pill); background: rgba(0,0,0,0.45); color: #fff; backdrop-filter: blur(6px); }
 .vis-badge { position: absolute; top: 12px; right: 12px; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--radius-pill); backdrop-filter: blur(6px); }
 .vis-public { background: rgba(3,204,217,0.22); color: #9beef4; border: 1px solid rgba(3,204,217,0.5); }
@@ -345,7 +329,7 @@ section { position: relative; }
 
 .duna-cover { height: 124px; }
 .duna-cover .theme-ico { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.duna-cover .theme-ico svg { width: 48px; height: 48px; color: rgba(255,255,255,0.92); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.duna-cover .theme-ico svg { width: 48px; height: 48px; color: var(--wv-gold); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
 
 .coin-chip { position: absolute; left: 12px; bottom: 12px; height: 28px; padding: 0 10px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.7rem; color: var(--on-accent); background: var(--accent); border: 1px solid rgba(255,255,255,0.35); box-shadow: 0 3px 10px rgba(0,0,0,0.35); }
 
@@ -355,11 +339,7 @@ section { position: relative; }
 .more-link:hover { color: var(--fg); text-decoration: none; }
 
 /* Profile graphic (duna.html) */
-.profile-ico { position: relative; width: 104px; height: 104px; flex: 0 0 auto; border-radius: var(--radius-lg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.profile-ico svg { width: 46px; height: 46px; color: rgba(255,255,255,0.95); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.profile-ico { position: relative; width: 104px; height: 104px; flex: 0 0 auto; border-radius: var(--radius-lg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(circle at 50% 32%, var(--surface-elev), var(--bg) 70%); }
+.profile-ico svg { width: 46px; height: 46px; color: var(--wv-gold); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
 .profile-ico .coin-chip { left: auto; right: 8px; bottom: 8px; }
-.profile-head.accent-cyan    .profile-ico { background: radial-gradient(circle at 50% 40%, #03CCD9 0%, #0d2f4e 60%, #09073A 100%); }
-.profile-head.accent-magenta .profile-ico { background: radial-gradient(circle at 50% 40%, #EC008C 0%, #5d1140 60%, #09073A 100%); }
-.profile-head.accent-lime    .profile-ico { background: radial-gradient(circle at 50% 40%, #BEEF00 0%, #3a5400 60%, #09073A 100%); }
-.profile-head.accent-gold    .profile-ico { background: radial-gradient(circle at 50% 40%, #EAAA00 0%, #7B3F00 55%, #09073A 100%); }
-.profile-head.accent-violet  .profile-ico { background: radial-gradient(circle at 50% 40%, #6536BB 0%, #2c1a52 60%, #09073A 100%); }
+.profile-head .profile-ico { background: radial-gradient(circle at 50% 32%, var(--surface-elev), var(--bg) 70%); }
