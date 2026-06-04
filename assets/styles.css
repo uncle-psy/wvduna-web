@@ -373,3 +373,16 @@ section { position: relative; }
   .search-result { grid-template-columns: 1fr; }
   .search-result .sr-snip { grid-column: 1; }
 }
+
+/* =========================================================================
+   Registered Agent profile (registered-agent.html)
+   ========================================================================= */
+.agent-grid { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; }
+.agent-photo { position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-strong); background: radial-gradient(circle at 50% 32%, #100E59, #09073A); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); }
+.agent-photo img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
+.agent-photo .agent-initials { position: absolute; z-index: 0; font-family: var(--font-display); font-size: 4.5rem; color: var(--accent); }
+.agent-meta { margin-top: 16px; display: grid; gap: 6px; }
+.agent-meta a { font-weight: 700; font-size: 0.9rem; }
+.agent-meta .row { font-size: 0.85rem; color: var(--fg-soft); }
+.agent-bio p { color: var(--fg-muted); font-size: 1.05rem; margin: 0 0 1rem; }
+@media (max-width: 760px) { .agent-grid { grid-template-columns: 1fr; } .agent-photo { max-width: 260px; } }

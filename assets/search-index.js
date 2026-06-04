@@ -27,6 +27,8 @@ window.SITE_INDEX = [
     text: "Three ways to build. Do It Yourself $100 upfront $10 a month, Kiduna Studio, governance templates. Do It With Us $1,000 plus $100 a month, human support from Kiduna Club, training. Done For You $10K plus $1K a month, custom agents, dedicated account management." },
   { title: "Login / Sign up", type: "Page", url: "login.html",
     text: "Log in to manage your DUNA: members, treasury, governance votes, and filing status. Create an account." },
+  { title: "The Registered Agent — David Levine", type: "Page", url: "registered-agent.html",
+    text: "David Levine, registered agent for WV DUNA and founder of the Kinship Intelligence Institute. Receives legal service and official correspondence on file with the West Virginia Secretary of State. Former Director of Technology and Transformation, WV Development Office. Geostellar, Solana Labs, Yale." },
   { title: "What can a DUNA do?", type: "Topic", url: "index.html",
     text: "Use cases. Capital formation, pool money fast. DePIN, run real hardware, wireless coverage, storage, GPU compute. Fintech, govern a protocol, exchanges, lending, stablecoins. Community and co-ops, commercial alliances. Intelligent agents, real accountability. Service and civic, build a movement, veterans, healthcare, social justice, environment." }
 ];
