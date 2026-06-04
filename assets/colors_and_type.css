@@ -1,0 +1,233 @@
+/* ==========================================================================
+   WV DUNA Design System — Colors + Type
+   A West Virginia fork of the Kinship design system. Same type stack
+   (Goudy Heavyface display + Avenir body) and the same underlying brand
+   palette, re-pointed to a West Virginia theme: OLD GOLD pulse on deep navy,
+   sky blue for linkage. Orange is retained in the extended palette but is
+   NEVER the primary action. Dark-UI native.
+
+   Source of truth: Kinship Corporate ID v1 (type + palette) + this fork's
+   West Virginia theme decisions.
+   ========================================================================== */
+
+/* ---- Fonts -------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Goudy Heavyface";
+  src: url("./fonts/goudy_heavyface_bt.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/avenir-light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/avenir-book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/avenir-regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/avenir-heavy.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/avenir-black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Brand palette (inherited from Kinship Corporate ID v1) --------- */
+  /* Main */
+  --kin-navyblue:      #100E59;
+  --kin-darkblue:      #09073A;   /* deepest brand surface */
+  --kin-darkumber:     #4E3629;   /* warm neutral / umber */
+  --kin-skyblue:       #03CCD9;   /* secondary accent / links */
+  --kin-orange:        #F7941D;   /* retained — NEVER primary in WV DUNA */
+  --kin-gold:          #FFCA05;   /* bright gold (alt to old gold) */
+  --kin-lime:          #BEEF00;
+  --kin-magenta:       #EC008C;
+  --kin-cream-white:   #FFFFE6;   /* off-white paper */
+  --kin-cream:         #F9DDB7;   /* warm cream */
+  --kin-black:         #1E1F20;
+
+  /* Extended accents */
+  --kin-accent-purple:       #6536BB;
+  --kin-accent-purple-scn:   #3F2270;
+  --kin-accent-chocobrown:   #5D4037;
+  --kin-accent-rusticbrown:  #8B4513;
+  --kin-accent-chestnut:     #7B3F00;
+  --kin-accent-darkblue:     #09073A;
+  --kin-grey:                #9094A3;
+
+  /* Feedback */
+  --kin-error:       #FF3A3A;
+  --kin-error-tob:   #AF0E0E;
+  --kin-complete:    #00EB75;
+  --kin-warning:     #FFCA05;   /* gold doubles as warning */
+
+  /* Retained live-product orange (extended palette only — not an action) */
+  --kin-orange-live:       #EB8000;
+  --kin-orange-live-hover: #FF9620;
+  --kin-orange-soft:       rgba(235, 128, 0, 0.14);
+
+  /* ---- West Virginia theme tokens ------------------------------------- */
+  /* Old Gold — the WV DUNA primary pulse (replaces Kinship orange). */
+  --wv-gold:        #EAAA00;
+  --wv-gold-hover:  #FFC229;            /* lighter on hover */
+  --wv-gold-deep:   #C8920A;            /* pressed / borders */
+  --wv-gold-soft:   rgba(234, 170, 0, 0.14);
+  /* West Virginia flag blue — accent/brand blue, distinct from app navy. */
+  --wv-flagblue:    #002855;
+  --on-accent:      #09073A;            /* text/icons that sit ON gold */
+
+  /* ---- Semantic tokens — dark theme (default) -------------------------- */
+  --bg:             var(--kin-darkblue);        /* page background (Kinship navy) */
+  --bg-deep:        #03011B;                    /* deeper edges / behind bg */
+  --surface:        #0A0D33;                    /* cards */
+  --surface-elev:   #100E59;                    /* elevated cards / navy */
+  --surface-muted:  rgba(255, 255, 255, 0.04);
+
+  --fg:             #FFFFFF;                    /* primary text */
+  --fg-muted:       #CDCDCD;                    /* secondary text */
+  --fg-soft:        rgba(255, 255, 255, 0.60);  /* tertiary / captions */
+  --fg-dim:         rgba(255, 255, 255, 0.35);
+
+  --border:         rgba(255, 255, 255, 0.12);
+  --border-strong:  rgba(255, 255, 255, 0.22);
+  --hairline:       rgba(144, 145, 166, 0.35);
+
+  --accent:         var(--wv-gold);
+  --accent-hover:   var(--wv-gold-hover);
+  --accent-soft:    var(--wv-gold-soft);
+
+  --link:           var(--kin-skyblue);
+  --success:        var(--kin-complete);
+  --danger:         var(--kin-error);
+
+  /* ---- Type system ---------------------------------------------------- */
+  --font-display:   "Goudy Heavyface", "Goudy Old Style", Georgia, serif;
+  --font-sans:      "Avenir", "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:      ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Scale — anchored to a 16px base. */
+  --fs-xs:   12px;
+  --fs-sm:   14px;
+  --fs-base: 16px;
+  --fs-lg:   18px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fs-3xl:  30px;
+  --fs-4xl:  40px;
+  --fs-5xl:  54px;
+  --fs-6xl:  72px;
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.2;
+  --lh-body:   1.5;
+  --lh-loose:  1.7;
+
+  --tracking-caps: 0.16em;   /* eyebrow labels */
+
+  /* ---- Space + radius ------------------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-pill: 9999px;
+
+  /* ---- Elevation — soft, cool shadows on dark ------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
+  --shadow-md: 0 6px 20px rgba(3, 1, 27, 0.45);
+  --shadow-lg: 0 18px 48px rgba(3, 1, 27, 0.55);
+  --shadow-glow-accent: 0 0 0 1px rgba(234,170,0,0.40), 0 8px 28px rgba(234,170,0,0.20);
+  --shadow-glow-sky:    0 0 0 1px rgba(3,204,217,0.35), 0 8px 28px rgba(3,204,217,0.18);
+}
+
+/* ---- Semantic element styles -------------------------------------------- */
+
+html, body { background: var(--bg); color: var(--fg); }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+.kin-display {
+  font-family: var(--font-display);
+  font-weight: 400;         /* Goudy Heavyface is already heavy */
+  letter-spacing: 0;
+  line-height: var(--lh-tight);
+  color: var(--fg);
+}
+
+h1 { font-size: var(--fs-5xl); }
+h2 { font-size: var(--fs-3xl); line-height: var(--lh-snug); }
+h3 { font-size: var(--fs-2xl); line-height: var(--lh-snug); }
+h4 { font-size: var(--fs-xl);  line-height: var(--lh-snug); }
+h5 { font-size: var(--fs-lg);  line-height: var(--lh-snug); }
+h6 { font-size: var(--fs-base); line-height: var(--lh-snug); }
+
+p  { color: var(--fg-muted); }
+a  { color: var(--link); text-decoration: none; }
+a:hover { color: color-mix(in oklch, var(--link) 80%, white); }
+
+small, .kin-small { font-size: var(--fs-sm); color: var(--fg-soft); }
+
+code, pre, .kin-mono { font-family: var(--font-mono); font-size: 0.92em; }
+
+/* Signature move: italic serif phrase inside a display headline, set in the
+   brand pulse — OLD GOLD in WV DUNA. One phrase per headline, never two.
+   .kin-emph is kept for source compatibility; .wv-emph is the preferred name. */
+em.kin-emph, .kin-emph,
+em.wv-emph, .wv-emph {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Eyebrow / caps label */
+.kin-eyebrow, .wv-eyebrow, .label-caps {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}

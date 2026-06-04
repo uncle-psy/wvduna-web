@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WV DUNA — UI Kit</title>
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--bg-deep); color: var(--fg); }
+  .page { max-width: 1240px; margin: 0 auto; padding: 32px 28px 80px; }
+
+  /* Logo lockup */
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand img { height: 30px; width: 30px; }
+  .brand .word { font-family: var(--font-display); font-size: 24px; line-height: 1; color: #fff; letter-spacing: 0.01em; }
+  .brand .word b { color: var(--wv-gold); font-weight: 400; }
+
+  /* Nav bar */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 22px; background: rgba(9,7,58,0.7); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: var(--radius-pill); margin-bottom: 36px; }
+  .nav-left { display: flex; align-items: center; gap: 26px; }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--fg-muted); }
+  .nav-links a { color: inherit; cursor: pointer; }
+  .nav-links a.active { color: var(--fg); font-weight: 700; }
+  .btn { font-family: var(--font-sans); font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: var(--radius-xs); border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 160ms; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border-strong); }
+  .btn-secondary:hover { border-color: var(--fg); }
+  .btn-ghost { background: transparent; color: var(--fg-muted); }
+  .btn-ghost:hover { color: var(--fg); }
+
+  /* Hero */
+  .hero { position: relative; padding: 72px 56px 64px; border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 56px;
+    background:
+      radial-gradient(1100px 420px at 88% -10%, rgba(234,170,0,0.30), transparent 55%),
+      radial-gradient(700px 500px at -10% 60%, rgba(3,204,217,0.16), transparent 60%),
+      linear-gradient(135deg, #100E59, #09073A 80%);
+    border: 1px solid var(--border);
+  }
+  .hero .ridge { position: absolute; left: 0; right: 0; bottom: 0; height: 180px; width: 100%; object-fit: cover; opacity: 0.9; pointer-events: none; }
+  .hero .inner { position: relative; z-index: 1; }
+  .hero .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kin-skyblue); margin-bottom: 18px; }
+  .hero h1 { font-family: var(--font-display); font-size: 74px; line-height: 0.98; max-width: 920px; margin: 0 0 24px; text-wrap: balance; }
+  .hero .lead { font-size: 18px; color: var(--fg-muted); max-width: 600px; line-height: 1.55; margin-bottom: 32px; }
+  .hero-ctas { display: flex; gap: 12px; }
+
+  /* Section header */
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin: 56px 0 20px; }
+  .section-head h2 { font-family: var(--font-display); font-size: 36px; margin: 0; }
+  .section-head .kicker { font-family: var(--font-mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* Movement cards grid */
+  .movement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .m-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: 160ms; }
+  .m-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .m-card .cover { height: 150px; position: relative; }
+  .m-card .cover .badge { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.45); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+  .m-card .body { padding: 18px 18px 20px; display: grid; gap: 10px; }
+  .m-card h3 { font-family: var(--font-display); font-size: 22px; margin: 0; line-height: 1.1; }
+  .m-card .by { font-size: 12px; color: var(--fg-soft); }
+  .m-card .by b { color: var(--fg-muted); font-weight: 700; }
+  .m-card .progress { height: 6px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+  .m-card .progress > i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .m-card .stats { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg-muted); }
+  .m-card .stats b { font-family: var(--font-display); color: var(--fg); font-size: 18px; font-weight: 400; display: block; }
+
+  .cover-a { background: radial-gradient(circle at 30% 30%, #EAAA00 0%, #7B3F00 48%, #09073A 100%); }
+  .cover-b { background: radial-gradient(circle at 70% 40%, #03CCD9 0%, #100E59 60%, #09073A 100%); }
+  .cover-c { background: radial-gradient(circle at 50% 70%, #1E5BB0 0%, #002855 55%, #09073A 100%); }
+
+  /* Stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .stat-strip > div { padding: 28px 24px; border-right: 1px solid var(--border); }
+  .stat-strip > div:last-child { border-right: 0; }
+  .stat-strip .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-soft); }
+  .stat-strip .v { font-family: var(--font-display); font-size: 44px; line-height: 1; margin-top: 8px; }
+  .stat-strip .delta { font-size: 12px; color: var(--kin-complete); margin-top: 4px; }
+
+  /* Content split */
+  .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+  .panel h4 { font-family: var(--font-display); font-size: 22px; margin: 0 0 14px; }
+
+  /* Activity list */
+  .activity { display: grid; gap: 10px; }
+  .act { display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: var(--radius-md); background: rgba(255,255,255,0.02); }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); color: #fff; font-size: 15px; }
+  .act .who  { font-size: 13px; color: var(--fg); }
+  .act .who b { font-weight: 700; }
+  .act .what { font-size: 12px; color: var(--fg-soft); }
+  .act .time { font-family: var(--font-mono); font-size: 10px; color: var(--fg-dim); }
+
+  /* Price cards */
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .price { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; display: grid; gap: 14px; }
+  .price.featured { background: linear-gradient(180deg, rgba(234,170,0,0.12), transparent 70%), var(--surface); border-color: rgba(234,170,0,0.4); box-shadow: var(--shadow-glow-accent); }
+  .price .tier { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-soft); }
+  .price .amt { font-family: var(--font-display); font-size: 52px; line-height: 1; }
+  .price .amt sub { font-family: var(--font-sans); font-size: 14px; font-weight: 400; color: var(--fg-soft); vertical-align: baseline; margin-left: 6px; }
+  .price ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 13px; color: var(--fg-muted); }
+  .price ul li::before { content: "→"; color: var(--accent); margin-right: 8px; font-weight: 700; }
+
+  footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--fg-soft); font-size: 12px; }
+  footer a { cursor: pointer; }
+</style></head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-left">
+      <div class="brand">
+        <img src="assets/wv-mark-gold.svg" alt="WV DUNA">
+        <span class="word"><b>WV</b> DUNA</span>
+      </div>
+      <div class="nav-links">
+        <a class="active">Movements</a>
+        <a>Register</a>
+        <a>Treasury</a>
+        <a>Governance</a>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button class="btn btn-ghost">Sign in</button>
+      <button class="btn btn-primary">Register a movement</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="ridge" src="assets/ridge-motif.svg" alt="">
+    <div class="inner">
+      <div class="eyebrow">WV DUNA · West Virginia's on-chain nonprofit</div>
+      <h1>Wild, wonderful, <em class="wv-emph" style="font-size:74px">and self-governed.</em></h1>
+      <p class="lead">Register a decentralized nonprofit with the West Virginia Secretary of State, adopt your bylaws on-chain, and open a member-owned treasury — no middlemen in the way.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" style="padding: 16px 26px; font-size: 15px;">Register a movement →</button>
+        <button class="btn btn-secondary" style="padding: 16px 26px; font-size: 15px;">Browse movements</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stat-strip">
+    <div><div class="k">Movements registered</div><div class="v">1,284</div><div class="delta">+142 this month</div></div>
+    <div><div class="k">Member treasuries</div><div class="v">$4.8M</div><div class="delta">+$612k this month</div></div>
+    <div><div class="k">Members</div><div class="v">38,907</div><div class="delta">+2,104 this month</div></div>
+    <div><div class="k">Open proposals</div><div class="v">612</div><div class="delta">+48 this week</div></div>
+  </section>
+
+  <!-- MOVEMENTS -->
+  <div class="section-head">
+    <h2>Featured movements</h2>
+    <span class="kicker">Updated hourly</span>
+  </div>
+  <section class="movement-grid">
+    <article class="m-card">
+      <div class="cover cover-a"><span class="badge">Land &amp; Water</span></div>
+      <div class="body">
+        <h3>New River Land Trust</h3>
+        <div class="by">by <b>Fayette County Collective</b></div>
+        <div class="progress"><i style="width: 68%"></i></div>
+        <div class="stats"><div><b>$81.4k</b>of $120k treasury</div><div><b>41d</b>to vote</div></div>
+      </div>
+    </article>
+    <article class="m-card">
+      <div class="cover cover-b"><span class="badge">Mutual Aid</span></div>
+      <div class="body">
+        <h3>Appalachian Power Co-op</h3>
+        <div class="by">by <b>Coalfield Mutual</b></div>
+        <div class="progress"><i style="width: 92%"></i></div>
+        <div class="stats"><div><b>$276k</b>of $300k treasury</div><div><b>9d</b>to vote</div></div>
+      </div>
+    </article>
+    <article class="m-card">
+      <div class="cover cover-c"><span class="badge">Arts</span></div>
+      <div class="body">
+        <h3>The Wheeling Opera House</h3>
+        <div class="by">by <b>Ohio Valley Arts</b></div>
+        <div class="progress"><i style="width: 34%"></i></div>
+        <div class="stats"><div><b>$17.2k</b>of $50k treasury</div><div><b>22d</b>to vote</div></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SPLIT: Activity + Panel -->
+  <div class="section-head">
+    <h2>Your kin, in motion</h2>
+    <span class="kicker">Live ledger</span>
+  </div>
+  <section class="split">
+    <div class="panel">
+      <h4>Recent activity</h4>
+      <div class="activity">
+        <div class="act">
+          <div class="avatar" style="background:#EAAA00; color:#09073A">M</div>
+          <div><div class="who"><b>Maya</b> joined <b>New River Land Trust</b></div><div class="what">+$120 to treasury · member #2,341</div></div>
+          <div class="time">2m</div>
+        </div>
+        <div class="act">
+          <div class="avatar" style="background:#03CCD9; color:#09073A">J</div>
+          <div><div class="who"><b>Jules</b> registered <b>Block Garden Charleston</b></div><div class="what">New movement · filed with SoS</div></div>
+          <div class="time">14m</div>
+        </div>
+        <div class="act">
+          <div class="avatar" style="background:#002855">R</div>
+          <div><div class="who"><b>Rue</b> passed <b>Proposal #12</b> on Appalachian Power</div><div class="what">Quorum reached · 84% in favor</div></div>
+          <div class="time">1h</div>
+        </div>
+        <div class="act">
+          <div class="avatar" style="background:#6536BB">T</div>
+          <div><div class="who"><b>Tomás</b> co-signed bylaws on <b>The Wheeling Opera House</b></div><div class="what">+4 founding members</div></div>
+          <div class="time">3h</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="background: linear-gradient(160deg, #100E59, #0A0D33); display: grid; gap: 14px;">
+      <span class="wv-eyebrow">Movement of the week</span>
+      <h4 style="font-size: 28px; margin: 0;">Block Garden <em class="wv-emph" style="font-size:28px">Charleston</em></h4>
+      <p style="margin:0; color: var(--fg-muted); font-size: 14px;">Turning vacant lots into neighborhood gardens, one block at a time. Owned and governed by the block itself.</p>
+      <div style="display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div><div class="wv-eyebrow" style="font-size:9px;">Members</div><div style="font-family: var(--font-display); font-size: 22px;">842</div></div>
+        <div><div class="wv-eyebrow" style="font-size:9px;">Lots</div><div style="font-family: var(--font-display); font-size: 22px;">14</div></div>
+        <div><div class="wv-eyebrow" style="font-size:9px;">County</div><div style="font-family: var(--font-display); font-size: 22px;">Kanawha</div></div>
+      </div>
+      <button class="btn btn-primary" style="justify-self: start;">Join this movement →</button>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <div class="section-head">
+    <h2>Plans for organizers</h2>
+    <span class="kicker">Pay in USD or $KIN</span>
+  </div>
+  <section class="price-grid">
+    <div class="price">
+      <div class="tier">Charter</div>
+      <div class="amt">$25<sub>/filing</sub></div>
+      <ul>
+        <li>Register 1 association</li>
+        <li>On-chain bylaws</li>
+        <li>Member treasury</li>
+      </ul>
+      <button class="btn btn-secondary" style="justify-self: start;">Get started</button>
+    </div>
+    <div class="price featured">
+      <div class="tier" style="color: var(--accent)">Steward · most popular</div>
+      <div class="amt">$9<sub>/month</sub></div>
+      <ul>
+        <li>Unlimited movements</li>
+        <li>Proposal &amp; voting tools</li>
+        <li>Treasury reporting</li>
+        <li>Custom subdomain</li>
+      </ul>
+      <button class="btn btn-primary" style="justify-self: start;">Become a Steward →</button>
+    </div>
+    <div class="price">
+      <div class="tier">Assembly</div>
+      <div class="amt">$79<sub>/month</sub></div>
+      <ul>
+        <li>Everything in Steward</li>
+        <li>Member roles &amp; committees</li>
+        <li>Delegated voting</li>
+        <li>Dedicated support</li>
+      </ul>
+      <button class="btn btn-secondary" style="justify-self: start;">Talk to us</button>
+    </div>
+  </section>
+
+  <footer>
+    <div>© WV DUNA · A West Virginia decentralized nonprofit · Built on the Kinship stack</div>
+    <div style="display:flex; gap: 18px;"><a>Bylaws</a><a>Privacy</a><a>Docs</a></div>
+  </footer>
+</div>
+</body></html>

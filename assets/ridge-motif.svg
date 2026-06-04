@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" fill="none" preserveAspectRatio="none" role="img" aria-label="Appalachian ridge motif">
+  
+  <path d="M0 140 L120 95 L240 130 L360 80 L480 120 L600 70 L720 110 L840 75 L960 125 L1080 85 L1200 120 L1320 90 L1440 130 L1440 220 L0 220 Z" fill="#15124F" opacity="0.7"></path>
+  <path d="M0 170 L160 120 L300 160 L440 110 L560 150 L700 105 L820 155 L960 115 L1100 160 L1240 120 L1380 158 L1440 140 L1440 220 L0 220 Z" fill="#1B1860" opacity="0.85"></path>
+  <path d="M0 195 L140 160 L260 192 L400 150 L540 190 L680 155 L820 195 L960 158 L1120 196 L1260 162 L1400 192 L1440 180 L1440 220 L0 220 Z" fill="#221F6E"></path>
+  <path d="M0 195 L140 160 L260 192 L400 150 L540 190 L680 155 L820 195 L960 158 L1120 196 L1260 162 L1400 192 L1440 180" stroke="#EAAA00" stroke-width="2" stroke-linejoin="round" opacity="0.7"></path>
+</svg>
