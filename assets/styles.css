@@ -386,3 +386,7 @@ section { position: relative; }
 .agent-meta .row { font-size: 0.85rem; color: var(--fg-soft); }
 .agent-bio p { color: var(--fg-muted); font-size: 1.05rem; margin: 0 0 1rem; }
 @media (max-width: 760px) { .agent-grid { grid-template-columns: 1fr; } .agent-photo { max-width: 260px; } }
+
+/* Search band (full-width, directly under the header) */
+.search-band { background: var(--bg-deep); border-bottom: 1px solid var(--border); padding: 14px 0; position: relative; z-index: 40; }
+.search-band .site-search { margin-top: 0; max-width: 680px; }
