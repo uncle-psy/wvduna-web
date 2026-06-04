@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metrics — WV DUNA</title>
+<meta name="description" content="The WV DUNA network at a glance: registered DUNAs, member treasuries, members, token market cap, and a breakdown by cause.">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand-lockup" href="index.html"><img class="brand-mark" src="assets/wv-mark-gold.svg" alt=""><span class="brand-word"><b>WV</b> DUNA</span></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink" href="dunas.html">DUNAs</a>
+      <a class="navlink" href="founders.html">Founders</a>
+      <a class="navlink" href="sponsors.html">Sponsors</a>
+      <a class="navlink" href="members.html">Members</a>
+      <a class="navlink active" href="metrics.html">Metrics</a>
+      <a class="navlink" href="learn-more.html">Go Deeper</a>
+      <span class="nav-sep"></span>
+      <a class="nav-login" href="login.html">Login / Sign up</a>
+      <a class="btn btn-gold" href="start.html">Start a DUNA</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Metrics <span class="dot">·</span> The network at a glance</div>
+    <h1 class="display">Every action, <em class="wv-emph">on the ledger.</em></h1>
+    <p class="lede">DUNAs coordinate in the open. These figures roll up the registry and the on-chain treasuries across the network, settled on the high-performance Solana network.</p>
+  </div>
+</section>
+
+<!-- HEADLINE STRIP -->
+<section class="section-tight">
+  <div class="wrap">
+    <div class="stats" id="metrics-strip"><!-- rendered by script --></div>
+    <p class="faint" id="metrics-asof" style="margin-top:14px;font-size:0.82rem"></p>
+  </div>
+</section>
+
+<!-- SECONDARY METRICS -->
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Health <span class="dot">·</span> A closer look</div>
+      <h2 class="display">Network health</h2>
+    </div>
+    <div class="card-grid cols-4" id="metrics-secondary"><!-- rendered by script --></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BREAKDOWN BY CATEGORY -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Composition <span class="dot">·</span> By cause</div>
+      <h2 class="display">Where the network is building</h2>
+      <p class="lede">DUNAs span land and water, mutual aid, commerce, agents, and more. Each category rolls up its own members and treasury.</p>
+    </div>
+    <div class="card-grid cols-3" id="metrics-breakdown"><!-- rendered by script --></div>
+    <p class="faint" style="margin-top:20px;font-size:0.82rem">Sample directory data for this draft. At launch these read live from the West Virginia business registry and on-chain treasuries.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-name" style="font-size:1.5rem"><b>WV</b> DUNA</div>
+        <p class="faint" style="margin-top:0.6rem;max-width:34ch">A global on-ramp to agentic commerce, run through a West Virginia Decentralized Unincorporated Nonprofit Association.</p>
+        <p class="faint" style="font-size:0.8rem">A project of the Kinship Intelligence Institute, a 501(c)(3) public charity.</p>
+      </div>
+      <div><h4>Explore</h4><a href="dunas.html">DUNAs</a><a href="founders.html">Founders</a><a href="sponsors.html">Sponsors</a><a href="members.html">Members</a><a href="metrics.html">Metrics</a><a href="learn-more.html">Go Deeper</a></div>
+      <div><h4>Get started</h4><a href="start.html">Start a DUNA</a><a href="login.html">Login / Sign up</a><a href="learn-more.html#act">The WV DUNA Act</a><a href="learn-more.html#faq">FAQ</a></div>
+      <div><h4>Co-sponsors</h4><a href="sponsors.html">Kinship Intelligence Institute</a><a href="sponsors.html">WV Blockchain Foundation</a><a href="sponsors.html">Stand With Crypto</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Kinship Intelligence Institute, a 501(c)(3) public charity.</span><span class="draft-flag">Draft preview</span></div>
+  </div>
+</footer>
+
+<script src="assets/dunas-data.js"></script>
+<script>
+(function () {
+  var D = window.DUNAS || [];
+  function money(n) {
+    if (!n) return "$0";
+    if (n >= 1e9) return "$" + (n / 1e9).toFixed(1) + "B";
+    if (n >= 1e6) return "$" + (n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1) + "M";
+    if (n >= 1e3) return "$" + Math.round(n / 1e3) + "k";
+    return "$" + Math.round(n);
+  }
+  function num(n) { return Math.round(n).toLocaleString("en-US"); }
+  function monthYear(iso) { return new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", year: "numeric" }); }
+
+  var totalTreasury = D.reduce(function (s, d) { return s + d.treasury; }, 0);
+  var totalMembers = D.reduce(function (s, d) { return s + d.members; }, 0);
+  var totalMcap = D.reduce(function (s, d) { return s + d.mcap; }, 0);
+  var publicCount = D.filter(function (d) { return d.type === "Public"; }).length;
+  var privateCount = D.length - publicCount;
+  var avgTreasury = D.length ? totalTreasury / D.length : 0;
+  var largest = D.slice().sort(function (a, b) { return b.treasury - a.treasury; })[0];
+  var newest = D.slice().sort(function (a, b) { return a.created < b.created ? 1 : -1; })[0];
+
+  function statHTML(v, k) { return '<div class="stat"><div class="num">' + v + '</div><div class="label">' + k + '</div></div>'; }
+  document.getElementById("metrics-strip").innerHTML =
+    statHTML(num(D.length), "DUNAs registered") +
+    statHTML(money(totalTreasury), "Total treasuries") +
+    statHTML(num(totalMembers), "Members") +
+    statHTML(money(totalMcap), "Token market cap");
+
+  document.getElementById("metrics-asof").textContent =
+    "Across " + D.length + " registered DUNAs · " + publicCount + " public, " + privateCount + " private.";
+
+  function cardHTML(kicker, big, sub) {
+    return '<div class="acard reveal"><div class="kicker">' + kicker + '</div>' +
+      '<div class="big">' + big + '</div>' +
+      '<p style="margin-top:0.5rem">' + sub + '</p></div>';
+  }
+  document.getElementById("metrics-secondary").innerHTML =
+    cardHTML("Open vs. closed", publicCount + " / " + privateCount, "Public DUNAs with a live token vs. private associations.") +
+    cardHTML("Average treasury", money(avgTreasury), "Mean treasury held across all registered DUNAs.") +
+    cardHTML("Largest treasury", money(largest.treasury), largest.name + " leads the network.") +
+    cardHTML("Newest DUNA", monthYear(newest.created), newest.name + " is the most recently registered.");
+
+  var cats = {};
+  D.forEach(function (d) {
+    if (!cats[d.tag]) cats[d.tag] = { count: 0, members: 0, treasury: 0 };
+    cats[d.tag].count++; cats[d.tag].members += d.members; cats[d.tag].treasury += d.treasury;
+  });
+  var rows = Object.keys(cats).sort(function (a, b) { return cats[b].treasury - cats[a].treasury; });
+  document.getElementById("metrics-breakdown").innerHTML = rows.map(function (tag) {
+    var c = cats[tag];
+    return '<div class="acard reveal"><div class="kicker">' + tag + '</div>' +
+      '<h3>' + c.count + (c.count === 1 ? " DUNA" : " DUNAs") + '</h3>' +
+      '<div class="duna-stats" style="border-top:0;padding-top:0">' +
+        '<div><span class="v">' + num(c.members) + '</span><span class="k">Members</span></div>' +
+        '<div><span class="v">' + money(c.treasury) + '</span><span class="k">Treasury</span></div>' +
+      '</div></div>';
+  }).join("");
+})();
+</script>
+<script src="assets/main.js"></script>
+</body>
+</html>
