@@ -5,6 +5,26 @@
   // Draft auth state. Set to true to simulate a logged-in member.
   var LOGGED_IN = window.WVDUNA_LOGGED_IN === true;
 
+  /* ---------- themed placeholder graphics (lucide-style line icons) ---------- */
+  var ICONS = {
+    "Land & Water": '<path d="M3 17 9 7l4 6 3-4 5 8"/><path d="M3 20.5c1.5 0 1.5-1.3 3-1.3s1.5 1.3 3 1.3 1.5-1.3 3-1.3 1.5 1.3 3 1.3 1.5-1.3 3-1.3"/>',
+    "Mutual Aid": '<path d="M12 20s-7-4.7-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.3-7 10-7 10Z"/>',
+    "Commerce": '<path d="M4 9h16v11H4z"/><path d="M3 9 5 4h14l2 5"/><path d="M9.5 20v-5h5v5"/>',
+    "Veterans": '<path d="M12 3l8 3v5c0 5-4 8.5-8 10-4-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/>',
+    "Agriculture": '<path d="M12 21v-9"/><path d="M12 12C12 8.5 9 6 5.5 6 5.5 9.5 8.5 12 12 12Z"/><path d="M12 12c0-3.5 3-6 6.5-6 0 3.5-3 6-6.5 6Z"/>',
+    "DePIN": '<circle cx="12" cy="11" r="2"/><path d="M12 13v8"/><path d="M7.6 6.6a6 6 0 0 0 0 8.8"/><path d="M16.4 6.6a6 6 0 0 1 0 8.8"/><path d="M5 4a9 9 0 0 0 0 14"/><path d="M19 4a9 9 0 0 1 0 14"/>',
+    "Health": '<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+    "Agents": '<rect x="5" y="9" width="14" height="10" rx="2"/><path d="M12 9V5"/><circle cx="12" cy="4" r="1"/><path d="M9.5 14h.01"/><path d="M14.5 14h.01"/><path d="M2 13v2"/><path d="M22 13v2"/>',
+    "Arts": '<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.4 1-2 2-2h1.6A4.4 4.4 0 0 0 22 12.4 9 9 0 0 0 12 3Z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="11" r="1"/>',
+    "Civic": '<circle cx="12" cy="8" r="2"/><circle cx="12" cy="4.6" r="1.6"/><circle cx="8.6" cy="8" r="1.6"/><circle cx="15.4" cy="8" r="1.6"/><circle cx="12" cy="11.4" r="1.6"/><path d="M12 13v8"/>'
+  };
+  var ICON_FALLBACK = '<path d="M12 3l2.4 6.9H21l-5.3 4 2 6.6L12 16.6 6.3 20.5l2-6.6L3 9.9h6.6z"/>';
+  function themeIcon(tag) {
+    var inner = ICONS[tag] || ICON_FALLBACK;
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+  }
+
   /* ---------- formatting ---------- */
   function money(n) {
     if (!n) return "—";
@@ -99,9 +119,7 @@
     var state = { q: "", field: "created", dir: "desc" };
 
     function compare(a, b) {
-      var va, vb;
-      if (state.field === "created") { va = a.created; vb = b.created; }
-      else { va = a[state.field]; vb = b[state.field]; }
+      var va = a[state.field], vb = b[state.field];
       if (va < vb) return state.dir === "asc" ? -1 : 1;
       if (va > vb) return state.dir === "asc" ? 1 : -1;
       return 0;
@@ -116,7 +134,8 @@
         '<div class="duna-cover">' +
           '<span class="tag">' + esc(d.tag) + '</span>' +
           '<span class="vis-badge ' + (d.type === "Public" ? "vis-public" : "vis-private") + '">' + d.type + '</span>' +
-          '<span class="coin" title="' + esc(d.coin) + ' token">' + esc(d.coin) + '</span>' +
+          '<span class="theme-ico">' + themeIcon(d.tag) + '</span>' +
+          '<span class="coin-chip" title="' + esc(d.coin) + ' token">' + esc(d.coin) + '</span>' +
         '</div>' +
         '<div class="duna-body">' +
           '<h3>' + esc(d.name) + '</h3>' +
@@ -127,8 +146,8 @@
             '<div><span class="v">' + money(d.mcap) + '</span><span class="k">Market cap</span></div>' +
           '</div>' +
           '<div class="duna-ctas">' +
-            '<button class="btn btn-gold join-btn" data-id="' + d.id + '">Join</button>' +
-            '<a class="btn btn-ghost" href="duna.html?id=' + d.id + '">Learn more</a>' +
+            '<button class="btn btn-gold btn-sm join-btn" data-id="' + d.id + '">Join</button>' +
+            '<a class="more-link" href="duna.html?id=' + d.id + '">Learn more →</a>' +
           '</div>' +
         '</div>' +
       '</article>';
@@ -180,10 +199,10 @@
     document.title = d.name + " — WV DUNA";
     mount.innerHTML =
       '<div class="profile-head accent-' + d.accent + '">' +
-        '<span class="coin coin-lg" title="' + esc(d.coin) + ' token">' + esc(d.coin) + '</span>' +
+        '<span class="profile-ico">' + themeIcon(d.tag) + '<span class="coin-chip">' + esc(d.coin) + '</span></span>' +
         '<div>' +
           '<div class="eyebrow" style="margin-bottom:8px">' + esc(d.tag) +
-            ' <span class="dot">·</span> <span class="' + (d.type === "Public" ? "vis-public" : "vis-private") + '" style="padding:3px 8px;border-radius:999px;font-size:0.62rem">' + d.type + '</span></div>' +
+            ' <span class="dot">·</span> <span class="' + (d.type === "Public" ? "vis-public" : "vis-private") + '" style="position:static;padding:3px 8px;border-radius:999px;font-size:0.62rem">' + d.type + '</span></div>' +
           '<h1 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem);margin:0">' + esc(d.name) + '</h1>' +
           '<p class="muted" style="margin:6px 0 0">by <b style="color:var(--fg)">' + esc(d.by) + '</b> &middot; Registered ' + monthYear(d.created) + '</p>' +
         '</div>' +
