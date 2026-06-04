@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login / Sign up — WV DUNA</title>
+<meta name="description" content="Log in to manage your DUNA, or create an account to get started.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chonburi&family=Bitter:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand-lockup" href="index.html"><div><div class="brand-name">WV DUNA</div><div class="brand-sub">wvduna.com</div></div></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink" href="dunas.html">DUNAs</a>
+      <a class="navlink" href="founders.html">Founders</a>
+      <a class="navlink" href="sponsors.html">Sponsors</a>
+      <a class="navlink" href="learn-more.html">Learn More</a>
+      <span class="nav-sep"></span>
+      <a class="nav-login active" href="login.html">Login / Sign up</a>
+      <a class="btn btn-gold" href="start.html">Start a DUNA</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section" style="min-height:60vh;display:flex;align-items:center">
+  <img class="motif motif-circles" src="assets/circles.svg" alt="" aria-hidden="true">
+  <div class="wrap" style="position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+    <div class="reveal">
+      <div class="eyebrow">Welcome back</div>
+      <h1 class="display" style="font-size:clamp(2rem,4vw,3rem)">Manage your DUNA</h1>
+      <p class="lede">Log in to track members, treasury, governance votes, and your filing status. New here? Create an account and start in fifteen minutes.</p>
+      <p class="muted">Don't have a DUNA yet? <a href="start.html">Start one</a>.</p>
+    </div>
+    <div class="reveal">
+      <form class="form-card" data-demo>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="login-pass">Password</label>
+          <input id="login-pass" type="password" placeholder="••••••••" required>
+        </div>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%">Log in</button>
+        <p class="form-result muted" style="display:none;margin-top:1rem">This is a draft preview, so authentication isn't wired up yet.</p>
+        <p class="form-note" style="margin-top:1rem;text-align:center">New to WV DUNA? <a href="start.html">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-name" style="font-size:1.5rem">WV DUNA</div>
+        <p class="faint" style="margin-top:0.6rem;max-width:34ch">A global on-ramp to agentic commerce, run through a West Virginia Decentralized Unincorporated Nonprofit Association.</p>
+        <p class="faint" style="font-size:0.8rem">A project of the Kinship Intelligence Institute, a 501(c)(3) public charity.</p>
+      </div>
+      <div><h4>Explore</h4><a href="dunas.html">DUNAs</a><a href="founders.html">Founders</a><a href="sponsors.html">Sponsors</a><a href="learn-more.html">Learn More</a></div>
+      <div><h4>Get started</h4><a href="start.html">Start a DUNA</a><a href="login.html">Login / Sign up</a><a href="learn-more.html#act">The WV DUNA Act</a><a href="learn-more.html#faq">FAQ</a></div>
+      <div><h4>Co-sponsors</h4><a href="sponsors.html">Kinship Intelligence Institute</a><a href="sponsors.html">WV Blockchain Foundation</a><a href="sponsors.html">Stand With Crypto</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Kinship Intelligence Institute, a 501(c)(3) public charity.</span><span class="draft-flag">Draft preview</span></div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>
