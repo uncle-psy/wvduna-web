@@ -395,3 +395,23 @@ section { position: relative; }
 .brand-logo { height: 30px; width: auto; display: block; }
 .footer-logo { height: 34px; margin-bottom: 6px; }
 @media (max-width: 480px) { .brand-logo { height: 26px; } }
+
+/* =========================================================================
+   Founder profile cards (founders.html) + Agent/ally cards (allies.html)
+   ========================================================================= */
+.founder-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-lg); padding: 24px 22px; transition: 160ms ease; }
+.founder-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.founder-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.founder-ava { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1rem; color: var(--on-accent); background: var(--accent); }
+.founder-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; margin: 0; color: var(--fg); line-height: 1.1; }
+.founder-role { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-soft); font-weight: 700; margin-top: 3px; }
+.founder-card p { color: var(--fg-muted); font-size: 0.95rem; margin: 0 0 1rem; }
+.founder-links { margin-top: auto; border-top: 1px solid var(--border); padding-top: 12px; display: grid; gap: 7px; font-size: 0.9rem; }
+.founder-links .k { display: inline-block; min-width: 60px; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-soft); font-weight: 700; }
+
+.agent-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: 160ms ease; }
+.agent-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.agent-ico { width: 38px; height: 38px; color: var(--accent); margin-bottom: 10px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+.agent-card .who { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+.agent-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0.2rem 0 0.45rem; color: var(--fg); line-height: 1.1; }
+.agent-card p { color: var(--fg-muted); font-size: 0.92rem; margin: 0; }
