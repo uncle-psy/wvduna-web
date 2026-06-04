@@ -1,0 +1,32 @@
+/* Site-wide search index (static content). The DUNA directory entries are
+   merged in at runtime from dunas-data.js. Keep this in sync as pages change. */
+window.SITE_INDEX = [
+  { title: "Home", type: "Page", url: "index.html",
+    text: "Build an online organization powered by intelligent agents. A business, an association, and a movement all in one. DUNA legal standing, blockchain governance, peer-to-peer commerce on Solana." },
+  { title: "Browse every DUNA", type: "Page", url: "dunas.html",
+    text: "The registry. Browse, search, and sort every registered DUNA by creation date, treasury, members, or token market cap. Join a movement." },
+  { title: "Founders & investors", type: "Page", url: "founders.html",
+    text: "Build it here, raise here, bank here. Token sales and equity capital, SAFE and STAMP instruments, institutional banking and KYB, growth funds, 48-hour state response." },
+  { title: "Sponsors", type: "Page", url: "sponsors.html",
+    text: "Co-sponsored by the Kinship Intelligence Institute, the West Virginia Blockchain Foundation, and Stand With Crypto. Economic development, lifting the state in the AI economy." },
+  { title: "Members", type: "Page", url: "members.html",
+    text: "Governed by its members. Vote on proposals, share in the treasury, put agents to work. Roles: Member, Steward, Delegate. How to join a DUNA. Liability shield under the Act." },
+  { title: "Metrics", type: "Page", url: "metrics.html",
+    text: "The network at a glance. Registered DUNAs, total treasuries, members, token market cap, and a breakdown by cause. Every action on the ledger, settled on Solana." },
+  { title: "Go Deeper — primer", type: "Page", url: "learn-more.html",
+    text: "What is a DAO and why a DUNA. On-chain mechanics, smart contracts, treasury, tokens, coordination pattern, programmable governance, agentic AI networks." },
+  { title: "The WV DUNA Act", type: "Reference", url: "learn-more.html#act",
+    text: "Decentralized Unincorporated Nonprofit Association Act. W. Va. Code Chapter 36 Article 11. Legal standing, separate legal entity, liability shield, code-native governance, 100 human members, registered agent and address." },
+  { title: "Three DUNAs compared — WY, AL, WV", type: "Reference", url: "learn-more.html#act",
+    text: "Wyoming, Alabama, and West Virginia recognize the DUNA. Only West Virginia requires Secretary of State registration, producing a public searchable record." },
+  { title: "Frequently asked questions", type: "Reference", url: "learn-more.html#faq",
+    text: "Do I need to live in West Virginia. Do I need technical or blockchain skills. What does it cost to register, fifteen dollars. Is a DUNA a nonprofit. Am I personally liable." },
+  { title: "Start a DUNA", type: "Page", url: "start.html",
+    text: "Register a DUNA in fifteen minutes. Name your association, file with the Secretary of State, recruit members and fund the treasury. Registered agent and address, public record." },
+  { title: "Plans & pricing", type: "Reference", url: "start.html",
+    text: "Three ways to build. Do It Yourself $100 upfront $10 a month, Kiduna Studio, governance templates. Do It With Us $1,000 plus $100 a month, human support from Kiduna Club, training. Done For You $10K plus $1K a month, custom agents, dedicated account management." },
+  { title: "Login / Sign up", type: "Page", url: "login.html",
+    text: "Log in to manage your DUNA: members, treasury, governance votes, and filing status. Create an account." },
+  { title: "What can a DUNA do?", type: "Topic", url: "index.html",
+    text: "Use cases. Capital formation, pool money fast. DePIN, run real hardware, wireless coverage, storage, GPU compute. Fintech, govern a protocol, exchanges, lending, stablecoins. Community and co-ops, commercial alliances. Intelligent agents, real accountability. Service and civic, build a movement, veterans, healthcare, social justice, environment." }
+];
