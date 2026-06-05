@@ -415,3 +415,6 @@ section { position: relative; }
 .agent-card .who { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
 .agent-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0.2rem 0 0.45rem; color: var(--fg); line-height: 1.1; }
 .agent-card p { color: var(--fg-muted); font-size: 0.92rem; margin: 0; }
+
+/* Founder card: Connect CTA */
+.founder-connect { align-self: flex-start; margin-top: 14px; }
