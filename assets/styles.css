@@ -418,3 +418,14 @@ section { position: relative; }
 
 /* Founder card: Connect CTA */
 .founder-connect { align-self: flex-start; margin-top: 14px; }
+
+/* Sponsor directory cards */
+.sponsor-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 22px; transition: 160ms ease; }
+.sponsor-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.sponsor-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.sponsor-logo { flex: 0 0 auto; width: 52px; height: 52px; border-radius: var(--radius-md); display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; background: var(--surface-elev); border: 1.5px solid var(--sp, var(--accent)); color: var(--sp, var(--accent)); }
+.sponsor-card .kicker { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--fg-soft); margin-bottom: 0.3rem; }
+.sponsor-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; margin: 0; color: var(--fg); line-height: 1.1; }
+.sponsor-card p { color: var(--fg-muted); font-size: 0.95rem; margin: 0 0 1rem; }
+.sponsor-links { margin-top: auto; border-top: 1px solid var(--border); padding-top: 12px; font-size: 0.9rem; line-height: 1.6; }
+.sponsor-links .k { display: block; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-soft); font-weight: 700; margin-bottom: 3px; }
