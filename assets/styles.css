@@ -46,6 +46,7 @@ h2.display { font-size: clamp(1.9rem, 4vw, 2.5rem); margin: 0 0 0.4em; }
   color: var(--kin-skyblue);
 }
 .eyebrow .dot { color: var(--fg-dim); margin: 0 0.5em; }
+.eyebrow .star { color: var(--accent); margin: 0 0.5em; }
 .lede { font-size: clamp(1.05rem, 1.5vw, 1.25rem); color: var(--fg-muted); max-width: 62ch; line-height: 1.55; }
 .muted { color: var(--fg-muted); }
 .faint { color: var(--fg-soft); }
