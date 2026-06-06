@@ -177,7 +177,7 @@ section { position: relative; }
 .spotlight .wv-badge { width: 150px; opacity: 0.95; }
 
 /* ---------- Pricing tiers ---------- */
-.tier { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px 20px; display: flex; flex-direction: column; }
+.tier { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px 26px; display: flex; flex-direction: column; }
 .tier.featured-tier { background: linear-gradient(180deg, rgba(234,170,0,0.12), transparent 70%), var(--surface); border-color: rgba(234,170,0,0.4); box-shadow: var(--shadow-glow-accent); }
 .tier .ribbon { align-self: flex-start; font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--on-accent); background: var(--accent); padding: 0.25rem 0.7rem; border-radius: var(--radius-pill); margin-bottom: 1rem; }
 .tier h3 { font-family: var(--font-display); font-weight: 400; color: var(--fg); font-size: 1.6rem; margin: 0 0 0.3rem; }
@@ -434,3 +434,7 @@ section { position: relative; }
 
 /* Member/founder card: handle */
 .founder-links .handle { font-family: var(--font-mono); color: var(--fg-soft); font-size: 0.85rem; }
+
+/* Membership levels: second row of two, centered to match the 3-up card width */
+.tier-row-2 { max-width: 66.666%; margin: 16px auto 0; }
+@media (max-width: 760px) { .tier-row-2 { max-width: 100%; } }
