@@ -13,7 +13,7 @@
     corpus.push({
       title: d.name,
       type: "DUNA",
-      url: "duna.html?id=" + d.id,
+      url: d.symbol + ".html",
       text: d.by + " · " + d.tag + " · " + d.type + " · " + d.coin + " · " + d.blurb
     });
   });

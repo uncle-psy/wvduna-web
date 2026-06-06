@@ -147,7 +147,7 @@
           '</div>' +
           '<div class="duna-ctas">' +
             '<button class="btn btn-gold btn-sm join-btn" data-id="' + d.id + '">Join</button>' +
-            '<a class="more-link" href="duna.html?id=' + d.id + '">Learn more →</a>' +
+            '<a class="more-link" href="' + d.symbol + '.html">Learn more →</a>' +
           '</div>' +
         '</div>' +
       '</article>';
