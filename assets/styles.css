@@ -435,6 +435,11 @@ section { position: relative; }
 /* Member/founder card: handle */
 .founder-links .handle { font-family: var(--font-mono); color: var(--fg-soft); font-size: 0.85rem; }
 
-/* Membership levels: second row of two, centered to match the 3-up card width */
-.tier-row-2 { max-width: 66.666%; margin: 16px auto 0; }
-@media (max-width: 760px) { .tier-row-2 { max-width: 100%; } }
+/* Membership levels: full-width Luminary feature box */
+.luminary { margin-top: 16px; }
+.luminary-grid { display: grid; grid-template-columns: 0.8fr 1.6fr; gap: 30px; align-items: center; }
+.luminary-head .price { margin-top: 0.4rem; }
+.luminary .lum-everything { color: var(--fg-muted); font-size: 0.94rem; margin: 1rem 0 1.3rem; }
+.luminary-head .btn { width: 100%; }
+.luminary ul { margin: 0; }
+@media (max-width: 760px) { .luminary-grid { grid-template-columns: 1fr; gap: 18px; } }
