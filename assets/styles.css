@@ -446,3 +446,11 @@ section { position: relative; }
 .luminary-head .btn { width: 100%; }
 .luminary ul { margin: 0; }
 @media (max-width: 760px) { .luminary-grid { grid-template-columns: 1fr; gap: 18px; } }
+
+/* Allies submenu (second header row) */
+.allies-toggle { cursor: pointer; }
+.subnav { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .25s ease, opacity .2s ease; border-top: 1px solid var(--border); background: rgba(3,1,27,0.55); }
+.subnav.open { max-height: 140px; opacity: 1; }
+.subnav-row { display: flex; flex-wrap: wrap; gap: 1.6rem; padding: 0.6rem 0; }
+.subnavlink { color: var(--fg-muted); font-weight: 600; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
+.subnavlink:hover, .subnavlink.active { color: var(--fg); border-color: var(--accent); text-decoration: none; }

@@ -10,6 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Allies submenu: hover to reveal, click to pin/unpin
+  var alliesToggle = document.getElementById("allies-toggle");
+  var subnav = document.getElementById("subnav");
+  var header = document.querySelector(".site-header");
+  if (alliesToggle && subnav && header) {
+    var pinned = subnav.classList.contains("pinned");
+    function showSub(){ subnav.classList.add("open"); alliesToggle.setAttribute("aria-expanded","true"); }
+    function hideSub(){ if(!pinned){ subnav.classList.remove("open"); alliesToggle.setAttribute("aria-expanded","false"); } }
+    alliesToggle.addEventListener("mouseenter", showSub);
+    subnav.addEventListener("mouseenter", showSub);
+    header.addEventListener("mouseleave", hideSub);
+    alliesToggle.addEventListener("click", function(e){
+      e.preventDefault();
+      pinned = !pinned;
+      subnav.classList.toggle("pinned", pinned);
+      subnav.classList.toggle("open", pinned);
+      alliesToggle.setAttribute("aria-expanded", pinned ? "true" : "false");
+    });
+  }
+
   // Reveal on scroll
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
