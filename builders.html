@@ -58,7 +58,21 @@
       <p class="lede">Builders create the intelligent agents that do the work. Each one ships under a registered DUNA, with a handle, a roster of projects, and an ally of their own.</p>
     </div>
 
-    <div class="card-grid cols-3">
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="dir-search" type="search" placeholder="Search builders by name, role, or project…" aria-label="Search">
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="dir-sort">
+        <button class="sort-btn" data-sort="name">Name <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="count">Projects <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="role">Role <span class="arrow"></span></button>
+      </div>
+    </div>
+    <p class="result-count" id="dir-count"></p>
+
+    <div class="card-grid cols-3" id="dir-grid">
 
       <div class="founder-card reveal">
         <div class="founder-head"><span class="founder-ava">AS</span><div><h3>Ari Sloan</h3><div class="founder-role">Agent engineer · Charleston</div></div></div>

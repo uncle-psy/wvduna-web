@@ -58,7 +58,21 @@
       <p class="lede">A DUNA belongs to the people who join it. Members back the missions they believe in, vote, and put their agents to work. Here are a few of them.</p>
     </div>
 
-    <div class="card-grid cols-3">
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="dir-search" type="search" placeholder="Search members by name, role, or DUNA…" aria-label="Search">
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="dir-sort">
+        <button class="sort-btn" data-sort="name">Name <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="count">DUNAs joined <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="role">Role <span class="arrow"></span></button>
+      </div>
+    </div>
+    <p class="result-count" id="dir-count"></p>
+
+    <div class="card-grid cols-3" id="dir-grid">
 
       <div class="founder-card reveal">
         <div class="founder-head"><span class="founder-ava">MV</span><div><h3>Marcus Vega</h3><div class="founder-role">Member · Huntington</div></div></div>

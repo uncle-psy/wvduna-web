@@ -73,6 +73,68 @@ document.addEventListener("DOMContentLoaded", function () {
     counters.forEach(function (el) { co.observe(el); });
   }
 
+  // Directory pages: client-side search + sort over profile cards
+  var dirGrid = document.getElementById("dir-grid");
+  if (dirGrid) {
+    var dirSearch = document.getElementById("dir-search");
+    var dirCount = document.getElementById("dir-count");
+    var sortWrap = document.getElementById("dir-sort");
+    var cards = Array.prototype.slice.call(dirGrid.children);
+    var LISTLABELS = ["joined", "founded", "projects", "initiatives", "sponsoring"];
+    function nameOf(c) { var h = c.querySelector("h3"); return h ? h.textContent.trim().toLowerCase() : ""; }
+    function roleOf(c) { var r = c.querySelector(".founder-role, .kicker"); return r ? r.textContent.trim().toLowerCase() : ""; }
+    function countOf(c) {
+      var rows = c.querySelectorAll(".founder-links > div, .sponsor-links");
+      for (var i = 0; i < rows.length; i++) {
+        var k = rows[i].querySelector(".k");
+        if (k && LISTLABELS.indexOf(k.textContent.trim().toLowerCase()) >= 0) {
+          return rows[i].querySelectorAll("a").length;
+        }
+      }
+      return 0;
+    }
+    var sortKey = "name", sortDir = 1;
+    function applyDir() {
+      var q = (dirSearch && dirSearch.value || "").trim().toLowerCase();
+      var visible = cards.filter(function (c) {
+        var show = !q || c.textContent.toLowerCase().indexOf(q) >= 0;
+        c.style.display = show ? "" : "none";
+        return show;
+      });
+      visible.sort(function (a, b) {
+        var r;
+        if (sortKey === "count") r = countOf(a) - countOf(b);
+        else if (sortKey === "role") r = roleOf(a) < roleOf(b) ? -1 : roleOf(a) > roleOf(b) ? 1 : 0;
+        else r = nameOf(a) < nameOf(b) ? -1 : nameOf(a) > nameOf(b) ? 1 : 0;
+        return r * sortDir;
+      });
+      visible.forEach(function (c) { dirGrid.appendChild(c); });
+      if (dirCount) dirCount.textContent = q || sortKey !== "name"
+        ? "Showing " + visible.length + " of " + cards.length
+        : cards.length + (cards.length === 1 ? " profile" : " profiles");
+    }
+    if (dirSearch) dirSearch.addEventListener("input", applyDir);
+    if (sortWrap) {
+      sortWrap.querySelectorAll(".sort-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var k = btn.getAttribute("data-sort");
+          if (sortKey === k) sortDir = -sortDir;
+          else { sortKey = k; sortDir = (k === "count") ? -1 : 1; }
+          sortWrap.querySelectorAll(".sort-btn").forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle("active", on);
+            var ar = b.querySelector(".arrow");
+            if (ar) ar.textContent = on ? (sortDir > 0 ? "\u2191" : "\u2193") : "";
+          });
+          applyDir();
+        });
+      });
+      var def = sortWrap.querySelector('[data-sort="name"]');
+      if (def) { def.classList.add("active"); var a0 = def.querySelector(".arrow"); if (a0) a0.textContent = "\u2191"; }
+    }
+    applyDir();
+  }
+
   // Demo forms (DRAFT — no backend)
   document.querySelectorAll("form[data-demo]").forEach(function (f) {
     f.addEventListener("submit", function (ev) {

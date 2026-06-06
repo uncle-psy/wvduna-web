@@ -58,7 +58,21 @@
       <p class="lede">Catalysts move capital and attention to where the ecosystem needs it. Each one runs initiatives across many DUNAs, with a handle and an ally of their own.</p>
     </div>
 
-    <div class="card-grid cols-3">
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="dir-search" type="search" placeholder="Search catalysts by name, role, or initiative…" aria-label="Search">
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="dir-sort">
+        <button class="sort-btn" data-sort="name">Name <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="count">Initiatives <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="role">Role <span class="arrow"></span></button>
+      </div>
+    </div>
+    <p class="result-count" id="dir-count"></p>
+
+    <div class="card-grid cols-3" id="dir-grid">
 
       <div class="founder-card reveal">
         <div class="founder-head"><span class="founder-ava">IB</span><div><h3>Imani Brooks</h3><div class="founder-role">Ecosystem catalyst · Atlanta</div></div></div>

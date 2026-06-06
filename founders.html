@@ -58,7 +58,21 @@
       <p class="lede">Every DUNA starts with someone who refused to wait for permission. Meet the founders shaping accountability, identity, relationships, and agency in the age of intelligence.</p>
     </div>
 
-    <div class="card-grid cols-3">
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="dir-search" type="search" placeholder="Search founders by name, role, or DUNA…" aria-label="Search">
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="dir-sort">
+        <button class="sort-btn" data-sort="name">Name <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="count">DUNAs founded <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="role">Role <span class="arrow"></span></button>
+      </div>
+    </div>
+    <p class="result-count" id="dir-count"></p>
+
+    <div class="card-grid cols-3" id="dir-grid">
 
       <div class="founder-card reveal">
         <div class="founder-head"><span class="founder-ava">MC</span><div><h3>Maya Calder</h3><div class="founder-role">Conservation organizer · Fayette County</div></div></div>

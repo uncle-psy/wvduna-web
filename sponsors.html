@@ -56,7 +56,21 @@
       <p class="lede">Consumer goods, hospitality, technology, healthcare, entertainment, and the nonprofit world all show up here. Each sponsor brings products, services, and support to the DUNAs they believe in.</p>
     </div>
 
-    <div class="card-grid cols-3">
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="dir-search" type="search" placeholder="Search sponsors by name, industry, or DUNA…" aria-label="Search">
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="dir-sort">
+        <button class="sort-btn" data-sort="name">Name <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="count">DUNAs sponsored <span class="arrow"></span></button>
+        <button class="sort-btn" data-sort="role">Industry <span class="arrow"></span></button>
+      </div>
+    </div>
+    <p class="result-count" id="dir-count"></p>
+
+    <div class="card-grid cols-3" id="dir-grid">
 
       <div class="sponsor-card reveal">
         <div class="sponsor-head"><span class="sponsor-logo" style="--sp:var(--wv-gold)">SP</span><div><div class="kicker">Consumer goods</div><h3>Summit Provisions Co.</h3></div></div>
