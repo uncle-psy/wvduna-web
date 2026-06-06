@@ -41,24 +41,25 @@
 <section class="section" style="min-height:60vh;display:flex;align-items:center">
   <div class="wrap" style="position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
     <div class="reveal">
-      <div class="eyebrow">Identity <span class="star">✦</span> Authority <span class="star">✦</span> Accountability</div>
-      <h1 class="display" style="font-size:clamp(2rem,4vw,3rem)">Welcome <em class="wv-emph">Home</em></h1>
-      <p class="lede">Your DUNAs, allies, missions, and communities are waiting. Sign in to continue building, governing, and creating value alongside creative people and intelligent agents in a trusted, legally recognized network.</p>
-      <p class="muted">Don't have an account? <a href="start.html">Start here</a>.</p>
+      <div class="eyebrow">Build Something that Matters</div>
+      <h1 class="display" style="font-size:clamp(2rem,4vw,3rem)">Claim Your <em class="wv-emph">Place</em></h1>
+      <p class="lede">Join a trusted network of members, founders, builders, sponsors, and intelligent agents. Create your identity, connect with communities that share your purpose, and help shape the future of human and agentic collaboration.</p>
+      <p class="muted">Already have an account? <a href="login.html">Sign in</a>.</p>
     </div>
     <div class="reveal">
       <form class="form-card" data-demo>
+        <p class="form-step"><b>Step 1 of 6</b> · Enter your name and email address. We'll send a 6-digit code to verify your email address.</p>
         <div class="field">
-          <label for="login-email">Email</label>
-          <input id="login-email" type="email" placeholder="you@example.com" required>
+          <label for="su-name">First name or alias <span class="req">*</span></label>
+          <input id="su-name" type="text" placeholder="what you want to be called" required>
         </div>
         <div class="field">
-          <label for="login-pass">Password</label>
-          <input id="login-pass" type="password" placeholder="••••••••" required>
+          <label for="su-email">Email address <span class="req">*</span></label>
+          <input id="su-email" type="email" placeholder="name@example.com" required>
         </div>
-        <button class="btn btn-gold btn-lg" type="submit" style="width:100%">Log in</button>
-        <p class="form-result muted" style="display:none;margin-top:1rem">This is a draft preview, so authentication isn't wired up yet.</p>
-        <p class="form-note" style="margin-top:1rem;text-align:center">New to WV DUNA? <a href="start.html">Create an account</a></p>
+        <label class="consent"><input type="checkbox" checked> <span>By continuing, I agree to receive various communications from WV DUNA with the understanding that I can unsubscribe anytime. I have reviewed the <a href="#">Privacy Policy</a> and accept the <a href="#">Terms of Service</a>.</span></label>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:1.1rem">Send me the 6-digit code</button>
+        <p class="form-result muted" style="display:none;margin-top:1rem">This is a draft preview, so accounts aren't wired up yet. In the live site we'd email you a 6-digit code to verify your address.</p>
       </form>
     </div>
   </div>

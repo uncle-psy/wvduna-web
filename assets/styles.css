@@ -492,3 +492,10 @@ section { position: relative; }
 .panel-row { display: flex; justify-content: space-between; gap: 10px; font-size: 0.9rem; color: var(--fg-muted); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
 .panel-row b { color: var(--fg); font-weight: 700; }
 @media (max-width: 860px) { .duna-detail { grid-template-columns: 1fr; } .detail-panel { position: static; } }
+
+/* Sign-up (login page) form extras */
+.form-step { font-size: 0.85rem; color: var(--fg-muted); margin: 0 0 1.2rem; line-height: 1.5; }
+.form-step b { color: var(--fg); }
+.req { color: var(--accent); }
+.consent { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.8rem; color: var(--fg-muted); line-height: 1.45; margin-top: 0.5rem; }
+.consent input[type="checkbox"] { margin-top: 0.2rem; flex: 0 0 auto; width: 16px; height: 16px; accent-color: var(--accent); }
