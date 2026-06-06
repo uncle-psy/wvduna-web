@@ -135,6 +135,63 @@ document.addEventListener("DOMContentLoaded", function () {
     applyDir();
   }
 
+  // Launchpad: status filter + search + sort
+  var launchGrid = document.getElementById("launch-grid");
+  if (launchGrid) {
+    var lSearch = document.getElementById("launch-search");
+    var lCount = document.getElementById("launch-count");
+    var filterWrap = document.getElementById("launch-filter");
+    var lsortWrap = document.getElementById("launch-sort");
+    var lcards = Array.prototype.slice.call(launchGrid.children);
+    var curFilter = "all", lsortKey = null, lsortDir = 1;
+    function num(c, a) { return parseFloat(c.getAttribute(a)) || 0; }
+    function applyLaunch() {
+      var q = (lSearch && lSearch.value || "").trim().toLowerCase();
+      var visible = lcards.filter(function (c) {
+        var okF = curFilter === "all" || c.getAttribute("data-status") === curFilter;
+        var okQ = !q || c.textContent.toLowerCase().indexOf(q) >= 0;
+        var show = okF && okQ;
+        c.style.display = show ? "" : "none";
+        return show;
+      });
+      if (lsortKey) {
+        visible.sort(function (a, b) {
+          var r;
+          if (lsortKey === "ending") r = num(a, "data-days") - num(b, "data-days");
+          else if (lsortKey === "committed") r = num(a, "data-committed") - num(b, "data-committed");
+          else if (lsortKey === "progress") r = num(a, "data-progress") - num(b, "data-progress");
+          else r = num(a, "data-goal") - num(b, "data-goal");
+          return r * lsortDir;
+        });
+        visible.forEach(function (c) { launchGrid.appendChild(c); });
+      }
+      if (lCount) lCount.textContent = "Showing " + visible.length + " of " + lcards.length + " launches";
+    }
+    if (lSearch) lSearch.addEventListener("input", applyLaunch);
+    if (filterWrap) filterWrap.querySelectorAll(".sort-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        curFilter = btn.getAttribute("data-filter");
+        filterWrap.querySelectorAll(".sort-btn").forEach(function (b) { b.classList.toggle("active", b === btn); });
+        applyLaunch();
+      });
+    });
+    if (lsortWrap) lsortWrap.querySelectorAll(".sort-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var k = btn.getAttribute("data-lsort");
+        if (lsortKey === k) lsortDir = -lsortDir;
+        else { lsortKey = k; lsortDir = (k === "ending") ? 1 : -1; }
+        lsortWrap.querySelectorAll(".sort-btn").forEach(function (b) {
+          var on = b === btn;
+          b.classList.toggle("active", on);
+          var ar = b.querySelector(".arrow");
+          if (ar) ar.textContent = on ? (lsortDir > 0 ? "\u2191" : "\u2193") : "";
+        });
+        applyLaunch();
+      });
+    });
+    applyLaunch();
+  }
+
   // Demo forms (DRAFT — no backend)
   document.querySelectorAll("form[data-demo]").forEach(function (f) {
     f.addEventListener("submit", function (ev) {

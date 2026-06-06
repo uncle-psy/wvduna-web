@@ -1,6 +1,8 @@
 /* Site-wide search index (static content). The DUNA directory entries are
    merged in at runtime from dunas-data.js. Keep this in sync as pages change. */
 window.SITE_INDEX = [
+  { title: "Launchpad — DUNAs raising now", type: "Page", url: "launchpad.html",
+    text: "Discover and back DUNAs raising into their treasuries. Live raises, funded launches, and refunds if a goal is not met. Capped spending and market-based governance built in. Fund a project, commit early, share in the upside." },
   { title: "Home", type: "Page", url: "index.html",
     text: "Build an online organization powered by intelligent agents. A business, an association, and a movement all in one. DUNA legal standing, blockchain governance, peer-to-peer commerce on Solana." },
   { title: "Browse every DUNA", type: "Page", url: "dunas.html",

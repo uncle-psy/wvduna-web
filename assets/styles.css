@@ -454,3 +454,25 @@ section { position: relative; }
 .subnav-row { display: flex; flex-wrap: wrap; gap: 1.6rem; padding: 0.6rem 0; }
 .subnavlink { color: var(--fg-muted); font-weight: 600; font-size: 0.9rem; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
 .subnavlink:hover, .subnavlink.active { color: var(--fg); border-color: var(--accent); text-decoration: none; }
+
+/* Launchpad */
+.launch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.launch-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: 160ms ease; }
+.launch-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.launch-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.launch-status { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; padding: 0.22rem 0.6rem; border-radius: var(--radius-pill); border: 1px solid var(--border); color: var(--fg-soft); }
+.launch-status.live { color: var(--accent); border-color: rgba(234,170,0,0.5); background: var(--wv-gold-soft); }
+.launch-status.funded { color: var(--success); border-color: rgba(74,222,128,0.4); }
+.launch-status.refunding { color: var(--fg-soft); }
+.launch-fdv { font-family: var(--font-mono); font-size: 0.78rem; color: var(--fg-soft); }
+.launch-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0 0 0.15rem; color: var(--fg); line-height: 1.1; }
+.launch-meta { font-size: 0.76rem; color: var(--fg-soft); margin-bottom: 0.7rem; }
+.launch-card p.desc { color: var(--fg-muted); font-size: 0.92rem; margin: 0 0 1rem; flex: 1; }
+.progress { height: 7px; border-radius: var(--radius-pill); background: var(--surface-elev); overflow: hidden; margin-bottom: 0.5rem; }
+.progress > span { display: block; height: 100%; background: var(--accent); border-radius: var(--radius-pill); }
+.launch-card[data-status="funded"] .progress > span { background: var(--success); }
+.launch-figures { display: flex; justify-content: space-between; gap: 8px; font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 1.1rem; }
+.launch-figures b { color: var(--fg); font-weight: 700; }
+.launch-card .btn { width: 100%; }
+@media (max-width: 920px) { .launch-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .launch-grid { grid-template-columns: 1fr; } }

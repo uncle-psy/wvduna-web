@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launchpad — WV DUNA</title>
+<meta name="description" content="Discover and back DUNAs raising into their treasuries — with built-in protection: capped spending, market-based governance, and refunds if a raise falls short.">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand-lockup" href="index.html"><img class="brand-logo" src="assets/wvduna-logo-sunmoon.svg" alt="WV DUNA"></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink active" href="launchpad.html">Launchpad</a>
+      <a class="navlink allies-toggle" href="#allies" id="allies-toggle" role="button" aria-haspopup="true" aria-expanded="false">Allies ▾</a>
+      <a class="navlink" href="metrics.html">Metrics</a>
+      <a class="navlink" href="learn-more.html">Go Deeper</a>
+      <span class="nav-sep"></span>
+      <a class="nav-login" href="login.html">Login / Sign up</a>
+      <a class="btn btn-gold" href="start.html">Start a DUNA</a>
+    </nav>
+  </div>
+  <div class="subnav" id="subnav">
+    <div class="wrap subnav-row">
+      <a class="subnavlink" href="dunas.html">DUNAs</a>
+      <a class="subnavlink" href="members.html">Members</a>
+      <a class="subnavlink" href="founders.html">Founders</a>
+      <a class="subnavlink" href="builders.html">Builders</a>
+      <a class="subnavlink" href="sponsors.html">Sponsors</a>
+      <a class="subnavlink" href="catalysts.html">Catalysts</a>
+      <a class="subnavlink" href="luminaries.html">Luminaries</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Launchpad <span class="star">✦</span> DUNAs raising now</div>
+    <h1 class="display">Back the DUNAs <em class="wv-emph">about to launch.</em></h1>
+    <p class="lede">Discover DUNAs raising into their treasuries and fund the ones you believe in, with protection built into the form. Raises are capped, spending is governed by the membership and market-based decision rules, and if a raise falls short, backers are refunded. Commit early, share in the upside, and help a movement reach escape velocity.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold btn-lg" href="start.html">Launch a DUNA</a>
+      <a class="btn btn-ghost btn-lg" href="learn-more.html">How it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS LINE -->
+<section class="section-tight">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat accent-gold reveal"><div class="num" data-count="69">0</div><div class="label">Total Launches</div></div>
+      <div class="stat accent-cyan reveal"><div class="num" data-count="11">0</div><div class="label">Live Now</div></div>
+      <div class="stat accent-lime reveal"><div class="num" data-count="42.8" data-prefix="$" data-suffix="M">$0</div><div class="label">Committed to date</div></div>
+      <div class="stat accent-magenta reveal"><div class="num" data-count="38">0</div><div class="label">Funded &amp; Launched</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LAUNCH BOARD -->
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+
+    <div class="duna-toolbar">
+      <div class="duna-search">
+        <span class="ico" aria-hidden="true">⌕</span>
+        <input id="launch-search" type="search" placeholder="Search launches by name or mission…" aria-label="Search launches">
+      </div>
+      <span class="sort-label">Show</span>
+      <div class="sort-group" id="launch-filter">
+        <button class="sort-btn active" data-filter="all">All</button>
+        <button class="sort-btn" data-filter="live">Live</button>
+        <button class="sort-btn" data-filter="funded">Funded</button>
+        <button class="sort-btn" data-filter="refunding">Refunding</button>
+      </div>
+      <span class="sort-label">Sort</span>
+      <div class="sort-group" id="launch-sort">
+        <button class="sort-btn" data-lsort="ending">Ending soon <span class="arrow"></span></button>
+        <button class="sort-btn" data-lsort="committed">Committed <span class="arrow"></span></button>
+        <button class="sort-btn" data-lsort="progress">% funded <span class="arrow"></span></button>
+        <button class="sort-btn" data-lsort="goal">Raise goal <span class="arrow"></span></button>
+      </div>
+    </div>
+
+    <p class="result-count" id="launch-count"></p>
+
+    <div class="launch-grid" id="launch-grid">
+
+      <article class="launch-card reveal" data-status="live" data-days="4" data-committed="32000" data-goal="50000" data-progress="64">
+        <div class="launch-top"><span class="launch-status live">Live</span><span class="launch-fdv">$72K FDV</span></div>
+        <h3>New River Solar Collective</h3>
+        <div class="launch-meta">4 days left</div>
+        <p class="desc">Community-owned solar for the New River valley, with payouts split among member households.</p>
+        <div class="progress"><span style="width:64%"></span></div>
+        <div class="launch-figures"><span><b>$32k</b> committed</span><span>$50k goal · 64%</span></div>
+        <a class="btn btn-gold" href="login.html">Back this DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="live" data-days="2" data-committed="61000" data-goal="80000" data-progress="76">
+        <div class="launch-top"><span class="launch-status live">Live</span><span class="launch-fdv">$140K FDV</span></div>
+        <h3>Mountain Mesh Expansion</h3>
+        <div class="launch-meta">2 days left</div>
+        <p class="desc">Extending county wireless coverage to three more hollows, metered and settled on-chain.</p>
+        <div class="progress"><span style="width:76%"></span></div>
+        <div class="launch-figures"><span><b>$61k</b> committed</span><span>$80k goal · 76%</span></div>
+        <a class="btn btn-gold" href="login.html">Back this DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="live" data-days="6" data-committed="54000" data-goal="120000" data-progress="45">
+        <div class="launch-top"><span class="launch-status live">Live</span><span class="launch-fdv">$210K FDV</span></div>
+        <h3>Coalfield Compute</h3>
+        <div class="launch-meta">6 days left</div>
+        <p class="desc">A member-run GPU and storage network turning idle coalfield power into agentic compute.</p>
+        <div class="progress"><span style="width:45%"></span></div>
+        <div class="launch-figures"><span><b>$54k</b> committed</span><span>$120k goal · 45%</span></div>
+        <a class="btn btn-gold" href="login.html">Back this DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="live" data-days="5" data-committed="18000" data-goal="60000" data-progress="30">
+        <div class="launch-top"><span class="launch-status live">Live</span><span class="launch-fdv">$96K FDV</span></div>
+        <h3>Holler Health Network</h3>
+        <div class="launch-meta">5 days left</div>
+        <p class="desc">Telehealth and care navigation governed by the patients it serves.</p>
+        <div class="progress"><span style="width:30%"></span></div>
+        <div class="launch-figures"><span><b>$18k</b> committed</span><span>$60k goal · 30%</span></div>
+        <a class="btn btn-gold" href="login.html">Back this DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="funded" data-days="9999" data-committed="2100000" data-goal="100000" data-progress="2100">
+        <div class="launch-top"><span class="launch-status funded">Funded</span><span class="launch-fdv">$1.5M FDV</span></div>
+        <h3>WV Commerce Club</h3>
+        <div class="launch-meta">Overraised · Launched</div>
+        <p class="desc">A network of Appalachian small businesses pooling reach, capital, and clients.</p>
+        <div class="progress"><span style="width:100%"></span></div>
+        <div class="launch-figures"><span><b>$2.1M</b> committed</span><span>$100k goal · 2100%</span></div>
+        <a class="btn btn-ghost" href="duna.html?id=wv-commerce-club">View DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="funded" data-days="9999" data-committed="1200000" data-goal="50000" data-progress="2400">
+        <div class="launch-top"><span class="launch-status funded">Funded</span><span class="launch-fdv">$2.1M FDV</span></div>
+        <h3>Rhododendron AI</h3>
+        <div class="launch-meta">Overraised · Launched</div>
+        <p class="desc">Fleets of accountable agents operating under real legal standing.</p>
+        <div class="progress"><span style="width:100%"></span></div>
+        <div class="launch-figures"><span><b>$1.2M</b> committed</span><span>$50k goal · 2400%</span></div>
+        <a class="btn btn-ghost" href="duna.html?id=rhododendron-ai">View DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="funded" data-days="9999" data-committed="640000" data-goal="60000" data-progress="1067">
+        <div class="launch-top"><span class="launch-status funded">Funded</span><span class="launch-fdv">$516K FDV</span></div>
+        <h3>Appalachia Provisions</h3>
+        <div class="launch-meta">Overraised · Launched</div>
+        <p class="desc">Member-governed co-op giving small farms a shared route to buyers worldwide.</p>
+        <div class="progress"><span style="width:100%"></span></div>
+        <div class="launch-figures"><span><b>$640k</b> committed</span><span>$60k goal · 1067%</span></div>
+        <a class="btn btn-ghost" href="duna.html?id=appalachia-provisions">View DUNA</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="refunding" data-days="9999" data-committed="35000" data-goal="200000" data-progress="18">
+        <div class="launch-top"><span class="launch-status refunding">Refunding</span><span class="launch-fdv">$52K FDV</span></div>
+        <h3>Wheeling Opera House Revival</h3>
+        <div class="launch-meta">Goal not met · Backers refunded</div>
+        <p class="desc">A member-owned plan to reopen and program the historic Wheeling stage.</p>
+        <div class="progress"><span style="width:18%"></span></div>
+        <div class="launch-figures"><span><b>$35k</b> committed</span><span>$200k goal · 18%</span></div>
+        <a class="btn btn-ghost" href="launchpad.html">Refunding backers</a>
+      </article>
+
+      <article class="launch-card reveal" data-status="refunding" data-days="9999" data-committed="9000" data-goal="40000" data-progress="22">
+        <div class="launch-top"><span class="launch-status refunding">Refunding</span><span class="launch-fdv">$26K FDV</span></div>
+        <h3>Tygart Trails Trust</h3>
+        <div class="launch-meta">Goal not met · Backers refunded</div>
+        <p class="desc">Trail access and stewardship for the Tygart valley, held in common.</p>
+        <div class="progress"><span style="width:22%"></span></div>
+        <div class="launch-figures"><span><b>$9k</b> committed</span><span>$40k goal · 22%</span></div>
+        <a class="btn btn-ghost" href="launchpad.html">Refunding backers</a>
+      </article>
+
+    </div>
+    <p class="faint" style="margin-top:20px;font-size:0.82rem">Sample launches for this draft. In the live Launchpad, committing funds connects to your wallet and the DUNA's on-chain raise, with refunds enforced by contract if the goal isn't met.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="eyebrow">Ready to raise <span class="star">✦</span> From idea to treasury</div>
+    <h2 class="display">Put your DUNA on the <em class="wv-emph">Launchpad.</em></h2>
+    <p class="lede">Register your DUNA, set a raise goal, and open it to backers. Capped spending and market-based governance come built in, so members can fund you with confidence.</p>
+    <a class="btn btn-gold btn-lg" href="start.html">Launch a DUNA</a>
+  </div>
+  <img class="mountains" src="assets/ridge-motif.svg" alt="" aria-hidden="true">
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand-lockup"><img class="brand-logo footer-logo" src="assets/wvduna-logo-sunmoon.svg" alt="WV DUNA"></a>
+        <p class="faint" style="margin-top:0.6rem;max-width:42ch">A global on-ramp to agentic commerce, run through your very own member-governed organization registered in the state of West Virginia, with legal standing all around the world.</p>
+        <p class="faint" style="font-size:0.8rem;white-space:nowrap">Powered by <a href="https://kiduna.club" target="_blank" rel="noopener">Kiduna Club</a>, Human Agency for the Intelligence Age.</p>
+        <a href="https://kiduna.club" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.4rem;font-size:0.85rem;font-weight:700">Learn more ↗</a>
+      </div>
+      <div><h4>Explore</h4><a href="dunas.html">DUNAs</a><a href="founders.html">Founders</a><a href="sponsors.html">Sponsors</a><a href="members.html">Members</a><a href="builders.html">Builders</a><a href="catalysts.html">Catalysts</a><a href="luminaries.html">Luminaries</a><a href="metrics.html">Metrics</a><a href="learn-more.html">Go Deeper</a></div>
+      <div><h4>Get started</h4><a href="start.html">Start a DUNA</a><a href="launchpad.html">Launchpad</a><a href="login.html">Login / Sign up</a><a href="registered-agent.html">The Registered Agent</a><a href="learn-more.html#faq">FAQ</a></div>
+      <div><h4>About the Institute</h4><p class="faint" style="margin:0 0 0.7rem;font-size:0.85rem;max-width:34ch"><a class="kin-link" href="http://kinship.institute" target="_blank" rel="noopener">Kinship Intelligence Institute</a> is an independent 501(c)(3) ensuring the agentic AI era serves the wellbeing, autonomy, and prosperity of people and communities the market would otherwise pass over.</p><a href="https://kinship.institute" target="_blank" rel="noopener">Learn more ↗</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Kinship Intelligence Institute, a 501(c)(3) public charity.</span><span class="draft-flag">Draft preview</span></div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>
