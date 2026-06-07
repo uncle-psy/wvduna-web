@@ -109,11 +109,22 @@
         <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:0.4rem">Set Your Password and Continue</button>
       </form>
 
-      <!-- STEP 4: placeholder (prototype) -->
-      <div class="form-card signup-step" id="su-step4" hidden>
+      <!-- STEP 4: mobile number -->
+      <form class="form-card signup-step" id="su-step4" hidden>
+        <button type="button" class="step-back" id="su-back-4">← Back</button>
+        <p class="form-step"><b>Step 4 of 6</b> · Enter your mobile number. We'll send a 6-digit code by text to verify and continue.</p>
+        <div class="field">
+          <label for="su-phone">Mobile number <span class="req">*</span></label>
+          <input id="su-phone" type="tel" inputmode="tel" placeholder="(555) 555-5555" autocomplete="tel" required>
+        </div>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:0.4rem">Send code</button>
+      </form>
+
+      <!-- STEP 5: placeholder (prototype) -->
+      <div class="form-card signup-step" id="su-step5" hidden>
         <p class="form-step"><b>You're set ✓</b></p>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.6rem;margin:0.2rem 0 0.6rem">You're in.</h3>
-        <p class="muted">Steps 4 through 6 of onboarding are coming in this prototype. For now, explore the network.</p>
+        <p class="muted">Steps 5 and 6 of onboarding are coming in this prototype. For now, explore the network.</p>
         <a class="btn btn-gold btn-lg" href="index.html" style="width:100%;margin-top:1rem">Go to WV DUNA</a>
       </div>
     </div>
@@ -143,8 +154,9 @@
   var s2 = document.getElementById("su-step2");
   var s3 = document.getElementById("su-step3");
   var s4 = document.getElementById("su-step4");
-  if (!s1 || !s2 || !s3 || !s4) return;
-  var steps = [s1, s2, s3, s4];
+  var s5 = document.getElementById("su-step5");
+  if (!s1 || !s2 || !s3 || !s4 || !s5) return;
+  var steps = [s1, s2, s3, s4, s5];
   function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
   // Step 1 -> Step 2
@@ -177,7 +189,11 @@
 
   // Step 3 (password) back -> Step 2, and submit -> Step 4 (prototype: advances regardless)
   document.getElementById("su-back-3").addEventListener("click", function () { show(s2); });
-  s3.addEventListener("submit", function (e) { e.preventDefault(); show(s4); });
+  s3.addEventListener("submit", function (e) { e.preventDefault(); show(s4); var p = document.getElementById("su-phone"); if (p) p.focus(); });
+
+  // Step 4 (mobile) back -> Step 3, and submit -> Step 5 (prototype: advances regardless)
+  document.getElementById("su-back-4").addEventListener("click", function () { show(s3); });
+  s4.addEventListener("submit", function (e) { e.preventDefault(); show(s5); });
 
   // Password show/hide toggles
   var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
