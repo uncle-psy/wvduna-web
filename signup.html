@@ -88,11 +88,26 @@
         <p class="form-note" style="margin-top:1rem;text-align:center">Didn't get it? <a href="#" id="su-resend">Resend code</a><br>Or <a href="#" id="su-different">try a different email address</a></p>
       </form>
 
-      <!-- STEP 3: placeholder (prototype) -->
-      <div class="form-card signup-step" id="su-step3" hidden>
-        <p class="form-step"><b>Email verified ✓</b></p>
+      <!-- STEP 3: set password -->
+      <form class="form-card signup-step" id="su-step3" hidden>
+        <button type="button" class="step-back" id="su-back-3">← Back</button>
+        <p class="form-step"><b>Step 3 of 6</b> · Set your password. Use at least 12 characters. Longer is stronger. You can use letters, numbers, symbols, or a passphrase.</p>
+        <div class="field">
+          <label for="su-pass">Set Password <span class="req">*</span></label>
+          <input id="su-pass" type="password" placeholder="At least 12 characters" autocomplete="new-password" required>
+        </div>
+        <div class="field">
+          <label for="su-pass2">Confirm Password <span class="req">*</span></label>
+          <input id="su-pass2" type="password" placeholder="Re-enter your password" autocomplete="new-password" required>
+        </div>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:0.4rem">Set Your Password and Continue</button>
+      </form>
+
+      <!-- STEP 4: placeholder (prototype) -->
+      <div class="form-card signup-step" id="su-step4" hidden>
+        <p class="form-step"><b>You're set ✓</b></p>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.6rem;margin:0.2rem 0 0.6rem">You're in.</h3>
-        <p class="muted">Steps 3 through 6 of onboarding are coming in this prototype. For now, explore the network.</p>
+        <p class="muted">Steps 4 through 6 of onboarding are coming in this prototype. For now, explore the network.</p>
         <a class="btn btn-gold btn-lg" href="index.html" style="width:100%;margin-top:1rem">Go to WV DUNA</a>
       </div>
     </div>
@@ -121,9 +136,10 @@
   var s1 = document.getElementById("su-step1");
   var s2 = document.getElementById("su-step2");
   var s3 = document.getElementById("su-step3");
-  if (!s1 || !s2 || !s3) return;
-  var steps = [s1, s2, s3];
-  function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); }
+  var s4 = document.getElementById("su-step4");
+  if (!s1 || !s2 || !s3 || !s4) return;
+  var steps = [s1, s2, s3, s4];
+  function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
   // Step 1 -> Step 2
   s1.addEventListener("submit", function (e) {
@@ -151,7 +167,11 @@
   });
 
   // Step 2 -> Step 3 (prototype: advances regardless of what's entered)
-  s2.addEventListener("submit", function (e) { e.preventDefault(); show(s3); });
+  s2.addEventListener("submit", function (e) { e.preventDefault(); show(s3); var p = document.getElementById("su-pass"); if (p) p.focus(); });
+
+  // Step 3 (password) back -> Step 2, and submit -> Step 4 (prototype: advances regardless)
+  document.getElementById("su-back-3").addEventListener("click", function () { show(s2); });
+  s3.addEventListener("submit", function (e) { e.preventDefault(); show(s4); });
 
   // Resend (prototype)
   var resend = document.getElementById("su-resend");
