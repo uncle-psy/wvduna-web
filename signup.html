@@ -140,11 +140,23 @@
         <p class="form-note" style="margin-top:1rem;text-align:center">Didn't get a code? <a href="#" id="su-sresend">Resend</a></p>
       </form>
 
-      <!-- STEP 6: placeholder (prototype) -->
-      <div class="form-card signup-step" id="su-step6" hidden>
-        <p class="form-step"><b>You're set ✓</b></p>
+      <!-- STEP 6: make a connection (Kinship Code) -->
+      <form class="form-card signup-step" id="su-step6" hidden>
+        <button type="button" class="step-back" id="su-back-6">← Back</button>
+        <p class="form-step"><b>Step 6 of 6</b> · Make a Connection</p>
+        <p class="muted" style="margin:0 0 1rem">Relationships are at the heart of the DUNAVERSE. Enter a Kinship Code to establish trust, attribution, and shared rewards with your Host far into the future. By entering a Code now, both you and your Host will receive bonus WVDUNA Coins today. If you don't have a Code, WVDUNA itself will be set as your host.</p>
+        <div class="field">
+          <label for="su-kin">Enter a Kinship Code</label>
+          <input id="su-kin" type="text" placeholder="XXX—XXX—XXX" autocomplete="off">
+        </div>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:0.4rem">Enter the DUNAVERSE!</button>
+      </form>
+
+      <!-- DONE (prototype) -->
+      <div class="form-card signup-step" id="su-done" hidden>
+        <p class="form-step"><b>Welcome to the DUNAVERSE ✦</b></p>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.6rem;margin:0.2rem 0 0.6rem">You're in.</h3>
-        <p class="muted">Step 6 of onboarding is coming in this prototype. For now, explore the network.</p>
+        <p class="muted">Your account is set up and your connection is made. This is where the live experience would begin — for now, explore the network.</p>
         <a class="btn btn-gold btn-lg" href="index.html" style="width:100%;margin-top:1rem">Go to WV DUNA</a>
       </div>
     </div>
@@ -176,8 +188,9 @@
   var s4 = document.getElementById("su-step4");
   var s5 = document.getElementById("su-step5");
   var s6 = document.getElementById("su-step6");
-  if (!s1 || !s2 || !s3 || !s4 || !s5 || !s6) return;
-  var steps = [s1, s2, s3, s4, s5, s6];
+  var sDone = document.getElementById("su-done");
+  if (!s1 || !s2 || !s3 || !s4 || !s5 || !s6 || !sDone) return;
+  var steps = [s1, s2, s3, s4, s5, s6, sDone];
   function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
   // Step 1 -> Step 2
@@ -237,6 +250,10 @@
   // Step 5 (verify mobile) back -> Step 4, submit -> Step 6 (prototype: advances regardless)
   document.getElementById("su-back-5").addEventListener("click", function () { show(s4); });
   s5.addEventListener("submit", function (e) { e.preventDefault(); show(s6); });
+
+  // Step 6 (Kinship Code) back -> Step 5, submit -> done (prototype: optional code)
+  document.getElementById("su-back-6").addEventListener("click", function () { show(s5); });
+  s6.addEventListener("submit", function (e) { e.preventDefault(); show(sDone); });
   var sresend = document.getElementById("su-sresend");
   var srmsg = document.getElementById("su-sresend-msg");
   if (sresend) sresend.addEventListener("click", function (e) { e.preventDefault(); if (srmsg) srmsg.hidden = false; });
