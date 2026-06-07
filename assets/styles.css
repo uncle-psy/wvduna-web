@@ -508,3 +508,10 @@ section { position: relative; }
 .code-inputs { display: flex; gap: 8px; }
 .code-inputs input { flex: 1 1 0; min-width: 0; text-align: center; font-family: var(--font-display); font-size: 1.5rem; padding: 0.6rem 0; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); color: var(--fg); }
 .code-inputs input:focus { outline: none; border-color: var(--accent); }
+
+/* Password show/hide toggle */
+.pw-wrap { position: relative; }
+.pw-wrap input { width: 100%; padding-right: 2.8rem; }
+.pw-toggle { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); background: none; border: 0; padding: 0.3rem; cursor: pointer; color: var(--fg-soft); display: inline-flex; align-items: center; justify-content: center; }
+.pw-toggle:hover { color: var(--fg); }
+.pw-toggle svg { width: 20px; height: 20px; }
