@@ -120,11 +120,31 @@
         <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:0.4rem">Send code</button>
       </form>
 
-      <!-- STEP 5: placeholder (prototype) -->
-      <div class="form-card signup-step" id="su-step5" hidden>
+      <!-- STEP 5: verify mobile -->
+      <form class="form-card signup-step" id="su-step5" hidden>
+        <button type="button" class="step-back" id="su-back-5">← Back</button>
+        <p class="form-step"><b>Step 5 of 6</b> · Verify your mobile number. We sent a six-digit code to <b id="su-phone-echo" style="color:var(--fg)">your phone</b>.</p>
+        <div class="field">
+          <label for="su-scode-0">Enter your 6-digit code</label>
+          <div class="code-inputs" id="su-scode">
+            <input type="text" inputmode="numeric" maxlength="1" id="su-scode-0" aria-label="Digit 1">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+        </div>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%">Verify and Continue</button>
+        <p class="su-msg muted" id="su-sresend-msg" hidden style="margin-top:0.8rem;text-align:center">A new code is on its way.</p>
+        <p class="form-note" style="margin-top:1rem;text-align:center">Didn't get a code? <a href="#" id="su-sresend">Resend</a></p>
+      </form>
+
+      <!-- STEP 6: placeholder (prototype) -->
+      <div class="form-card signup-step" id="su-step6" hidden>
         <p class="form-step"><b>You're set ✓</b></p>
         <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.6rem;margin:0.2rem 0 0.6rem">You're in.</h3>
-        <p class="muted">Steps 5 and 6 of onboarding are coming in this prototype. For now, explore the network.</p>
+        <p class="muted">Step 6 of onboarding is coming in this prototype. For now, explore the network.</p>
         <a class="btn btn-gold btn-lg" href="index.html" style="width:100%;margin-top:1rem">Go to WV DUNA</a>
       </div>
     </div>
@@ -155,8 +175,9 @@
   var s3 = document.getElementById("su-step3");
   var s4 = document.getElementById("su-step4");
   var s5 = document.getElementById("su-step5");
-  if (!s1 || !s2 || !s3 || !s4 || !s5) return;
-  var steps = [s1, s2, s3, s4, s5];
+  var s6 = document.getElementById("su-step6");
+  if (!s1 || !s2 || !s3 || !s4 || !s5 || !s6) return;
+  var steps = [s1, s2, s3, s4, s5, s6];
   function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
   // Step 1 -> Step 2
@@ -193,7 +214,32 @@
 
   // Step 4 (mobile) back -> Step 3, and submit -> Step 5 (prototype: advances regardless)
   document.getElementById("su-back-4").addEventListener("click", function () { show(s3); });
-  s4.addEventListener("submit", function (e) { e.preventDefault(); show(s5); });
+  s4.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ph = (document.getElementById("su-phone").value || "").trim();
+    document.getElementById("su-phone-echo").textContent = ph || "your phone";
+    show(s5);
+    var first = document.getElementById("su-scode-0"); if (first) first.focus();
+  });
+
+  // Step 5 SMS code: auto-advance + backspace
+  var scode = Array.prototype.slice.call(document.querySelectorAll("#su-scode input"));
+  scode.forEach(function (inp, i) {
+    inp.addEventListener("input", function () {
+      inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 1);
+      if (inp.value && scode[i + 1]) scode[i + 1].focus();
+    });
+    inp.addEventListener("keydown", function (e) {
+      if (e.key === "Backspace" && !inp.value && scode[i - 1]) scode[i - 1].focus();
+    });
+  });
+
+  // Step 5 (verify mobile) back -> Step 4, submit -> Step 6 (prototype: advances regardless)
+  document.getElementById("su-back-5").addEventListener("click", function () { show(s4); });
+  s5.addEventListener("submit", function (e) { e.preventDefault(); show(s6); });
+  var sresend = document.getElementById("su-sresend");
+  var srmsg = document.getElementById("su-sresend-msg");
+  if (sresend) sresend.addEventListener("click", function (e) { e.preventDefault(); if (srmsg) srmsg.hidden = false; });
 
   // Password show/hide toggles
   var EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>';
