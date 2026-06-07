@@ -47,7 +47,7 @@
       <p class="muted">Don't have an account? <a href="signup.html">Start here</a>.</p>
     </div>
     <div class="reveal">
-      <form class="form-card" data-demo>
+      <form class="form-card" data-demo onsubmit="location.href='app.html?skiplogin=1';return false;">
         <div class="field">
           <label for="login-email">Email</label>
           <input id="login-email" type="email" placeholder="you@example.com" required>

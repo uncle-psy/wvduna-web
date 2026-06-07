@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WV DUNA — The DUNAVERSE</title>
+<meta name="description" content="The integrated WV DUNA app — Active Mode and Builder Mode in one place.">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<!-- ============================================================= AUTH -->
+<section id="auth" class="auth-wrap">
+  <div class="auth-art">
+    <a class="brand-lockup" href="index.html"><img class="brand-logo" src="assets/wvduna-logo-sunmoon.svg" alt="WV DUNA"></a>
+    <div class="pitch">
+      <div class="eyebrow" style="margin-bottom:14px">Welcome home <span class="star">✦</span> Identity · Authority · Accountability</div>
+      <h1 class="display">Sign in to the <em class="wv-emph">DUNAVERSE.</em></h1>
+      <p>Your allies, your DUNAs, your treasury, and your tools — one place, on every device. Pick up exactly where the network left you.</p>
+    </div>
+    <div class="auth-foot">Powered by Kiduna Club · A West Virginia decentralized nonprofit</div>
+    <img class="ridge" src="assets/ridge-motif.svg" alt="" aria-hidden="true">
+  </div>
+  <div class="auth-panel">
+    <div class="auth-card">
+      <h2>Sign in</h2>
+      <p class="sub">Enter the DUNAVERSE and continue where you left off.</p>
+
+      <div class="field">
+        <label for="au-email">Email or handle</label>
+        <input id="au-email" type="email" placeholder="name@example.com" value="ada@wvduna.org">
+      </div>
+      <div class="field">
+        <label for="au-pass">Password</label>
+        <input id="au-pass" type="password" placeholder="Your password" value="············">
+      </div>
+      <button class="btn btn-gold btn-block btn-lg" id="login-btn">Sign in →</button>
+
+      <!-- WEB: account creation lives on the web only -->
+      <div id="web-signup">
+        <div class="auth-divider">New here</div>
+        <a class="btn btn-ghost btn-block" href="signup.html">Create your account</a>
+        <p class="form-note" style="text-align:center;margin-top:12px">Creating an account takes about a minute and includes a short onboarding.</p>
+      </div>
+
+      <!-- INSTALLED ("reader app"): no account creation; point to the web -->
+      <div id="reader-note" class="reader-note" hidden style="margin-top:18px">
+        <b>New to WV DUNA?</b> Accounts are created on the web. Visit <b>wvduna.com</b> in your browser to sign up and finish onboarding, then sign in here on <span data-osname>this device</span>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== APP -->
+<div id="app" class="app" data-mode="active" data-level="member" data-env="web" data-os="mac" hidden>
+
+  <!-- APP BAR -->
+  <header class="appbar">
+    <div class="appbar-left">
+      <button class="icon-btn hamburger" id="hamburger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a class="brand-lockup" href="#" data-go="chat" title="WV DUNA home"><img class="brand-logo" src="assets/wvduna-logo-sunmoon.svg" alt="WV DUNA"></a>
+      <button class="ws-switch" data-sheet-open="ws-sheet" aria-label="Switch DUNA">
+        <span class="ws-coin">WV</span>
+        <span class="ws-meta"><span class="ws-name">WV DUNA</span><span class="ws-sub">Genesis · your home</span></span>
+        <span class="chev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+    </div>
+
+    <div class="appbar-spacer"></div>
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-toggle" role="tablist" aria-label="Mode">
+      <button data-setmode="active" class="active" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        <span>Active</span>
+      </button>
+      <button data-setmode="builder" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.2 5.2L3 18l3 3 6.5-6.5a4 4 0 0 0 5.2-5.2l-2.4 2.4-2.1-2.1z"/></svg>
+        <span>Builder</span>
+      </button>
+    </div>
+
+    <div class="appbar-spacer"></div>
+
+    <div class="appbar-right">
+      <button class="icon-btn mobile-hide" data-go="seek" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></button>
+      <button class="icon-btn mobile-hide" data-sheet-open="community-sheet" aria-label="Community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M19.5 20a5 5 0 0 0-3-4.6"/></svg></button>
+      <button class="icon-btn mobile-hide" data-sheet-open="achv-sheet" aria-label="Achievements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 3M17 6h3a3 3 0 0 1-3 3"/><path d="M9 18h6M10 14h4l1 4H9z"/></svg></button>
+      <button class="icon-btn" data-sheet-open="notif-sheet" aria-label="Notifications"><span class="dot-badge"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></button>
+      <button class="level-badge" id="level-badge" title="Your standing — tap for wallet">
+        <span class="pips" id="level-pips"></span>
+        <span class="lvl-name" id="level-name">Member</span>
+      </button>
+      <button class="avatar-btn" id="avatar-btn" aria-label="You">A</button>
+    </div>
+  </header>
+
+  <!-- INSTALL / READER BANNER -->
+  <div class="install-banner" id="install-banner" hidden>
+    <span class="ib-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M5 21h14"/></svg></span>
+    <span class="ib-text" id="install-text">You're on the web app. <b>Install WVDUNA</b> for a faster, native experience.</span>
+    <button class="btn btn-gold btn-sm" id="install-cta">Download</button>
+    <button class="x" id="install-x" aria-label="Dismiss">×</button>
+  </div>
+
+  <div class="app-body">
+
+    <!-- ACTIVE RAIL -->
+    <aside class="rail" id="rail-active">
+      <div class="rail-scroll">
+        <span class="nav-group-label">Active mode</span>
+        <button class="navitem active" data-go="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg><span class="nv-label">Chat</span></button>
+        <button class="navitem" data-go="vibe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg><span class="nv-label">Vibe</span></button>
+        <button class="navitem" data-go="seek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span class="nv-label">Seek</span></button>
+        <button class="navitem" data-go="vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M7 10l5-7 5 7"/><path d="M5 10h14l-2 7H7z"/></svg><span class="nv-label">Vote</span></button>
+        <button class="navitem" data-go="earn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="17" cy="14.5" r="1.2"/></svg><span class="nv-label">Earn</span></button>
+      </div>
+      <div class="rail-foot">
+        <div class="upgrade-mini" data-minlevel="6">
+          <div class="t" data-nextlevel>Builder</div>
+          <div class="s">Hold <span data-nexthold>$1,000</span> in WVDUNA to unlock the next tier.</div>
+          <button class="btn btn-gold btn-sm btn-block" data-go="earn">View wallet</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- BUILDER RAIL -->
+    <aside class="rail" id="rail-builder" hidden>
+      <div class="rail-scroll">
+        <span class="nav-group-label">Agents</span>
+        <button class="navitem" data-go="agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V5M9 3h6"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg><span class="nv-label">Agents &amp; Allies</span></button>
+        <button class="navitem" data-go="inform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a4 4 0 0 0-4 4c0 1.5.8 2.3 1.5 3 .5.5 1 1 1 2h3c0-1 .5-1.5 1-2 .7-.7 1.5-1.5 1.5-3a4 4 0 0 0-4-4z"/><path d="M10 18h4M10.5 21h3"/></svg><span class="nv-label">Inform</span></button>
+        <button class="navitem" data-go="instruct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span class="nv-label">Instruct</span></button>
+        <button class="navitem" data-go="empower"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v5M15 3v5"/><path d="M7 8h10v3a5 5 0 0 1-10 0z"/><path d="M12 16v5"/></svg><span class="nv-label">Empower</span></button>
+        <button class="navitem" data-go="align"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg><span class="nv-label">Align</span></button>
+        <button class="navitem" data-go="approve" data-minlevel="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span class="nv-label">Approve</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+
+        <span class="nav-group-label">Economics</span>
+        <button class="navitem" data-go="offerings" data-minlevel="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l7-9 9 7-7 9z"/><circle cx="14" cy="9" r="1.4"/></svg><span class="nv-label">Offerings</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button class="navitem" data-go="coins"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg><span class="nv-label">Coins</span></button>
+        <button class="navitem" data-go="codes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M10 6l1-1a4 4 0 0 1 6 6l-1 1"/><path d="M14 18l-1 1a4 4 0 0 1-6-6l1-1"/></svg><span class="nv-label">Codes</span></button>
+
+        <span class="nav-group-label">Flows</span>
+        <button class="navitem" data-go="gatherings" data-minlevel="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span class="nv-label">Gatherings</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button class="navitem" data-go="library" data-minlevel="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v16M9 4v16"/><rect x="13" y="4" width="6" height="16" rx="1" transform="rotate(8 16 12)"/></svg><span class="nv-label">Library</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button class="navitem" data-go="upload" data-minlevel="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5m0 0L8 9m4-4l4 4"/><path d="M5 19h14"/></svg><span class="nv-label">Upload</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+
+        <span class="nav-group-label">Market</span>
+        <button class="navitem" data-go="objectives" data-minlevel="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg><span class="nv-label">Objectives</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button class="navitem" data-go="markets" data-minlevel="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="M7 15l4-4 3 3 5-6"/></svg><span class="nv-label">Markets</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+        <button class="navitem" data-go="electors" data-minlevel="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="9" r="2.6"/><path d="M3 19a5 5 0 0 1 10 0M13 19a5 5 0 0 1 8-4"/></svg><span class="nv-label">Electors</span><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="main-scroll">
+
+        <!-- ============ CHAT (Active default + first-run) ============ -->
+        <section class="view is-active" data-view="chat">
+          <div class="chat-layout show-thread">
+            <aside class="chat-aside">
+              <div class="chat-aside-head">
+                <h2>Chat</h2>
+                <button class="icon-btn" title="New chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+              <div class="chat-search"><div class="input-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="Search chats…"></div></div>
+              <div class="chatlist" id="chatlist">
+                <button class="chat-item active" data-chat="host">
+                  <span class="chat-ava host">K</span>
+                  <span class="lr-main"><span class="ci-name">The Big Kiduna</span><span class="ci-snip">Your Host's Ally · welcome</span></span>
+                  <span class="ci-time">now</span>
+                </button>
+                <button class="chat-item" data-chat="alchemist">
+                  <span class="chat-ava violet">A</span>
+                  <span class="lr-main"><span class="ci-name">The Alchemist</span><span class="ci-snip">Your guide to cosmic humanity</span></span>
+                  <span class="ci-time">2d</span>
+                </button>
+              </div>
+            </aside>
+            <section class="thread">
+              <div class="thread-head">
+                <button class="icon-btn back" id="thread-back" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <span class="t-ava host" id="thread-ava">K</span>
+                <div><div class="t-name" id="thread-name">The Big Kiduna</div><div class="t-tag" id="thread-tag">Your Host's Ally · WV DUNA</div></div>
+                <button class="model-pill" id="model-pill"><span class="swatch"></span><span id="model-name">Auto</span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+              </div>
+              <div class="thread-scroll" id="thread-scroll"><div class="thread-inner" id="thread-msgs"></div></div>
+              <div class="composer">
+                <div class="composer-inner">
+                  <textarea id="composer-input" rows="1" placeholder="Message your ally…"></textarea>
+                  <button class="c-btn mic" title="Voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+                  <button class="c-btn send" id="composer-send" title="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-8-6 16-3-6-7-2z"/></svg></button>
+                </div>
+                <div class="composer-hint">Allies act for your DUNA under real identity, authority, and accountability. Prototype — replies are illustrative.</div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ============ VIBE ============ -->
+        <section class="view" data-view="vibe">
+          <div class="page">
+            <div class="pg-head"><div><div class="pg-eyebrow">Active mode</div><h1 class="pg-title">Vibe</h1><p class="pg-sub">Experiences, games, and mini-apps across the network — for you and your allies.</p></div></div>
+            <div class="grid g3">
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="11" rx="3"/><path d="M8 12h3M9.5 10.5v3"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="14" r="1"/></svg></span><h3>Game Platforms</h3><p>Explore and play isometric games with your allies.</p></a>
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 8h18M3 16h18"/></svg></span><h3>Nightpapers</h3><p>The living canon of the DUNAVERSE — read, discuss, and remix.</p></a>
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span><h3>Vibe Rooms</h3><p>Drop into live, ally-hosted spaces around a shared interest.</p></a>
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16l-7-3-7 3z"/></svg></span><h3>Quests</h3><p>Earn WVDUNA by completing missions posted by DUNAs.</p></a>
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><h3>Studios &amp; Media</h3><p>Music, video, and creative tools built by Builders.</p></a>
+              <a class="card hover"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></span><h3>All experiences</h3><p>Browse everything published to the DUNAVERSE.</p></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ SEEK ============ -->
+        <section class="view" data-view="seek">
+          <div class="page">
+            <div class="pg-head"><div><div class="pg-eyebrow">Active mode</div><h1 class="pg-title">Seek</h1><p class="pg-sub">Search the DUNAVERSE — DUNAs, members, founders, and proposals.</p></div></div>
+            <div class="input-ico" style="margin-bottom:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="Search movements, members, proposals…" style="padding-top:.85rem;padding-bottom:.85rem"></div>
+            <div class="chip-row">
+              <button class="chip active">All</button>
+              <button class="chip">DUNAs</button>
+              <button class="chip">Members</button>
+              <button class="chip">Founders</button>
+              <button class="chip">Proposals</button>
+            </div>
+            <div class="grid g3">
+              <a class="card hover"><span class="tag gold">DUNA</span><h3>Mountain Mesh</h3><p>Community wireless across rural WV. 1,420 members · $1.3M treasury.</p></a>
+              <a class="card hover"><span class="tag gold">DUNA</span><h3>WV Commerce Club</h3><p>Appalachian small businesses pooling reach and capital.</p></a>
+              <a class="card hover"><span class="tag sky">Member</span><h3>Jules · @jules</h3><p>Founder of Block Garden Charleston. 3 DUNAs · Builder.</p></a>
+              <a class="card hover"><span class="tag sky">Founder</span><h3>Rue · @rue</h3><p>Coalfield Mutual. Passed Proposal #12 with 84% in favor.</p></a>
+              <a class="card hover"><span class="tag">Proposal</span><h3>Fund the next county</h3><p>Mountain Mesh · open · 9 days to vote.</p></a>
+              <a class="card hover"><span class="tag">Proposal</span><h3>Adopt revised bylaws</h3><p>WV Commerce Club · open · 22 days to vote.</p></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VOTE ============ -->
+        <section class="view" data-view="vote">
+          <div class="page">
+            <div class="pg-head"><div><div class="pg-eyebrow">Active mode</div><h1 class="pg-title">Vote</h1><p class="pg-sub">Govern the DUNAs you belong to — and reload the resources that power your allies.</p></div></div>
+
+            <div class="upgrade-note" data-minlevel="1">
+              <span class="un-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.5L20 9l-4.5 3.8L17 19l-5-3-5 3 1.5-6.2L4 9l5.8-.5z"/></svg></span>
+              <div><h4>You're viewing as a Guest</h4><p>Hold $10+ in WVDUNA to become a Member and cast votes. Until then, governance is read-only.</p></div>
+              <button class="btn btn-gold btn-sm" data-go="earn">Get WVDUNA</button>
+            </div>
+
+            <div class="chip-row"><button class="chip active">Proposals</button><button class="chip">Resources &amp; boosts</button></div>
+
+            <div class="prop">
+              <div class="prop-top"><span class="prop-status open">Open · 9d left</span><span class="by">Mountain Mesh · #14</span></div>
+              <h3>Fund the next county build-out</h3>
+              <p class="muted" style="font-size:.92rem;margin:.3rem 0 0">Allocate $180k from treasury to deploy proof-of-coverage hardware in Nicholas County.</p>
+              <div class="vote-bar"><span class="for" style="width:71%"></span><span class="against" style="width:14%"></span></div>
+              <div class="vote-figures"><span>71% for · 14% against</span><span>Quorum 64% reached</span></div>
+              <div class="vote-ctas"><button class="btn btn-gold" data-lockbtn data-minlevel="1">Vote for</button><button class="btn btn-ghost" data-lockbtn data-minlevel="1">Vote against</button><button class="btn btn-soft">Discuss</button></div>
+            </div>
+            <div class="prop">
+              <div class="prop-top"><span class="prop-status passed">Passed</span><span class="by">WV Commerce Club · #12</span></div>
+              <h3>Adopt revised member bylaws</h3>
+              <div class="vote-bar"><span class="for" style="width:84%"></span><span class="against" style="width:9%"></span></div>
+              <div class="vote-figures"><span>84% for · 9% against</span><span>Enacted 5/30</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ EARN (wallet) ============ -->
+        <section class="view" data-view="earn">
+          <div class="page">
+            <div class="pg-head"><div><div class="pg-eyebrow">Active mode</div><h1 class="pg-title">Earn</h1><p class="pg-sub">Your wallet, your WVDUNA, and your standing in the network.</p></div><button class="btn btn-gold">＋ Reload WVDUNA</button></div>
+
+            <div class="grid g2" style="grid-template-columns:1.1fr .9fr;align-items:start">
+              <div>
+                <div class="balance-hero">
+                  <div class="lab">Current balance</div>
+                  <div class="amt">$1,240</div>
+                  <div class="sub">≈ 12,400 WVDUNA · held in your personal wallet</div>
+                </div>
+                <div class="wallet-breakdown">
+                  <div class="wb"><div class="k"><i></i>Deposits</div><div class="v">$432</div></div>
+                  <div class="wb"><div class="k"><i></i>Earnings</div><div class="v">$300</div></div>
+                  <div class="wb"><div class="k"><i></i>Withdrawals</div><div class="v">−$300</div></div>
+                </div>
+                <div class="date-sep">Today</div>
+                <div class="txn"><span class="t-ico">★</span><div class="t-main">Host bonus from your Kinship Code<div class="t-bal">Balance $1,240</div></div><span class="tag gold">Bonus</span><span class="t-time">11:21</span></div>
+                <div class="txn"><span class="t-ico">↑</span><div class="t-main">Earned from Quest: First conversation<div class="t-bal">Balance $1,190</div></div><span class="tag green">Earned</span><span class="t-time">11:02</span></div>
+                <div class="date-sep">Earlier</div>
+                <div class="txn"><span class="t-ico">⟲</span><div class="t-main">Royalties — The Alchemist (published)<div class="t-bal">Balance $1,140</div></div><span class="tag">Royalties</span><span class="t-time">5/30</span></div>
+              </div>
+
+              <div class="level-meter" id="level-meter">
+                <div class="pg-eyebrow">Your standing</div>
+                <h3 style="font-family:var(--font-display);font-weight:400;margin:4px 0 0;font-size:1.5rem"><span data-levelname>Member</span></h3>
+                <p class="muted" style="font-size:.88rem;margin:.3rem 0 0">Your level is set by the WVDUNA you hold — no subscription. Hold more to rise, sell anytime to step down.</p>
+                <div class="level-track">
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Guest</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Member</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Founder</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Builder</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Sponsor</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Catalyst</div></div>
+                  <div class="level-node"><div class="dot"></div><div class="lbl">Luminary</div></div>
+                </div>
+                <div class="upgrade-note" data-minlevel="6" style="margin:18px 0 0">
+                  <span class="un-ico">↑</span>
+                  <div><h4>Reach <span data-nextlevel>Founder</span></h4><p>Hold <span data-nexthold>$100</span> in WVDUNA to unlock the next tier and its allies.</p></div>
+                </div>
+                <div style="margin-top:16px"><div class="pg-eyebrow">Resource allotment</div><p class="muted" style="font-size:.9rem;margin:.3rem 0 0"><b data-allotment>Monthly</b> allotment for your allies. <a data-go="vote" style="color:var(--link)">Reload or boost →</a></p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ AGENTS & ALLIES ============ -->
+        <section class="view" data-view="agents">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Studio</div><h1 class="pg-title">Agents &amp; Allies</h1><p class="pg-sub">Your allies represent you and your DUNA — with real identity, authority, and accountability.</p></div><button class="btn btn-gold" data-go="setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Create new Ally</button></div>
+
+            <div class="upgrade-note" data-minlevel="3">
+              <span class="un-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.5L20 9l-4.5 3.8L17 19l-5-3-5 3 1.5-6.2L4 9l5.8-.5z"/></svg></span>
+              <div><h4>You can build one personal Ally today</h4><p>Reach <b>Builder</b> (hold $1,000 in WVDUNA) to deploy fleets of custom agents with scoped on-chain authority and a high runtime allotment.</p></div>
+              <button class="btn btn-gold btn-sm" data-go="earn">See levels</button>
+            </div>
+
+            <div class="chip-row"><button class="chip active">All <span class="n">3</span></button><button class="chip">Active <span class="n">2</span></button><button class="chip">Published <span class="n">1</span></button></div>
+
+            <div class="grid g3">
+              <article class="studio-card" data-go="instruct">
+                <div class="sc-head"><span class="sc-ico">♛</span><div class="sc-tags"><span class="tag gold">Ally</span><span class="tag">Kiduna</span></div></div>
+                <h3>The Big Kiduna</h3><span class="handle">@the_big_kiduna</span>
+                <span class="quote">"The Foundation of the Agentic Internet"</span>
+                <p>The genesis ally — the host that greets every new arrival to the DUNAVERSE.</p>
+                <div class="sc-foot"><span class="mono">1 KB</span><span>· Prompt</span><span style="margin-left:auto">Updated 5/19</span></div>
+              </article>
+              <article class="studio-card" data-go="instruct">
+                <div class="sc-head"><span class="sc-ico">☿</span><div class="sc-tags"><span class="tag gold">Ally</span><span class="tag sky">Personal</span><span class="tag green">Published</span></div></div>
+                <h3>The Alchemist</h3><span class="handle">@the_alchemist</span>
+                <span class="quote">"Your Guide to Cosmic Humanity"</span>
+                <p>A personal ally — really you. Initiates the acolyte into the mysteries of their own soul.</p>
+                <div class="sc-foot"><span class="mono">1 KB</span><span>· Prompt</span><span style="margin-left:auto">Updated 5/16</span></div>
+              </article>
+              <article class="studio-card" data-go="setup" style="border-style:dashed;align-items:center;justify-content:center;text-align:center;color:var(--fg-soft);min-height:200px">
+                <span class="sc-ico" style="margin:0 auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                <h3 style="color:var(--fg)">Create a new Ally</h3>
+                <p>Walk Inform → Instruct → Empower → Align.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ INFORM ============ -->
+        <section class="view" data-view="inform">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Step 1</div><h1 class="pg-title">Inform</h1><p class="pg-sub">Give your ally what it knows — documents, sources, and reference material.</p></div><button class="btn btn-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Create Inform</button></div>
+            <div class="grid g3">
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">⌥</span></div><h3>Artemis and Orion</h3><div class="sc-foot"><span>1 item</span><span style="margin-left:auto">5/19</span></div></a>
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">❡</span></div><h3>Kiduna Nightpapers</h3><div class="sc-foot"><span>4 items</span><span style="margin-left:auto">5/19</span></div></a>
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">✎</span></div><h3>Howard's Work</h3><div class="sc-foot"><span>15 items</span><span style="margin-left:auto">5/16</span></div></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ INSTRUCT ============ -->
+        <section class="view" data-view="instruct">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Step 2</div><h1 class="pg-title">Instruct</h1><p class="pg-sub">Set your ally's role, voice, and stance — who it is and how it acts.</p></div><button class="btn btn-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Create Stance</button></div>
+            <div class="grid g3">
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">❝</span></div><h3>The Big Kiduna</h3><p>"You are the authoritative source of information and facilitation within The Big Kiduna, the core system for the open agentic internet…"</p><div class="sc-foot"><span class="tool-pill">Kiduna Nightpapers</span><span style="margin-left:auto">5/19</span></div></a>
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">❝</span></div><h3>Alchemical Teacher</h3><p>"You are a wise alchemist whose role is to guide individuals toward a more expansive understanding of themselves and the world…"</p><div class="sc-foot"><span class="tool-pill">Howard's Work</span><span style="margin-left:auto">5/16</span></div></a>
+              <a class="studio-card"><div class="sc-head"><span class="sc-ico">❝</span></div><h3>Artemis and Orion Twins</h3><p class="faint" style="font-style:italic">No content yet</p><div class="sc-foot"><span class="tool-pill">Artemis and Orion</span><span style="margin-left:auto">5/19</span></div></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ EMPOWER ============ -->
+        <section class="view" data-view="empower">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Step 3</div><h1 class="pg-title">Empower</h1><p class="pg-sub">Connect tools so your ally can act in the world — under your authority.</p></div></div>
+            <div class="row-list">
+              <div class="list-row"><span class="lr-ico">☁</span><div class="lr-main"><div class="lr-name">Bluesky</div><div class="lr-sub">Post, reply, and engage on the Bluesky social network</div></div><div class="lr-actions"><button class="btn btn-soft btn-sm">Configure</button><span class="toggle"></span></div></div>
+              <div class="list-row"><span class="lr-ico">✈</span><div class="lr-main"><div class="lr-name">Telegram</div><div class="lr-sub">Send messages and manage Telegram bots</div></div><div class="lr-actions"><button class="btn btn-soft btn-sm">Configure</button><span class="toggle on"></span></div></div>
+              <div class="list-row"><span class="lr-ico">◎</span><div class="lr-main"><div class="lr-name">Solana</div><div class="lr-sub">Connect a wallet for on-chain interactions and treasury</div></div><div class="lr-actions"><button class="btn btn-soft btn-sm">Configure</button><span class="toggle on"></span></div></div>
+              <div class="list-row"><span class="lr-ico">G</span><div class="lr-main"><div class="lr-name">Google</div><div class="lr-sub">Access Google services — Calendar, Drive, Gmail</div></div><div class="lr-actions"><button class="btn btn-soft btn-sm">Configure</button><span class="toggle"></span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ ALIGN ============ -->
+        <section class="view" data-view="align">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Step 4</div><h1 class="pg-title">Align</h1><p class="pg-sub">Teach your ally <em class="wv-emph">when</em> to act and <em class="wv-emph">what</em> to do. A skill is one line: when this happens, do that.</p></div><button class="btn btn-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New skill</button></div>
+            <div class="grid g3" style="margin-bottom:20px">
+              <div class="wb"><div class="k"><i></i>Active skills</div><div class="v">8 / 8</div></div>
+              <div class="wb"><div class="k"><i></i>Handled today</div><div class="v">12</div></div>
+              <div class="wb"><div class="k"><i></i>Time saved this week</div><div class="v">~12 hrs</div></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span class="s-name">Email replies</span><span class="s-state"><i></i>Quietly working</span></div>
+              <div class="recipe-line"><span class="kw when">When</span> a new email arrives in Gmail</div>
+              <div class="recipe-line"><span class="kw do">Do</span> read it and send a friendly reply using <span class="tool-pill">✉ Gmail</span></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span class="s-name">Treasury guard</span><span class="s-state"><i></i>Quietly working</span></div>
+              <div class="recipe-line"><span class="kw when">When</span> the first day of each month arrives</div>
+              <div class="recipe-line"><span class="kw do">Do</span> post the treasury summary to <span class="tool-pill">✈ Telegram</span> and flag anything unusual for <span class="tool-pill">Approve</span></div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span class="s-name">Morning briefing</span><span class="s-state"><i></i>Quietly working</span></div>
+              <div class="recipe-line"><span class="kw when">When</span> it's 7:00am</div>
+              <div class="recipe-line"><span class="kw do">Do</span> summarize new proposals across my DUNAs and send me a briefing</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ APPROVE ============ -->
+        <section class="view" data-view="approve">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode</div><h1 class="pg-title">Approve</h1><p class="pg-sub">Nothing consequential happens without a human in the loop. Review what your allies want to do.</p></div></div>
+            <div class="upgrade-note" data-minlevel="3"><span class="un-ico">🔒</span><div><h4>Approvals unlock at Builder</h4><p>When your allies can act autonomously, this is where you review and authorize their actions. Reach <b>Builder</b> to enable it.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="row-list">
+              <div class="list-row"><span class="lr-ico">✈</span><div class="lr-main"><div class="lr-name">The Alchemist wants to post a thread to Bluesky</div><div class="lr-sub">Triggered by skill "Daily reflection" · 2m ago</div></div><div class="lr-actions"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-gold btn-sm">Approve</button></div></div>
+              <div class="list-row"><span class="lr-ico">◎</span><div class="lr-main"><div class="lr-name">Treasury guard wants to move $180 to a vendor</div><div class="lr-sub">Mountain Mesh · over the $100 auto-limit · 1h ago</div></div><div class="lr-actions"><button class="btn btn-ghost btn-sm">Review</button><button class="btn btn-gold btn-sm">Approve</button></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ OFFERINGS ============ -->
+        <section class="view" data-view="offerings">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Economics</div><h1 class="pg-title">Offerings</h1><p class="pg-sub">Products and services your DUNA and allies offer to the network.</p></div><button class="btn btn-gold" data-lockbtn data-minlevel="2">＋ New offering</button></div>
+            <div class="upgrade-note" data-minlevel="2"><span class="un-ico">🔒</span><div><h4>Offerings open at Founder</h4><p>Reach <b>Founder</b> (hold $100 in WVDUNA) to list paid products and services under your DUNA's legal standing.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="grid g3">
+              <div class="studio-card"><div class="sc-head"><span class="sc-ico">◷</span><span class="tag green">Live</span></div><h3>Coverage as a service</h3><p>Mountain Mesh sells verified wireless coverage to carriers. $4,200 / mo recurring.</p></div>
+              <div class="studio-card"><div class="sc-head"><span class="sc-ico">✦</span><span class="tag gold">Draft</span></div><h3>Ally subscriptions</h3><p>Let members subscribe to your published allies, priced in WVDUNA.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ COINS ============ -->
+        <section class="view" data-view="coins">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Economics</div><h1 class="pg-title">Coins</h1><p class="pg-sub">The WVDUNA coin sets your standing; each DUNA can issue its own coin too.</p></div></div>
+            <div class="grid g3">
+              <div class="card"><span class="ws-coin" style="margin-bottom:10px">WV</span><h3>WVDUNA</h3><p>The genesis coin. Your balance sets your level.</p><div class="sc-foot" style="border-top:1px solid var(--border)"><span>You hold</span><b style="margin-left:auto;color:var(--fg)">12,400</b></div></div>
+              <div class="card"><span class="ws-coin sky" style="margin-bottom:10px;background:var(--kin-skyblue)">MM</span><h3>Mountain Mesh</h3><p>FDV $27.3M · 1,420 holders</p><div class="sc-foot" style="border-top:1px solid var(--border)"><span>You hold</span><b style="margin-left:auto;color:var(--fg)">3,000</b></div></div>
+              <div class="card" style="border-style:dashed;display:flex;flex-direction:column;align-items:flex-start;gap:8px"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><h3>Issue a coin</h3><p>Launch a member-owned coin for your DUNA.</p><span class="lock-pill" data-minlevel="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Founder+</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ CODES ============ -->
+        <section class="view" data-view="codes">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Economics</div><h1 class="pg-title">Codes</h1><p class="pg-sub">Kinship Codes connect you to the people you bring in — with attribution and shared rewards, far into the future.</p></div></div>
+            <div class="grid g2" style="grid-template-columns:.9fr 1.1fr;align-items:start">
+              <div class="card" style="text-align:center"><div class="pg-eyebrow">Your Kinship Code</div><div style="font-family:var(--font-display);font-size:2rem;letter-spacing:.08em;margin:10px 0">ADA—WV—4K2</div><p>Share it. When someone joins with your Code, you both receive bonus WVDUNA — and you become their Host.</p><button class="btn btn-gold btn-block" style="margin-top:14px">Copy &amp; share</button></div>
+              <div>
+                <div class="list-row"><span class="lr-ico">★</span><div class="lr-main"><div class="lr-name">14 people joined with your Code</div><div class="lr-sub">You are their Host · their allies greet new arrivals on your behalf</div></div><b style="color:var(--accent)">+700</b></div>
+                <div class="list-row" style="margin-top:10px"><span class="lr-ico">⇄</span><div class="lr-main"><div class="lr-name">Your Host</div><div class="lr-sub">WV DUNA (genesis) — you joined at launch</div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ GATHERINGS ============ -->
+        <section class="view" data-view="gatherings">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Flows</div><h1 class="pg-title">Gatherings</h1><p class="pg-sub">Schedule and run events, calls, and votes for your members.</p></div><button class="btn btn-gold" data-lockbtn data-minlevel="2">＋ New gathering</button></div>
+            <div class="upgrade-note" data-minlevel="2"><span class="un-ico">🔒</span><div><h4>Gatherings open at Founder</h4><p>Host member calls, town halls, and live votes once you run your own DUNA.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="row-list">
+              <div class="list-row"><span class="lr-ico">📅</span><div class="lr-main"><div class="lr-name">Monthly member town hall</div><div class="lr-sub">Mountain Mesh · first Tuesday · 1,420 invited</div></div><button class="btn btn-soft btn-sm">Open</button></div>
+              <div class="list-row"><span class="lr-ico">🗳</span><div class="lr-main"><div class="lr-name">Bylaws ratification call</div><div class="lr-sub">WV Commerce Club · 6/14</div></div><button class="btn btn-soft btn-sm">Open</button></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ LIBRARY ============ -->
+        <section class="view" data-view="library">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Flows</div><h1 class="pg-title">Library</h1><p class="pg-sub">Reusable assets your allies can draw on — media, templates, snippets.</p></div></div>
+            <div class="empty"><div class="e-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4v16M9 4v16"/><rect x="13" y="4" width="6" height="16" rx="1"/></svg></div><h3>Your library is empty</h3><p>Upload assets or save them from your allies to reuse across DUNAs.</p><div class="preview-flag" data-minlevel="3">Builder+ feature · preview</div></div>
+          </div>
+        </section>
+
+        <!-- ============ UPLOAD ============ -->
+        <section class="view" data-view="upload">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Flows</div><h1 class="pg-title">Upload</h1><p class="pg-sub">Bring files into the DUNAVERSE for your allies and library.</p></div></div>
+            <div class="empty" style="border-color:rgba(234,170,0,.4)"><div class="e-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5m0 0L8 9m4-4l4 4"/><path d="M5 19h14"/></svg></div><h3>Drag files here</h3><p>or browse your device. PDFs, docs, images, audio, and data.</p><div class="preview-flag" data-minlevel="3">Builder+ feature · preview</div></div>
+          </div>
+        </section>
+
+        <!-- ============ OBJECTIVES ============ -->
+        <section class="view" data-view="objectives">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Market</div><h1 class="pg-title">Objectives</h1><p class="pg-sub">The goals your DUNA is working toward — what the network can help fund and fulfill.</p></div><button class="btn btn-gold" data-lockbtn data-minlevel="2">＋ New objective</button></div>
+            <div class="upgrade-note" data-minlevel="2"><span class="un-ico">🔒</span><div><h4>Objectives open at Founder</h4><p>Post mission objectives so members, sponsors, and catalysts can back them.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="prop"><div class="prop-top"><span class="prop-status open">Funding</span><span class="by">Mountain Mesh</span></div><h3>Reach 10 counties by year end</h3><div class="vote-bar"><span class="for" style="width:40%"></span></div><div class="vote-figures"><span>4 of 10 counties live</span><span>$540k of $1.2M committed</span></div></div>
+          </div>
+        </section>
+
+        <!-- ============ MARKETS ============ -->
+        <section class="view" data-view="markets">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Market</div><h1 class="pg-title">Markets</h1><p class="pg-sub">Governance markets — where the network prices proposals, outcomes, and reputations.</p></div></div>
+            <div class="upgrade-note" data-minlevel="2"><span class="un-ico">🔒</span><div><h4>Markets open at Founder</h4><p>Create and participate in governance markets tied to your DUNA's decisions.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="grid g2">
+              <div class="card"><span class="tag gold">Open market</span><h3>Will Proposal #14 pass?</h3><p>Mountain Mesh · resolves in 9 days</p><div class="vote-figures" style="margin-top:10px"><span style="color:var(--success)">Yes 0.71</span><span style="color:var(--danger)">No 0.29</span></div></div>
+              <div class="card"><span class="tag gold">Open market</span><h3>Counties live by Q4</h3><p>Range market · 6–10</p><div class="vote-figures" style="margin-top:10px"><span>Median 7</span><span>Vol $84k</span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ ELECTORS ============ -->
+        <section class="view" data-view="electors">
+          <div class="page page-wide">
+            <div class="pg-head"><div><div class="pg-eyebrow">Builder mode · Market</div><h1 class="pg-title">Electors</h1><p class="pg-sub">Delegates who can vote on members' behalf — human or ally, always accountable.</p></div></div>
+            <div class="upgrade-note" data-minlevel="4"><span class="un-ico">🔒</span><div><h4>Electors open at Sponsor</h4><p>Stand as or appoint electors to carry delegated voting power across the network.</p></div><button class="btn btn-gold btn-sm" data-go="earn">See levels</button></div>
+            <div class="row-list">
+              <div class="list-row"><span class="lr-ico">⚖</span><div class="lr-main"><div class="lr-name">Coalfield Mutual delegation</div><div class="lr-sub">312 members · represented by @rue</div></div><button class="btn btn-soft btn-sm">View</button></div>
+              <div class="list-row"><span class="lr-ico">⚖</span><div class="lr-main"><div class="lr-name">Treasury committee (ally elector)</div><div class="lr-sub">Votes on routine spend under $500, with Approve fallback</div></div><button class="btn btn-soft btn-sm">View</button></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ SETUP WIZARD (personal Ally) ============ -->
+        <section class="view" data-view="setup">
+          <div class="page">
+            <div class="wizard">
+              <div class="pg-head" style="margin-bottom:18px"><div><div class="pg-eyebrow">Create your Ally</div><h1 class="pg-title">Make it yours</h1><p class="pg-sub">Four short steps. Stop anytime — you can always just chat.</p></div><button class="btn btn-soft btn-sm" id="wiz-skip">Skip — just chat</button></div>
+
+              <div class="wiz-steps">
+                <div class="wiz-step current"><div class="bar"></div><div class="nm">Inform</div></div>
+                <div class="wiz-step"><div class="bar"></div><div class="nm">Instruct</div></div>
+                <div class="wiz-step"><div class="bar"></div><div class="nm">Empower</div></div>
+                <div class="wiz-step"><div class="bar"></div><div class="nm">Align</div></div>
+              </div>
+
+              <!-- Step 1: INFORM -->
+              <div class="wiz-panel" data-wizstep="1">
+                <div class="step-no">Step 1 · Inform</div>
+                <h2>What should your Ally know?</h2>
+                <p class="lead">Start from you, pull in shared knowledge, or begin with a blank slate.</p>
+                <div class="field"><label>Name your Ally</label><input type="text" placeholder="e.g. Sage, Concierge, your own name…" value="Concierge"></div>
+                <div class="field"><label>Handle</label><input type="text" placeholder="@yourhandle" value="@ada"></div>
+                <div class="grid" style="gap:10px">
+                  <div class="opt-card sel"><span class="o-ico">◐</span><div><div class="o-name">Use my profile</div><div class="o-sub">Your interests, your DUNAs, what you've told the network.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">❡</span><div><div class="o-name">Add knowledge bases</div><div class="o-sub">Kiduna Nightpapers, your documents, a DUNA's library.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">○</span><div><div class="o-name">Start blank</div><div class="o-sub">Teach it as you go.</div></div></div>
+                </div>
+              </div>
+
+              <!-- Step 2: INSTRUCT -->
+              <div class="wiz-panel" data-wizstep="2" hidden>
+                <div class="step-no">Step 2 · Instruct</div>
+                <h2>Who is your Ally?</h2>
+                <p class="lead">Pick a stance — its role and voice. You can refine the exact words later in Builder Mode.</p>
+                <div class="grid g2" style="gap:10px">
+                  <div class="opt-card sel"><span class="o-ico">✦</span><div><div class="o-name">Concierge</div><div class="o-sub">Warm, helpful, keeps track of what matters to you.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">☿</span><div><div class="o-name">Guide</div><div class="o-sub">Reflective and probing, like The Alchemist.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">⚙</span><div><div class="o-name">Operator</div><div class="o-sub">Direct and task-focused — gets things done.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">❝</span><div><div class="o-name">Custom</div><div class="o-sub">Write the stance yourself.</div></div></div>
+                </div>
+                <div class="field" style="margin-top:14px"><label>In your own words (optional)</label><textarea placeholder="You are my ally. You help me…"></textarea></div>
+              </div>
+
+              <!-- Step 3: EMPOWER -->
+              <div class="wiz-panel" data-wizstep="3" hidden>
+                <div class="step-no">Step 3 · Empower</div>
+                <h2>What can it touch?</h2>
+                <p class="lead">Connect only what you want. You stay in control — anything consequential routes through Approve.</p>
+                <div class="row-list">
+                  <div class="list-row"><span class="lr-ico">G</span><div class="lr-main"><div class="lr-name">Google</div><div class="lr-sub">Calendar, Drive, Gmail</div></div><span class="toggle on"></span></div>
+                  <div class="list-row"><span class="lr-ico">✈</span><div class="lr-main"><div class="lr-name">Telegram</div><div class="lr-sub">Messages &amp; bots</div></div><span class="toggle"></span></div>
+                  <div class="list-row"><span class="lr-ico">◎</span><div class="lr-main"><div class="lr-name">Solana</div><div class="lr-sub">Wallet &amp; treasury — read-only to start</div></div><span class="toggle on"></span></div>
+                  <div class="list-row"><span class="lr-ico">☁</span><div class="lr-main"><div class="lr-name">Bluesky</div><div class="lr-sub">Post &amp; reply</div></div><span class="toggle"></span></div>
+                </div>
+              </div>
+
+              <!-- Step 4: ALIGN -->
+              <div class="wiz-panel" data-wizstep="4" hidden>
+                <div class="step-no">Step 4 · Align</div>
+                <h2>When should it act?</h2>
+                <p class="lead">Turn on a starter skill or two — or leave it all off and just chat. Skills run quietly in the background.</p>
+                <div class="grid" style="gap:10px">
+                  <div class="opt-card sel"><span class="o-ico">☼</span><div><div class="o-name">Morning briefing</div><div class="o-sub">When it's 7am, summarize what's new across my DUNAs.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">✉</span><div><div class="o-name">Email replies</div><div class="o-sub">When an email arrives, draft a friendly reply for my review.</div></div></div>
+                  <div class="opt-card"><span class="o-ico">○</span><div><div class="o-name">Nothing for now</div><div class="o-sub">I'll set skills up later. Just let me chat.</div></div></div>
+                </div>
+              </div>
+
+              <div class="wiz-foot"><button class="btn btn-soft" id="wiz-back">← Back</button><button class="btn btn-gold" id="wiz-next">Continue →</button></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ PROFILE ============ -->
+        <section class="view" data-view="profile">
+          <div class="page">
+            <div class="agent-grid" style="display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start">
+              <div>
+                <div class="agent-photo" style="aspect-ratio:1/1;border-radius:var(--radius-lg)"><span class="agent-initials">A</span></div>
+                <div style="text-align:center;margin-top:14px"><div class="level-badge" style="display:inline-flex"><span class="pips" id="level-pips-2"></span><span class="lvl-name" data-levelname>Member</span></div></div>
+              </div>
+              <div>
+                <div class="pg-eyebrow">Your profile</div>
+                <h1 class="pg-title" style="margin:6px 0 2px">Ada Whitfield</h1>
+                <p class="muted" style="font-family:var(--font-mono)">@ada · joined at genesis</p>
+                <p class="lede" style="font-size:1rem;margin-top:14px">Member of the genesis DUNA. Building community wireless with Mountain Mesh. Pseudonymous by choice.</p>
+                <div class="grid g3" style="margin-top:22px">
+                  <div class="wb"><div class="k"><i></i>Standing</div><div class="v" data-levelname>Member</div></div>
+                  <div class="wb"><div class="k"><i></i>WVDUNA held</div><div class="v" data-holding>$10</div></div>
+                  <div class="wb"><div class="k"><i></i>Allotment</div><div class="v" data-allotment>Monthly</div></div>
+                </div>
+                <h3 style="font-family:var(--font-display);font-weight:400;margin:26px 0 10px">Your allies</h3>
+                <div class="row-list">
+                  <div class="list-row"><span class="lr-ico">☿</span><div class="lr-main"><div class="lr-name">The Alchemist</div><div class="lr-sub">Personal · published</div></div><button class="btn btn-soft btn-sm" data-go="agents">Open in Builder</button></div>
+                </div>
+                <h3 style="font-family:var(--font-display);font-weight:400;margin:22px 0 10px">Your DUNAs</h3>
+                <div class="row-list">
+                  <div class="list-row"><span class="ws-coin" style="width:34px;height:34px">WV</span><div class="lr-main"><div class="lr-name">WV DUNA</div><div class="lr-sub">Genesis · home</div></div></div>
+                  <div class="list-row"><span class="ws-coin sky" style="width:34px;height:34px;background:var(--kin-skyblue)">MM</span><div class="lr-main"><div class="lr-name">Mountain Mesh</div><div class="lr-sub">Member · 3,000 coins held</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ SETTINGS ============ -->
+        <section class="view" data-view="settings">
+          <div class="page">
+            <div class="pg-head"><div><div class="pg-eyebrow">You</div><h1 class="pg-title">Settings</h1></div></div>
+            <div class="row-list">
+              <div class="list-row"><span class="lr-ico">⚙</span><div class="lr-main"><div class="lr-name">Account</div><div class="lr-sub">Email, password, recovery — managed on the web</div></div><a class="btn btn-soft btn-sm" href="https://wvduna.com" target="_blank" rel="noopener">Manage at wvduna.com ↗</a></div>
+              <div class="list-row"><span class="lr-ico">🔔</span><div class="lr-main"><div class="lr-name">Notifications</div><div class="lr-sub">Proposals, treasury, ally activity</div></div><span class="toggle on"></span></div>
+              <div class="list-row"><span class="lr-ico">🖥</span><div class="lr-main"><div class="lr-name">Devices</div><div class="lr-sub">You're signed in on this <span data-osname>device</span></div></div><button class="btn btn-soft btn-sm" id="install-cta-2">Get the app</button></div>
+              <div class="list-row"><span class="lr-ico">◑</span><div class="lr-main"><div class="lr-name">Appearance</div><div class="lr-sub">Dark (DUNAVERSE default)</div></div><span class="toggle on"></span></div>
+            </div>
+            <div class="reader-note" id="reader-note-2" hidden style="margin-top:16px">This is a reader app. Your subscription and account are managed at <b>wvduna.com</b>.</div>
+            <div style="margin-top:18px"><button class="btn btn-ghost" id="logout-2">Sign out</button></div>
+          </div>
+        </section>
+
+        <!--VIEWS-->
+      </div>
+    </main>
+  </div>
+
+  <!-- BOTTOM NAV (mobile, Active) -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <button data-go="chat" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>Chat</button>
+    <button data-go="vibe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Vibe</button>
+    <button data-go="seek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Seek</button>
+    <button data-go="vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M7 10l5-7 5 7"/><path d="M5 10h14l-2 7H7z"/></svg>Vote</button>
+    <button data-go="earn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>Earn</button>
+  </nav>
+</div>
+
+<!-- ============================================================ OVERLAYS -->
+<div id="scrim" class="scrim"></div>
+
+<!-- Profile sheet -->
+<aside class="sheet" id="profile-sheet">
+  <div class="sh-head">Ada Whitfield · <span data-levelname>Member</span></div>
+  <div class="sh-item" data-go="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Your profile</div>
+  <div class="sh-item" data-go="earn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>Wallet &amp; standing</div>
+  <div class="sh-item" data-go="setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5 5 .4-3.8 3.3L16 17l-4-2.6L8 17l.8-5.3L5 8.4 10 8z"/></svg>Set up your Ally</div>
+  <div class="sh-item" data-go="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.4-2.6h-4l-.4 2.6a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.5a7 7 0 0 0 .1-1z"/></svg>Settings</div>
+  <div class="sh-sep"></div>
+  <div class="sh-item" id="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>Sign out</div>
+</aside>
+
+<!-- DUNA switcher sheet -->
+<aside class="sheet" id="ws-sheet">
+  <div class="sh-head">Your DUNAs</div>
+  <div class="sh-item"><span class="ws-coin" style="width:24px;height:24px;font-size:.62rem">WV</span>WV DUNA <span style="margin-left:auto;color:var(--accent);font-size:.7rem">Genesis</span></div>
+  <div class="sh-item"><span class="ws-coin sky" style="width:24px;height:24px;font-size:.62rem;background:var(--kin-skyblue)">MM</span>Mountain Mesh</div>
+  <div class="sh-item"><span class="ws-coin" style="width:24px;height:24px;font-size:.62rem;background:var(--kin-accent-purple)">CC</span>WV Commerce Club</div>
+  <div class="sh-sep"></div>
+  <div class="sh-item" data-go="agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Start a new DUNA</div>
+</aside>
+
+<!-- Model picker -->
+<aside class="sheet" id="model-sheet">
+  <div class="sh-head">Model</div>
+  <div class="sh-item" data-model="Auto">Auto <span style="margin-left:auto;color:var(--fg-soft);font-size:.72rem">recommended</span></div>
+  <div class="sh-item" data-model="GPT">GPT</div>
+  <div class="sh-item" data-model="Claude">Claude</div>
+  <div class="sh-item" data-model="Llama">Llama (on-prem)</div>
+</aside>
+
+<!-- Notifications -->
+<aside class="sheet" id="notif-sheet" style="min-width:300px">
+  <div class="sh-head">Notifications</div>
+  <div class="sh-item">★ Your Host sent you 50 WVDUNA</div>
+  <div class="sh-item">Mountain Mesh opened Proposal #14</div>
+  <div class="sh-item">The Alchemist finished a scheduled task</div>
+</aside>
+
+<!-- Community -->
+<aside class="sheet" id="community-sheet" style="min-width:300px">
+  <div class="sh-head">Community</div>
+  <div class="sh-item" data-go="seek">Find members &amp; founders</div>
+  <div class="sh-item" data-go="vibe">Live Vibe rooms</div>
+  <div class="sh-item" data-go="codes">Invite with your Kinship Code</div>
+</aside>
+
+<!-- Achievements -->
+<aside class="sheet" id="achv-sheet" style="min-width:300px">
+  <div class="sh-head">Achievements</div>
+  <div class="sh-item">✦ First conversation</div>
+  <div class="sh-item">✦ Joined the genesis DUNA</div>
+  <div class="sh-item" style="opacity:.5">◷ Create your first Ally</div>
+</aside>
+
+<!-- ===================================================== PROTOTYPE PANEL -->
+<button class="proto-fab" id="proto-fab" title="Prototype controls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></button>
+<aside class="proto-panel" id="proto-panel">
+  <h4>Prototype controls</h4>
+  <p class="pp-sub">Not part of the product — flip these to preview the adaptive experience.</p>
+  <div class="proto-group">
+    <span class="pg-lab">Membership level</span>
+    <div class="seg">
+      <button data-proto-level="guest">Guest</button>
+      <button data-proto-level="member" class="active">Member</button>
+      <button data-proto-level="founder">Founder</button>
+      <button data-proto-level="builder">Builder</button>
+      <button data-proto-level="sponsor">Sponsor</button>
+      <button data-proto-level="catalyst">Catalyst</button>
+      <button data-proto-level="luminary">Luminary</button>
+    </div>
+  </div>
+  <div class="proto-group">
+    <span class="pg-lab">Mode</span>
+    <div class="seg"><button data-proto-mode="active" class="active">Active</button><button data-proto-mode="builder">Builder</button></div>
+  </div>
+  <div class="proto-group">
+    <span class="pg-lab">Environment</span>
+    <div class="seg"><button data-proto-env="web" class="active">Web app</button><button data-proto-env="installed">Installed app</button></div>
+  </div>
+  <div class="proto-group">
+    <span class="pg-lab">Operating system</span>
+    <div class="seg">
+      <button data-proto-os="mac" class="active">macOS</button><button data-proto-os="windows">Windows</button><button data-proto-os="chromeos">ChromeOS</button><button data-proto-os="ios">iOS</button><button data-proto-os="android">Android</button>
+    </div>
+  </div>
+  <div class="proto-group">
+    <span class="pg-lab">Device frame</span>
+    <div class="seg"><button data-proto-device="off" class="active">Off</button><button data-proto-device="tablet">Tablet</button><button data-proto-device="phone">Phone</button></div>
+  </div>
+  <div class="proto-group">
+    <span class="pg-lab">Session</span>
+    <div class="seg"><button id="proto-firstrun" class="on">First-run: ON</button><button id="proto-relogin">Show login</button></div>
+  </div>
+  <div class="pp-foot">Sign in with the prefilled form to enter. The Host's Ally chat opens automatically on first run.</div>
+</aside>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

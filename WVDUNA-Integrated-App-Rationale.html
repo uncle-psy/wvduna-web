@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WV DUNA — Integrated App: Notes &amp; Rationale</title>
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #000;
+    background: #fff;
+    line-height: 1.62;
+    margin: 0;
+    font-size: 18px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 64px 28px 120px; }
+  h1 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 6px; font-weight: 700; }
+  h2 { font-size: 1.5rem; margin: 2.6rem 0 0.6rem; font-weight: 700; border-top: 1px solid #000; padding-top: 1.4rem; }
+  h3 { font-size: 1.16rem; margin: 1.8rem 0 0.3rem; font-weight: 700; }
+  p { margin: 0 0 1rem; }
+  ul, ol { margin: 0 0 1rem; padding-left: 1.3rem; }
+  li { margin: 0.3rem 0; }
+  .sub { font-size: 1.05rem; font-style: italic; margin: 0 0 1.6rem; }
+  .meta { font-size: 0.92rem; margin: 0 0 2.2rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.6rem; font-size: 0.96rem; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 12px 8px 0; border-bottom: 1px solid #000; }
+  th { font-weight: 700; border-bottom: 2px solid #000; }
+  code { font-family: "Courier New", monospace; font-size: 0.9em; }
+  .rule { border: 0; border-top: 1px solid #000; margin: 2.4rem 0; }
+  .note { font-size: 0.95rem; }
+  a { color: #000; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>WV DUNA: The Integrated App</h1>
+<p class="sub">Notes and rationale for the post-login prototype.</p>
+<p class="meta">Prototype file: <code>wvduna-site/app.html</code> &nbsp;·&nbsp; Prepared June 7, 2026. Nothing here is wired to a backend; it is a clickable model of the experience.</p>
+
+<p>This document explains what I built on top of the existing WV DUNA site, the decisions behind it, and the places where I made a call you may want to revisit. It is meant to be read alongside the prototype, not instead of it.</p>
+
+<h2>1. Where I started</h2>
+
+<p>The site already had a strong front door. The marketing pages, the seven membership pathways, the design system in <code>colors_and_type.css</code> and <code>styles.css</code>, and a complete six-step signup all existed and were on-brand. The signup ended on a screen that read, in effect, "You're in. This is where the live experience would begin." That sentence was the brief. Everything I added picks up at that exact seam.</p>
+
+<p>The live experience, until now, lived in two separate products. The end-user app (Kiduna Club, at kiduna.app) is a Flutter app whose home is a left rail of Chat, Vibe, Seek, Vote, and Earn. The Studio (Kiduna Studio, at kiduna.studio) is where agents get built, organized as Inform, Instruct, Empower, Align, and Approve, with sections for the economy (Offerings, Coins, Codes), flows (Gatherings, Library, Upload), and a governance market (Objectives, Markets, Electors). I went through both so the inventory below reflects what actually exists, not a guess.</p>
+
+<p>Two things stood out while walking those apps. The first is that they look and feel like different products, with a magenta Kiduna identity that has nothing to do with WVDUNA.com. The second is that the Studio already contains your "inform, instruct, empower, align" process as literal navigation, and both apps already carry an <em>Avatar</em> tag on agents. So the work was less invention than reconciliation: take what exists and make it one place that feels like the DUNAVERSE.</p>
+
+<h2>2. The organizing idea</h2>
+
+<p>One application, two modes, never a sense of having left the site. Active Mode is where you live and act in the network. Builder Mode is the Studio, where you shape the allies and machinery behind your activity. A single header toggle moves between them, the brand stays identical across both, and a label plus icon always tells you which mode you are in. The whole thing sits on the WVDUNA.com design tokens, so the navy, the old gold, the Goudy headlines, and the ridge motif carry straight through from the marketing site into the app. Logging in should feel like walking further into the same building, not opening a different door.</p>
+
+<p>I kept to the one-accent rule from your design notes. Mode and membership level are signalled with words, icons, pips, and locks, never with a second brand color. That was a deliberate constraint, and it held up.</p>
+
+<h2>3. What happens the moment someone logs in</h2>
+
+<p>A new person lands in a conversation with their Host's Ally. No setup gate, no empty dashboard. The default ally is The Big Kiduna, the genesis ally that greets every arrival; if someone joined with a Kinship Code, this is where their Host's ally would appear instead. The opening message is plain and the four reply chips do the steering: "What can I do here?", "Set up my profile &amp; Ally", "Show me what's happening", and "Just exploring."</p>
+
+<p>This is the answer to the tension you named. Some people want to build their own agent through the full process, and some just want to talk. The chat serves both from the first second. If they pick "Set up my profile &amp; Ally," the ally offers to start the four-step flow. If they pick "Just exploring," it steps back and lets them wander. Either way they have already received the benefit, which is a working, on-topic ally, before they have done any configuration.</p>
+
+<p>The setup itself is a four-panel wizard that mirrors the Studio: Inform (what your ally knows), Instruct (its role and voice), Empower (which tools it can touch), Align (when it should act on its own). Every panel has a "Skip — just chat" exit. Finishing it adds a personal Concierge ally to the chat list and drops the person into a conversation with it. The same four steps exist as full pages in Builder Mode for people who want to go deeper later.</p>
+
+<h2>4. The information architecture, reconciled</h2>
+
+<p>I kept the full inventory from both apps rather than pruning, since you asked me not to leave anything out. Here is how it maps in the integrated app.</p>
+
+<h3>Active Mode</h3>
+<table>
+  <tr><th>Section</th><th>What it is</th></tr>
+  <tr><td>Chat</td><td>Conversations with your allies. Model selector, voice, composer. The first-run home.</td></tr>
+  <tr><td>Vibe</td><td>Experiences, games, and mini-apps across the network, for you and your allies.</td></tr>
+  <tr><td>Seek</td><td>Search across DUNAs, members, founders, and proposals.</td></tr>
+  <tr><td>Vote</td><td>Governance for the DUNAs you belong to, plus the resource store (plans, boosts, bundles) that reloads your allotment.</td></tr>
+  <tr><td>Earn</td><td>Wallet: balance, deposits, withdrawals, earnings, transactions, and your standing.</td></tr>
+</table>
+
+<h3>Builder Mode (the Studio)</h3>
+<table>
+  <tr><th>Group</th><th>Sections</th></tr>
+  <tr><td>Agents</td><td>Agents &amp; Allies, Inform, Instruct, Empower, Align, Approve</td></tr>
+  <tr><td>Economics</td><td>Offerings, Coins, Codes</td></tr>
+  <tr><td>Flows</td><td>Gatherings, Library, Upload</td></tr>
+  <tr><td>Market</td><td>Objectives, Markets, Electors</td></tr>
+</table>
+
+<p>Per your guidance, the spine is built to a high finish and every other destination exists and is on-brand, with the deeper detail screens designed more lightly. Chat, the first-run flow, the mode switch, the four-step Ally setup, Agents, and the wallet are the most complete. Screens like Markets, Electors, and Library are present and navigable but intentionally lighter.</p>
+
+<h2>5. Avatar becomes Ally</h2>
+
+<p>The rename is applied everywhere in the prototype. Agent cards now carry an <em>Ally</em> tag where they carried <em>Avatar</em>, the genesis agent is "your Host's Ally," and the personal agent you create is your personal Ally. The Alchemist, which the live Studio describes as "really you," is the model for that personal ally. When you make this change in the real Studio, the tag value and any user-facing copy are the places to look first; the underlying object can keep whatever internal name it has.</p>
+
+<h2>6. How membership level shapes the experience</h2>
+
+<p>You chose an adaptive model with visible standing, and that is what I built. Everyone sees the same shell. Your level shows as a small badge of seven pips next to your profile, and it expands what you can do rather than hiding the map. Sections above your level still appear, marked with a quiet lock and a gentle "hold more WVDUNA" note, so people can see what the next tier buys without being walled off from it. This matches the genesis-DUNA framing on the homepage, where level is set by the WVDUNA balance you hold rather than a subscription.</p>
+
+<table>
+  <tr><th>Level</th><th>Holding</th><th>What opens up</th></tr>
+  <tr><td>Guest</td><td>Free</td><td>Chat with a starter ally, browse, read-only governance.</td></tr>
+  <tr><td>Member</td><td>$10</td><td>Cast votes, join DUNAs, a personal Concierge ally.</td></tr>
+  <tr><td>Founder</td><td>$100</td><td>Run your own DUNAs: Offerings, Gatherings, Objectives, Markets.</td></tr>
+  <tr><td>Builder</td><td>$1,000</td><td>Deploy fleets of custom agents, Approve queue, Library, Upload.</td></tr>
+  <tr><td>Sponsor</td><td>$10,000</td><td>Sponsorship and partnership tools, Electors, scale allotments.</td></tr>
+  <tr><td>Catalyst</td><td>$100,000</td><td>Missions, grants, network-level governance.</td></tr>
+  <tr><td>Luminary</td><td>$1,000,000</td><td>Everything, at planetary scale.</td></tr>
+</table>
+
+<p>You can see this live in the prototype. The control panel in the lower right (a prototype-only affordance, not part of the product) lets you switch level and watch the locks, the badge, the upsell rail, and the wallet meter all respond.</p>
+
+<h2>7. Moving between Active and Builder</h2>
+
+<p>The toggle sits in the center of the app bar and is always reachable. Switching mode swaps the left navigation and lands you on that mode's home (Chat for Active, Agents for Builder) while keeping the same workspace, the same DUNA, the same brand. I considered giving Builder a distinct sub-treatment, a "workshop" feel, and decided against it for the reason you set out: one accent, one house. The mode label and a small icon carry the distinction, which is enough to stay oriented without fragmenting the look.</p>
+
+<h2>8. Web, installed, and the reader-app rule</h2>
+
+<p>The prototype treats the web as the place where accounts are born and the installed apps as readers, which is the Apple framing you asked for. On the web, the login screen offers "Create your account" and links into the existing signup. In the installed app, that option is replaced by a short note: accounts are created at wvduna.com, finish onboarding there, then sign in here. No account creation, no payment surface inside the installed clients.</p>
+
+<p>The web build is responsive and detects the visitor's operating system. A slim banner suggests the matching installed version: "Download for macOS," "Open in App Store," and so on. There is one integrated app with three renderings, desktop, tablet, and mobile, rather than separate codebases. In the prototype the detected OS reflects whatever browser renders it, and the control panel lets you force any of macOS, Windows, ChromeOS, iOS, or Android, and switch between the web and installed states, to see the right messaging in each case.</p>
+
+<h2>9. Responsive behavior</h2>
+
+<p>The layout has three states. On desktop, a full left rail with labels. On tablet, the rail collapses to icons to give content room. On mobile, the rail gives way to a bottom tab bar for Active Mode, the Builder navigation moves into a slide-over drawer, and the chat list and thread become a single column with a slide between them. The app bar trims itself down on small screens to the essentials: brand, mode toggle, notifications, level, and you. Chat is the one screen that manages its own height and internal scrolling so the composer stays put while messages scroll.</p>
+
+<h2>10. What is real and what is staged</h2>
+
+<p>Nothing talks to a backend. Login accepts the prefilled credentials and proceeds. The ally replies with canned, on-topic text. Toggles, votes, and store items respond visually but persist nothing. Figures in the wallet and the directories are illustrative, consistent with the "draft preview" stance already on the marketing site. The point of the prototype is the shape of the experience and the transitions between its parts, which are all live and clickable.</p>
+
+<h3>How to open it</h3>
+<p>Open <code>wvduna-site/app.html</code> in a browser. It starts on the login screen; sign in with the prefilled form to enter. The signup flow and the site login page now both continue into the app, so the journey from the marketing site through onboarding and into the live experience is connected end to end. A few URL shortcuts help when demoing: <code>?skiplogin=1</code> enters directly, and <code>?level=founder</code> (or any level) sets the starting tier.</p>
+
+<h2>11. Decisions you may want to revisit</h2>
+
+<p>A handful of choices were mine to make, and reasonable people could land elsewhere.</p>
+
+<p><strong>The chat is the home, not a dashboard.</strong> I weighted instant value over an overview screen, because your brief was explicit that the first benefit should be a conversation. If returning users would rather land on a summary of their DUNAs and proposals, that is a small change to the post-login destination.</p>
+
+<p><strong>Locks are visible, not hidden.</strong> Showing higher-tier sections with a lock teaches people what the levels buy. It also means lower tiers see a busier navigation than they can fully use. If that feels like clutter, the alternative is to hide locked sections and surface them only on the wallet page.</p>
+
+<p><strong>One ally per person at the lower tiers.</strong> I treated the personal Ally as available to everyone, with fleets of custom agents reserved for Builder and above. That matches the homepage copy, but the exact line between "your one ally" and "agents you build and deploy" is a product decision worth pinning down before launch.</p>
+
+<p><strong>Vibe, Seek, Vote, Earn kept their names.</strong> They are good, short, and already in the product. I did not rename them to match the marketing vocabulary (DUNAs, governance, treasury). If consistency with the public site matters more than brevity, that is a copy pass, not a structural one.</p>
+
+<h2>12. Suggested next steps</h2>
+
+<ol>
+  <li>Confirm the level capability matrix in section 6 against the real entitlements, since the locks in the prototype encode my best reading of the homepage.</li>
+  <li>Decide the returning-user landing. Right now everyone, new or returning, lands in chat.</li>
+  <li>Lock the Ally-versus-agents boundary so Builder Mode's gating is exact.</li>
+  <li>Apply the Avatar to Ally rename in the live Studio, starting with the tag and user-facing strings.</li>
+  <li>Pressure-test the install and reader-app copy against the current App Store and Play guidelines before the store submission.</li>
+</ol>
+
+<hr class="rule">
+<p class="note">All of the above is reflected in <code>app.html</code> and its two new asset files, <code>assets/app.css</code> and <code>assets/app.js</code>. The existing site files were left intact except for two small wiring changes: the signup flow's final button and the login page's form now continue into the app.</p>
+
+</div>
+</body>
+</html>
