@@ -47,7 +47,8 @@
       <p class="muted">Already have an account? <a href="login.html">Sign in</a>.</p>
     </div>
     <div class="reveal">
-      <form class="form-card" data-demo>
+      <!-- STEP 1: name + email -->
+      <form class="form-card signup-step" id="su-step1">
         <p class="form-step"><b>Step 1 of 6</b> · Enter your name and email address. We'll send a 6-digit code to verify your email address.</p>
         <div class="field">
           <label for="su-name">First name or alias <span class="req">*</span></label>
@@ -59,8 +60,41 @@
         </div>
         <label class="consent"><input type="checkbox" checked> <span>By continuing, I agree to receive various communications from WV DUNA with the understanding that I can unsubscribe anytime. I have reviewed the <a href="#">Privacy Policy</a> and accept the <a href="#">Terms of Service</a>.</span></label>
         <button class="btn btn-gold btn-lg" type="submit" style="width:100%;margin-top:1.1rem">Send me the 6-digit code</button>
-        <p class="form-result muted" style="display:none;margin-top:1rem">This is a draft preview, so accounts aren't wired up yet. In the live site we'd email you a 6-digit code to verify your address.</p>
       </form>
+
+      <!-- STEP 2: verify code -->
+      <form class="form-card signup-step" id="su-step2" hidden>
+        <button type="button" class="step-back" id="su-back">← Back</button>
+        <p class="form-step"><b>Step 2 of 6</b> · We sent a security code to <b id="su-email-echo" style="color:var(--fg)">your email</b>. Please follow the steps below.</p>
+        <ol class="step-list">
+          <li>Open your email</li>
+          <li>Look for a message from <b>security@kinship.systems</b></li>
+          <li>Enter the code below to confirm it's you</li>
+        </ol>
+        <div class="field">
+          <label for="su-code-0">Enter your 6-digit code</label>
+          <div class="code-inputs" id="su-code">
+            <input type="text" inputmode="numeric" maxlength="1" id="su-code-0" aria-label="Digit 1">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+        </div>
+        <p class="faint" style="font-size:0.8rem;margin:0.2rem 0 1rem">The code expires in 15 minutes. Didn't get it? Check your spam folder or request a new code.</p>
+        <button class="btn btn-gold btn-lg" type="submit" style="width:100%">Verify &amp; continue</button>
+        <p class="su-msg muted" id="su-resend-msg" hidden style="margin-top:0.8rem;text-align:center">A new code is on its way.</p>
+        <p class="form-note" style="margin-top:1rem;text-align:center">Didn't get it? <a href="#" id="su-resend">Resend code</a><br>Or <a href="#" id="su-different">try a different email address</a></p>
+      </form>
+
+      <!-- STEP 3: placeholder (prototype) -->
+      <div class="form-card signup-step" id="su-step3" hidden>
+        <p class="form-step"><b>Email verified ✓</b></p>
+        <h3 style="font-family:var(--font-display);font-weight:400;font-size:1.6rem;margin:0.2rem 0 0.6rem">You're in.</h3>
+        <p class="muted">Steps 3 through 6 of onboarding are coming in this prototype. For now, explore the network.</p>
+        <a class="btn btn-gold btn-lg" href="index.html" style="width:100%;margin-top:1rem">Go to WV DUNA</a>
+      </div>
     </div>
   </div>
 </section>
@@ -82,5 +116,55 @@
   </div>
 </footer>
 <script src="assets/main.js"></script>
+<script>
+(function () {
+  var s1 = document.getElementById("su-step1");
+  var s2 = document.getElementById("su-step2");
+  var s3 = document.getElementById("su-step3");
+  if (!s1 || !s2 || !s3) return;
+  var steps = [s1, s2, s3];
+  function show(el) { steps.forEach(function (x) { x.hidden = (x !== el); }); }
+
+  // Step 1 -> Step 2
+  s1.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var em = (document.getElementById("su-email").value || "").trim();
+    document.getElementById("su-email-echo").textContent = em || "your email";
+    show(s2);
+    var first = document.getElementById("su-code-0");
+    if (first) first.focus();
+  });
+
+  // Back arrow -> Step 1
+  document.getElementById("su-back").addEventListener("click", function () { show(s1); });
+
+  // 6-digit code: auto-advance + backspace
+  var inputs = Array.prototype.slice.call(document.querySelectorAll("#su-code input"));
+  inputs.forEach(function (inp, i) {
+    inp.addEventListener("input", function () {
+      inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 1);
+      if (inp.value && inputs[i + 1]) inputs[i + 1].focus();
+    });
+    inp.addEventListener("keydown", function (e) {
+      if (e.key === "Backspace" && !inp.value && inputs[i - 1]) inputs[i - 1].focus();
+    });
+  });
+
+  // Step 2 -> Step 3 (prototype: advances regardless of what's entered)
+  s2.addEventListener("submit", function (e) { e.preventDefault(); show(s3); });
+
+  // Resend (prototype)
+  var resend = document.getElementById("su-resend");
+  var rmsg = document.getElementById("su-resend-msg");
+  if (resend) resend.addEventListener("click", function (e) { e.preventDefault(); if (rmsg) rmsg.hidden = false; });
+
+  // Different email -> back to Step 1, focus email
+  var diff = document.getElementById("su-different");
+  if (diff) diff.addEventListener("click", function (e) {
+    e.preventDefault(); show(s1);
+    var em = document.getElementById("su-email"); if (em) em.focus();
+  });
+})();
+</script>
 </body>
 </html>
