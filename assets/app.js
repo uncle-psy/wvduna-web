@@ -137,8 +137,18 @@
   }
 
   /* ---- Auth ------------------------------------------------------------ */
-  function login() {
+  // Session persistence (prototype): remember login across reloads.
+  function saveSession() {
+    try { localStorage.setItem("wvduna_session", JSON.stringify({ loggedIn: true, level: state.level })); } catch (e) {}
+  }
+  function clearSession() { try { localStorage.removeItem("wvduna_session"); } catch (e) {} }
+  function readSession() {
+    try { return JSON.parse(localStorage.getItem("wvduna_session") || "null"); } catch (e) { return null; }
+  }
+
+  function login(opts) {
     state.loggedIn = true;
+    if (!opts || opts.persist !== false) saveSession();
     $("#auth").hidden = true;
     app.hidden = false;
     applyLevel(); applyPlatform();
@@ -148,6 +158,7 @@
   }
   function logout() {
     state.loggedIn = false;
+    clearSession();
     app.hidden = true;
     $("#auth").hidden = false;
     closeAllSheets();
@@ -384,7 +395,12 @@
     // Start on auth screen unless ?skip
     var params = new URLSearchParams(location.search);
     if (params.get("level")) { state.level = params.get("level"); applyLevel(); var lb = $('[data-proto-level="' + state.level + '"]'); if (lb) segSelect("[data-proto-level]", lb); }
+    var saved = readSession();
     if (params.get("skiplogin") === "1") { login(); }
+    else if (saved && saved.loggedIn) {
+      if (saved.level && !params.get("level")) { state.level = saved.level; applyLevel(); var slb = $('[data-proto-level="' + state.level + '"]'); if (slb) segSelect("[data-proto-level]", slb); }
+      login();
+    }
     else { app.hidden = true; $("#auth").hidden = false; }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
