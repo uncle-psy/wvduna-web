@@ -325,27 +325,39 @@
           <div class="page page-wide">
             <div class="pg-head"><div><div class="pg-eyebrow">Building mode · Agents</div><h1 class="pg-title">Allies</h1><p class="pg-sub">Allies are intelligent agents that represent people, organizations, programs, and alliances. They communicate, coordinate, and act on behalf of their principals, carrying the identity, authority, and permissions needed to operate safely across the network.</p></div><button class="btn btn-gold" id="create-ally-btn" data-sheet-open="newally-sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Create a new Ally</button></div>
 
-            <p class="muted" style="margin:-8px 0 18px;font-size:.92rem">There are five types of Allies — <b>DUNA Allies</b>, <b>Personal Allies</b> (member allies), <b>Alliances</b>, <b>Sponsors</b>, and <b>Programs</b>. Any one can be the <b>Primary</b> for its principal. Each Ally is <b>Draft</b>, <b>Testing</b>, or <b>Published</b>.</p>
+            <p class="muted" style="margin:-8px 0 12px;font-size:.92rem">There are five types of Allies — <b>DUNA Allies</b>, <b>Personal Allies</b> (member allies), <b>Alliances</b>, <b>Sponsors</b>, and <b>Programs</b>. Any one can be the <b>Primary</b> for its principal. Each Ally is <b>Draft</b>, <b>Testing</b>, or <b>Published</b>.</p>
 
-            <div class="chip-row"><button class="chip active">All</button><button class="chip">Draft</button><button class="chip">Testing</button><button class="chip">Published</button><button class="chip">Personal</button><button class="chip">DUNA</button></div>
+            <p class="muted" style="margin:0 0 18px;font-size:.92rem">Every Ally also has a visibility — <b class="vis-public">Public</b>, <b class="vis-private">Private</b>, or <b class="vis-secret">Secret</b>. Codes are always exchanged when two allies connect; the difference is who may initiate. <b>Public</b> allies accept connections from any ally and are listed in Seek. <b>Private</b> allies are listed in Seek but require a Code with a matching entry Claim to connect. <b>Secret</b> allies are not listed in Seek — they're reachable only by entering the secret Code in a search box, a DUNA ally, or anywhere else that can read and decipher Codes.</p>
+
+            <div class="chip-row" id="allies-chips">
+              <button class="chip active" data-chip="all">All</button>
+              <button class="chip" data-chip="draft">Draft</button>
+              <button class="chip" data-chip="testing">Testing</button>
+              <button class="chip" data-chip="published">Published</button>
+              <button class="chip" data-chip="personal">Personal</button>
+              <button class="chip" data-chip="duna">DUNA</button>
+              <button class="chip" data-chip="public">Public</button>
+              <button class="chip" data-chip="private">Private</button>
+              <button class="chip" data-chip="secret">Secret</button>
+            </div>
 
             <div class="grid g3" id="allies-grid">
-              <article class="studio-card" data-go="instruct">
-                <div class="sc-head"><span class="sc-ico">♛</span><div class="sc-tags"><span class="tag primary">Primary</span><span class="tag gold">DUNA Ally</span><span class="tag published">Published</span></div></div>
+              <article class="studio-card" data-go="instruct" data-tags="primary duna published public">
+                <div class="sc-head"><span class="sc-ico">♛</span><div class="sc-tags"><span class="tag primary">Primary</span><span class="tag gold">DUNA Ally</span><span class="tag published">Published</span><span class="tag public">Public</span></div></div>
                 <h3 id="duna-ally-name">The Big Kiduna</h3><span class="handle" id="duna-ally-handle">@the_big_kiduna</span>
                 <span class="quote">"The Foundation of the Agentic Internet"</span>
                 <p>The DUNA Ally — greets every new arrival and represents the DUNA itself.</p>
                 <div class="sc-foot"><span class="mono">1 KB</span><span>· Prompt</span><span style="margin-left:auto">Updated 5/19</span></div>
               </article>
-              <article class="studio-card" data-go="instruct">
-                <div class="sc-head"><span class="sc-ico">☿</span><div class="sc-tags"><span class="tag sky">Personal</span><span class="tag published">Published</span></div></div>
+              <article class="studio-card" data-go="instruct" data-tags="personal published secret">
+                <div class="sc-head"><span class="sc-ico">☿</span><div class="sc-tags"><span class="tag sky">Personal</span><span class="tag published">Published</span><span class="tag secret">Secret</span></div></div>
                 <h3>The Alchemist</h3><span class="handle">@the_alchemist</span>
                 <span class="quote">"Your Guide to Cosmic Humanity"</span>
                 <p>A Personal Ally — really you. Initiates the acolyte into the mysteries of their own soul.</p>
                 <div class="sc-foot"><span class="mono">1 KB</span><span>· Prompt</span><span style="margin-left:auto">Updated 5/16</span></div>
               </article>
-              <article class="studio-card">
-                <div class="sc-head"><span class="sc-ico">⌘</span><div class="sc-tags"><span class="tag testing">Testing</span><span class="tag">Alliance</span></div></div>
+              <article class="studio-card" data-tags="alliance testing private">
+                <div class="sc-head"><span class="sc-ico">⌘</span><div class="sc-tags"><span class="tag testing">Testing</span><span class="tag">Alliance</span><span class="tag private">Private</span></div></div>
                 <h3>Coalfield Mutual ↔ Mesh</h3><span class="handle">@coalfield-mesh</span>
                 <span class="quote">"Two allies, one mission"</span>
                 <p>An Alliance — a container where a Personal Ally and a DUNA Ally collaborate, rooted in this DUNA.</p>

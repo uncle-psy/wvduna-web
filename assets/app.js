@@ -463,6 +463,20 @@
 
     $$("[data-setmode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.getAttribute("data-setmode")); }); });
 
+    // Allies filter chips (type / state / visibility)
+    var alliesChips = $("#allies-chips");
+    if (alliesChips) {
+      alliesChips.addEventListener("click", function (e) {
+        var b = e.target.closest(".chip"); if (!b) return;
+        alliesChips.querySelectorAll(".chip").forEach(function (c) { c.classList.toggle("active", c === b); });
+        var f = (b.getAttribute("data-chip") || "all").toLowerCase();
+        $$("#allies-grid > [data-tags]").forEach(function (card) {
+          var tags = (card.getAttribute("data-tags") || "").toLowerCase();
+          card.style.display = (f === "all" || tags.split(" ").indexOf(f) >= 0) ? "" : "none";
+        });
+      });
+    }
+
     document.addEventListener("click", function (e) {
       var n = e.target.closest("[data-go]"); if (n) { e.preventDefault(); go(n.getAttribute("data-go")); }
       var sd = e.target.closest("[data-switchduna]"); if (sd) { switchDuna(sd.getAttribute("data-switchduna")); }

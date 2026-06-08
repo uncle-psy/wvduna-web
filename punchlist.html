@@ -48,7 +48,17 @@
 
 <h1>WV DUNA — UX Manual &amp; Build Punchlist</h1>
 <p class="sub">Engineering handoff for the integrated DUNAVERSE app and the new visitor site.</p>
-<p class="meta">Version 2 · June 7, 2026 · Prepared against the published apps at <code>kiduna.studio</code> and <code>kiduna.app</code>. This file is meant to live on the server as the team's working punchlist. Check items off as you build; your progress is saved in this browser.</p>
+<p class="meta">Version 2.1 · June 8, 2026 · Prepared against the published apps at <code>kiduna.studio</code> and <code>kiduna.app</code>. This file is meant to live on the server as the team's working punchlist. Check items off as you build; your progress is saved in this browser.</p>
+
+<div class="callout">
+<b>What's new in v2.1</b> (since v2, June 7):
+<ul>
+<li><b>Ally visibility — Public / Private / Secret.</b> Every Ally now carries a visibility label shown on its card, and the Allies page filters by it alongside type and state. Public = listed in Seek, any ally may connect; Private = listed in Seek but needs a Code with a matching entry Claim; Secret = not listed in Seek, reachable only by entering its Code. (§11) <em class="st done">In prototype</em></li>
+<li><b>Session persistence.</b> Login is remembered across reloads (localStorage); you stay logged in until you choose Sign out. (§18)</li>
+<li><b>Logo no longer logs you out.</b> The in-app logo returns you to your home view instead of dropping to the logged-out site. (§6)</li>
+<li><b>Mode rename.</b> The header mode toggle reads <b>Active</b> / <b>Building</b> (was "Builder"); the <b>Builder</b> membership tier name is unchanged. (§1)</li>
+</ul>
+</div>
 
 <div class="progress-wrap">
   <div class="legend">
@@ -208,6 +218,7 @@
 <label class="item"><input type="checkbox" data-id="al1"><span>Rename page to <b>Allies</b>; group label <b>Agents</b>; new copy and the five types. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=agents" target="_blank">open ↗</a></span></label>
 <label class="item"><input type="checkbox" data-id="al2"><span>"+ Create a new Ally" shows only the options allowed at the user's level. <em class="st done">In prototype</em> (level-gated sheet)</span></label>
 <label class="item"><input type="checkbox" data-id="al3"><span>States Draft / Testing / Published; one Primary per principal; filter chips by state and type. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="al5"><span><b>Visibility — Public / Private / Secret.</b> Each Ally carries one, shown as a tag on its card, with matching filter chips on the Allies page. <b>Public</b>: listed in Seek; any ally may connect (a Code is still exchanged on connection). <b>Private</b>: listed in Seek, but connecting requires a Code with a matching entry Claim. <b>Secret</b>: not listed in Seek — reachable only by entering its Code in a search box, a DUNA ally, or anywhere that can read and decipher Codes. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=agents" target="_blank">open ↗</a> · <em class="st spec">To build</em> (enforce visibility in Seek + connection rules)</span></label>
 <label class="item"><input type="checkbox" data-id="al4"><span>Only three Ally kinds have real agency and supervise/communicate with the user: <b>DUNA, Personal, Program</b>. Others are workers. Reflect this in Actions (§13). <em class="st done">In prototype</em> (documented) · <em class="st spec">To build</em> (enforcement)</span></label>
 
 <!-- ============================================================ -->

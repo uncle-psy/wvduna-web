@@ -628,6 +628,12 @@ body.sim-tablet .proto-fab, body.sim-phone .proto-fab, body.sim-tablet .proto-pa
 .tag.testing { color: #9beef4; border-color: rgba(3,204,217,0.5); background: rgba(3,204,217,0.12); }
 .tag.published { color: var(--success); border-color: rgba(0,235,117,0.4); background: rgba(0,235,117,0.1); }
 .tag.primary { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+.tag.public { color: var(--success); border-color: rgba(0,235,117,0.4); background: rgba(0,235,117,0.1); }
+.tag.private { color: #9beef4; border-color: rgba(3,204,217,0.5); background: rgba(3,204,217,0.12); }
+.tag.secret { color: #c9b3ff; border-color: rgba(150,110,240,0.55); background: rgba(150,110,240,0.14); }
+.vis-public { color: var(--success); }
+.vis-private { color: #9beef4; }
+.vis-secret { color: #c9b3ff; }
 
 /* =========================================================================
    CONTEXTUAL CHAT DOCK (right side, always-open, collapsible)
