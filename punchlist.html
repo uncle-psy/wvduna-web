@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WV DUNA — UX Manual &amp; Build Punchlist</title>
+<style>
+  :root { --line:#000; --soft:#555; --rule:#000; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { font-family: Georgia, "Times New Roman", serif; color: #000; background: #fff; line-height: 1.6; margin: 0; font-size: 17px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 26px 140px; }
+  h1 { font-size: 2.15rem; line-height: 1.12; margin: 0 0 4px; }
+  h2 { font-size: 1.5rem; margin: 2.4rem 0 0.5rem; border-top: 2px solid var(--rule); padding-top: 1.3rem; }
+  h3 { font-size: 1.15rem; margin: 1.5rem 0 0.3rem; }
+  h4 { font-size: 1.0rem; margin: 1.1rem 0 0.2rem; font-variant: small-caps; letter-spacing: 0.03em; }
+  p { margin: 0 0 0.9rem; }
+  .sub { font-style: italic; font-size: 1.05rem; margin: 0 0 1rem; }
+  .meta { font-size: 0.9rem; color: var(--soft); margin: 0 0 1.4rem; }
+  a { color: #000; }
+  code { font-family: "Courier New", monospace; font-size: 0.88em; background: #f1f1f1; padding: 1px 4px; border-radius: 3px; }
+  ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  li { margin: 0.25rem 0; }
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1.4rem; font-size: 0.92rem; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px 7px 0; border-bottom: 1px solid #000; }
+  th { border-bottom: 2px solid #000; }
+  .item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px dotted #bbb; }
+  .item input { margin-top: 4px; width: 17px; height: 17px; flex: 0 0 auto; accent-color: #000; }
+  .item > span { flex: 1; }
+  .item.done-look > span { color: #777; text-decoration: line-through; text-decoration-color: #aaa; }
+  .st { font-style: normal; font-size: 0.66rem; font-variant: small-caps; letter-spacing: 0.06em; border: 1px solid #000; border-radius: 3px; padding: 1px 6px; margin-left: 6px; white-space: nowrap; vertical-align: 1px; }
+  .st.done { background: #000; color: #fff; }
+  .st.spec { background: #fff; color: #000; }
+  .openlink { font-size: 0.8rem; white-space: nowrap; }
+  .toc a { display: block; padding: 2px 0; }
+  .progress-wrap { position: sticky; top: 0; background: #fff; border-bottom: 2px solid #000; padding: 10px 0; margin: 0 0 8px; z-index: 5; }
+  .bar { height: 10px; border: 1px solid #000; border-radius: 999px; overflow: hidden; margin-top: 6px; }
+  .bar > i { display: block; height: 100%; background: #000; width: 0; transition: width 0.3s; }
+  .callout { border-left: 3px solid #000; padding: 4px 0 4px 16px; margin: 1rem 0; }
+  .legend span { display: inline-block; margin-right: 16px; font-size: 0.85rem; }
+  .controls { font-size: 0.85rem; }
+  .controls button { font-family: Georgia, serif; font-size: 0.82rem; border: 1px solid #000; background: #fff; padding: 3px 10px; border-radius: 4px; cursor: pointer; }
+  hr { border: 0; border-top: 1px solid #000; margin: 2rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>WV DUNA — UX Manual &amp; Build Punchlist</h1>
+<p class="sub">Engineering handoff for the integrated DUNAVERSE app and the new visitor site.</p>
+<p class="meta">Version 2 · June 7, 2026 · Prepared against the published apps at <code>kiduna.studio</code> and <code>kiduna.app</code>. This file is meant to live on the server as the team's working punchlist. Check items off as you build; your progress is saved in this browser.</p>
+
+<div class="progress-wrap">
+  <div class="legend">
+    <span><b id="pct">0%</b> complete (<span id="done">0</span>/<span id="total">0</span>)</span>
+    <span class="controls"><button id="reset-checks">Clear all checks</button></span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</div>
+
+<p>Two things ship together: <b>the integrated app</b> (<a href="app.html?skiplogin=1" target="_blank">app.html</a>, post-login) and <b>the new visitor site</b> (<a href="index.html" target="_blank">index.html</a> and friends, logged-out). The app is one product with two modes — <b>Active</b> (live in the network) and <b>Building</b> (the Studio) — re-skinned per DUNA, gated by membership level, and persistent. Everything below is reflected in the prototype unless tagged <em class="st spec">To build</em>.</p>
+
+<div class="callout">
+<b>How to read the status tags.</b> <em class="st done">In prototype</em> means it is built and clickable in <code>app.html</code> today — use it as the visual spec. <em class="st spec">To build</em> means it is specified here but not yet in the prototype; build it from this description. The prototype is the source of truth for look and interaction; this document is the source of truth for intent and scope.
+</div>
+
+<h2 id="toc">Contents</h2>
+<div class="toc">
+<a href="#foundational">1. Foundational &amp; global</a>
+<a href="#vocab">2. Vocabulary &amp; renames</a>
+<a href="#visitor">3. The new visitor site</a>
+<a href="#onboard">4. Onboarding → first purchase handoff</a>
+<a href="#dunas">5. Multi-DUNA model, themes &amp; economics</a>
+<a href="#selector">6. DUNA selector &amp; Home</a>
+<a href="#buy">7. Buy Coins / set your role (Stripe)</a>
+<a href="#account">8. Account, role changes &amp; Load Wallet</a>
+<a href="#reader">9. iOS / Android reader-app handling</a>
+<a href="#active">10. Active Mode</a>
+<a href="#allies">11. Allies (was Agents &amp; Allies)</a>
+<a href="#build-steps">12. Inform · Instruct · Empower · Enact</a>
+<a href="#actions">13. Actions (was Approve)</a>
+<a href="#economics">14. Economics — Coins, Codes &amp; Team</a>
+<a href="#codes">15. Codes &amp; Claims</a>
+<a href="#directory">16. Directory</a>
+<a href="#dock">17. Contextual DUNA-Ally chat dock</a>
+<a href="#persistence">18. Persistence</a>
+<a href="#changelog">19. Change log vs published apps</a>
+<a href="#rationale">20. Rationale for design calls</a>
+<a href="#questions">21. Open questions</a>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="foundational">1. Foundational &amp; global</h2>
+<p>The app should never feel like a different product from <code>WVDUNA.com</code>. It inherits the same design system (<code>assets/colors_and_type.css</code> and <code>assets/styles.css</code>): deep navy ground, Old Gold accent, Goudy display + Avenir body, the ridge motif. The new app-specific layer lives in <code>assets/app.css</code> and <code>assets/app.js</code>.</p>
+
+<label class="item"><input type="checkbox" data-id="f1"><span>Retire the standalone Kiduna Club and Kiduna Studio shells; both become modes of one app on the WVDUNA design system. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="f2"><span>Drop the magenta Kiduna brand and the greyhound mark from the app chrome; use the WV DUNA sun-moon mark and gold. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="f3"><span>A persistent header mode toggle: <b>Active</b> ↔ <b>Building</b>. Same brand both sides; a label + icon always shows which mode you are in. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="f4"><span>Membership level (Guest → Luminary) is shown as a 7-pip badge and drives capability; locked sections stay visible with a gentle "hold more Coins" nudge. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="f5"><span>The app is one responsive codebase rendered for desktop, tablet, and mobile. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="f6"><span>All app state persists locally so engineering and stakeholders can see exactly what each level sees. In production this is server/wallet state. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="vocab">2. Vocabulary &amp; renames</h2>
+<p>Apply these renames everywhere — UI labels, copy, tooltips, empty states, and analytics events.</p>
+<table>
+<tr><th>Published term</th><th>New term</th><th>Notes</th></tr>
+<tr><td>Avatar</td><td><b>Ally</b></td><td>Every agent that represents a principal. Five types (see §11).</td></tr>
+<tr><td>Agents &amp; Allies (nav)</td><td><b>Allies</b></td><td>Group label becomes <b>Agents</b>; the page is <b>Allies</b>.</td></tr>
+<tr><td>Align</td><td><b>Enact</b></td><td>Nav and page title.</td></tr>
+<tr><td>Skill (a built thing)</td><td><b>Program</b></td><td>A Program bundles Skills. "Skill" stays as a term of art for a line in a <code>Skill.md</code> file.</td></tr>
+<tr><td>Approve</td><td><b>Actions</b></td><td>An inbox, not only approvals (see §13).</td></tr>
+<tr><td>tokens</td><td><b>Coins</b></td><td>Always "Coins," to distinguish from LLM tokens. Each DUNA has its own Coin.</td></tr>
+<tr><td>Active / Published (Ally states)</td><td><b>Draft / Testing / Published</b></td><td>Draft = private WIP; Testing = shareable to invitees; Published = live.</td></tr>
+</table>
+<label class="item"><input type="checkbox" data-id="v1"><span>Global find-and-replace of the terms above across app, site, and Studio. <em class="st done">In prototype</em> (app) · <em class="st spec">To build</em> (live Studio data + site)</span></label>
+<label class="item"><input type="checkbox" data-id="v2"><span>Ally state machine is Draft → Testing → Published, with exactly one <b>Primary</b> per principal. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=agents" target="_blank">open ↗</a></span></label>
+
+<!-- ============================================================ -->
+<h2 id="visitor">3. The new visitor site</h2>
+<p>The logged-out site needs a rebuild so it mirrors the logged-in structure. The current per-audience pages (DUNAs, Members, Founders, Builders, Sponsors, Catalysts, Luminaries) collapse into <b>one searchable, sortable Directory</b> of cards: <b>DUNAs, Members, Alliances, Programs</b>. Each card links to that entity's Ally (which opens a chat). The same Directory exists logged-in (§16); logged-out it is the public face.</p>
+<label class="item"><input type="checkbox" data-id="w1"><span>Replace the separate audience pages with a single Directory page: search + sort + tabs (DUNAs / Members / Alliances / Programs), home-style cards. <em class="st done">In prototype</em> (logged-in version) <a class="openlink" href="app.html?skiplogin=1&amp;view=directory" target="_blank">open ↗</a> · <em class="st spec">To build</em> (logged-out)</span></label>
+<label class="item"><input type="checkbox" data-id="w2"><span>Each DUNA, Member, Alliance, and Program gets a detail page in the home-page card style; reachable logged-out and logged-in. <em class="st done">In prototype</em> (WV DUNA host page) <a class="openlink" href="app.html?skiplogin=1&amp;view=host" target="_blank">open ↗</a> · <em class="st spec">To build</em> (all entities, index)</span></label>
+<label class="item"><input type="checkbox" data-id="w3"><span>Cards expose a "Meet the Ally" action that drops the visitor into a chat with that entity's DUNA/Personal/Program Ally. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="w4"><span>Keep the existing marketing home, Launchpad, Metrics, and Go-Deeper pages; reskin nav to match and point "Login / Sign up" into the app. <em class="st done">In prototype</em> (links wired)</span></label>
+<label class="item"><input type="checkbox" data-id="w5"><span>The contextual DUNA-Ally chat (§17) should also be available on the visitor site, scoped to whichever DUNA's page you are on. <em class="st spec">To build</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="onboard">4. Onboarding → first purchase handoff</h2>
+<p>Account creation and onboarding stay on the web (§9). The moment a first-time user finishes onboarding, route them to the <b>Set your role</b> screen (§7) to buy their initial Coins. Their starting role and pricing are determined by the Kinship Code they entered at registration. If they entered none — or entered <code>WVD-WVD-WVD</code> — apply the WV DUNA Code, which mirrors the public home-page pricing exactly.</p>
+<label class="item"><input type="checkbox" data-id="o1"><span>After onboarding, land on "Set your role" (buy Coins), not the home feed. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;onboarded=1" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="o2"><span>The home DUNA for a new user = the DUNA of the Kinship Code they used. No Code (or <code>WVD-WVD-WVD</code>) ⇒ WV DUNA, home-page prices and box contents. A Code is always required for agentic commerce; the system supplies the WV DUNA Code by default. <em class="st done">In prototype</em> (WV defaults) · <em class="st spec">To build</em> (resolve arbitrary Codes → DUNA + pricing + bonus)</span></label>
+<label class="item"><input type="checkbox" data-id="o3"><span>After the first purchase, drop the user into the first-run chat with their Host's Ally. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="dunas">5. Multi-DUNA model, themes &amp; economics</h2>
+<p>Every DUNA has the same membership ladder (Guest → Luminary) but sets its own join price and its own Coin value. Switching DUNAs changes the information shown and re-skins the app with that DUNA's theme. Three are fleshed out so the differences are concrete:</p>
+<table>
+<tr><th>DUNA</th><th>Coin</th><th>Coin value (USDC)</th><th>Join price vs WV</th><th>Theme accent</th></tr>
+<tr><td>WV DUNA (Genesis)</td><td>WVDUNA</td><td>$0.10</td><td>baseline (Member $10 … Luminary $1M)</td><td>Old Gold</td></tr>
+<tr><td>Mountain Mesh</td><td>MESH</td><td>1/3 of WVDUNA ($0.0333)</td><td>half (Member $5 …)</td><td>Teal</td></tr>
+<tr><td>WV Commerce Club</td><td>CCLUB</td><td>2/3 of WVDUNA ($0.0667)</td><td>double (Member $20 …)</td><td>Magenta</td></tr>
+</table>
+<label class="item"><input type="checkbox" data-id="d1"><span>Model each DUNA with: name, Genesis flag, Coin symbol, Coin price in USDC, join-price multiplier, theme, and DUNA Ally. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="d2"><span>A member's level in a DUNA is computed from the USDC value of the Coins they hold there, against that DUNA's thresholds. No subscriptions. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="d3"><span>Switching DUNA re-skins the one accent (theme), updates the selector, the DUNA Ally, Coin names, wallet figures, and recomputes level. <em class="st done">In prototype</em> — try it in the prototype panel's "Current DUNA" control. <a class="openlink" href="app.html?skiplogin=1&amp;duna=mesh" target="_blank">open Mesh ↗</a> <a class="openlink" href="app.html?skiplogin=1&amp;duna=cc" target="_blank">open CC ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="d4"><span>Everyone is always a member of WV DUNA (legal standing for them and their agents); its purpose is onboarding and seeding new DUNAs. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="d5"><span>Creating a new DUNA in the Studio includes a <b>theme</b> step (accent, cover, Coin). <em class="st spec">To build</em> (flow stubbed; theme tokens exist)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="selector">6. DUNA selector &amp; Home</h2>
+<label class="item"><input type="checkbox" data-id="s1"><span>WV DUNA keeps a yellow <b>Genesis</b> tag in the selector, matching its menu item. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="s2"><span>The selector no longer says "your home." Instead, a <b>Your Home</b> pill appears next to the selector only when you are in your home DUNA. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="s3"><span>When you are in a DUNA that is not your home, a <b>Set as Home</b> button appears next to the selector. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;duna=mesh" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="s4"><span>Clicking the logo (top-left) returns you to your home DUNA. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="buy">7. Buy Coins / set your role (Stripe)</h2>
+<p>This is the first-purchase screen and is reused (in a different mode, §8) for changing roles later. It presents Guest through Sponsor as boxes; the box matching the user's prior selection (home page or elsewhere) is highlighted, and any box can be chosen.</p>
+<label class="item"><input type="checkbox" data-id="b1"><span>Five boxes: Guest, Member, Founder, Builder, Sponsor. Catalyst and Luminary are excluded with a note that they are acquired inside (Stripe caps near $25,000). <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;onboarded=1" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="b2"><span>Each box shows: price, <b>Coins purchased</b> (price ÷ current Coin price), <b>bonus Coins</b> (from the Kinship Code), and <b>total Coins</b>. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="b3"><span>Highlight the box based on prior selection; allow switching. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="b4"><span>Payment via <b>Stripe</b> (card) for initial purchases. <em class="st done">In prototype</em> (UI) · <em class="st spec">To build</em> (Stripe integration)</span></label>
+<label class="item"><input type="checkbox" data-id="b5"><span>Note: initial Coin purchases <b>cannot be traded for 30 days</b>; and there are additional ways to fill the wallet inside. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="b6"><span>Completing the purchase sets the wallet balance, recomputes level, and continues into the app. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="account">8. Account, role changes &amp; Load Wallet</h2>
+<p>The button between the profile avatar and the notifications bell (currently a shortcut to Earn) should instead open an <b>account / role management</b> page. When already logged in, this is not a Stripe card checkout; it is <b>Load Wallet</b>.</p>
+<label class="item"><input type="checkbox" data-id="a1"><span>Repoint the header button (between profile and bell) from Earn to the account/role page. <em class="st done">In prototype</em> — it is the level badge. <a class="openlink" href="app.html?skiplogin=1&amp;view=account" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="a2"><span>Logged-in, this page shows the same tier boxes for upgrade/downgrade plus a <b>Load Wallet</b> section. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="a3"><span>Load Wallet options: connect an external wallet; show the user's deposit address to send to from an exchange/wallet; on-ramps — <b>Stripe on-ramp</b>, <b>Onramper</b>, <b>Sphere</b>. <em class="st done">In prototype</em> (UI) · <em class="st spec">To build</em> (integrations)</span></label>
+<label class="item"><input type="checkbox" data-id="a4"><span>Only <b>USDC</b> moves in. The default top-up is the minimum that crosses the chosen level; the user can set a higher amount. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="reader">9. iOS / Android reader-app handling</h2>
+<p>Per Apple/Google rules, the installed mobile apps are <b>reader apps</b>: they cannot create accounts or sell Coins in-app. <b>The prototype assumes web</b>, but this must be handled at build time.</p>
+<label class="item"><input type="checkbox" data-id="r1"><span>Installed apps: no account creation; direct users to <code>wvduna.com</code> to sign up and finish onboarding, then sign in. <em class="st done">In prototype</em> (login + settings notes) <a class="openlink" href="app.html?skiplogin=1&amp;view=account" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="r2"><span>Installed apps on iOS/Android: no in-app Coin purchase or wallet top-up; route to the web. Show the reader-app note on Buy Coins and Load Wallet. <em class="st done">In prototype</em> (note appears when Environment = Installed in the prototype panel) · <em class="st spec">To build</em> (real platform gating)</span></label>
+<label class="item"><input type="checkbox" data-id="r3"><span>The responsive web build OS-detects and suggests the matching installed app (Download for macOS/Windows/ChromeOS; App Store / Play for iOS/Android). <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="r4"><span>Decide the compliant funding path for mobile (web hand-off vs. external wallet only) with legal before store submission. <em class="st spec">To build / decide</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="active">10. Active Mode</h2>
+<p>Active Mode keeps its five sections from the published end-user app: <b>Chat, Vibe, Seek, Vote, Earn</b>. Changes are mostly vocabulary, theming, and wiring Coins.</p>
+<label class="item"><input type="checkbox" data-id="ac1"><span>Chat is the first-run home; conversation list + thread, model selector, voice, composer. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="ac2"><span>Earn (wallet) shows balance in USDC and Coins for the current DUNA, with the level meter. "Reload" opens Load Wallet. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=earn" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="ac3"><span>Vote, Seek, Vibe carry current-DUNA context and theme. <em class="st done">In prototype</em> · <em class="st spec">To build</em> (per-DUNA data feeds)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="allies">11. Allies (was Agents &amp; Allies)</h2>
+<p>New page copy: "Allies are intelligent agents that represent people, organizations, programs, and alliances. They communicate, coordinate, and act on behalf of their principals, carrying the identity, authority, and permissions needed to operate safely across the network."</p>
+<h4>Five types</h4>
+<ul>
+<li><b>DUNA Allies</b> — represent a DUNA. Multiple allowed; they can enter and leave a chat, have different handles, be called for different purposes.</li>
+<li><b>Personal Allies</b> (member allies) — represent a member.</li>
+<li><b>Alliances</b> — a container within a DUNA grouping any allies (Personal, DUNA, Program, even other Alliances). Temporary or long-term; no legal standing of its own; its root/cover is the DUNA where it was initiated.</li>
+<li><b>Sponsors</b> — allies that represent/sell offerings.</li>
+<li><b>Programs</b> — built from Enact: a Program plus the Inform/Instruct/Empower that turn it into an Ally.</li>
+</ul>
+<h4>Who can create what (gated by level)</h4>
+<ul>
+<li><b>Member</b>: Personal Allies (unlimited) and Alliances.</li>
+<li><b>Founder</b>: everything a Member can, plus DUNA Allies (for DUNAs they founded).</li>
+<li><b>Builder</b>: everything a Founder can, plus Programs.</li>
+<li><b>Sponsor</b>: everything above, plus offering/Sponsor allies.</li>
+</ul>
+<label class="item"><input type="checkbox" data-id="al1"><span>Rename page to <b>Allies</b>; group label <b>Agents</b>; new copy and the five types. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=agents" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="al2"><span>"+ Create a new Ally" shows only the options allowed at the user's level. <em class="st done">In prototype</em> (level-gated sheet)</span></label>
+<label class="item"><input type="checkbox" data-id="al3"><span>States Draft / Testing / Published; one Primary per principal; filter chips by state and type. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="al4"><span>Only three Ally kinds have real agency and supervise/communicate with the user: <b>DUNA, Personal, Program</b>. Others are workers. Reflect this in Actions (§13). <em class="st done">In prototype</em> (documented) · <em class="st spec">To build</em> (enforcement)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="build-steps">12. Inform · Instruct · Empower · Enact</h2>
+<label class="item"><input type="checkbox" data-id="e1"><span>Keep Inform (knowledge) and Instruct (stance) as-is, renamed only where needed. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="e2"><span>Empower (tools/integrations) unchanged in concept. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="e3"><span>Rename Align → <b>Enact</b>. "+ New Skill" → "<b>+ New Program</b>". A Program bundles Skills; each Skill is a line in an editable <code>Skill.md</code>. Make it clear what is a Skill within a Program. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=align" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="e4"><span><code>Skill.md</code> files are viewable/editable from each Program. <em class="st done">In prototype</em> (link shown) · <em class="st spec">To build</em> (editor)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="actions">13. Actions (was Approve)</h2>
+<label class="item"><input type="checkbox" data-id="x1"><span>Rename Approve → <b>Actions</b>; present as an inbox of items to approve, review, read, or watch — not all require approval. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=approve" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="x2"><span>Sort/filter (urgent, needs approval, for review, FYI); user-set filters behave like an agent you instruct via the contextual chat. <em class="st done">In prototype</em> (chips + dock) · <em class="st spec">To build</em> (real prioritization)</span></label>
+<label class="item"><input type="checkbox" data-id="x3"><span>Items are produced by the three supervisor allies (DUNA, Personal, Program). <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="economics">14. Economics — Coins, Codes &amp; Team</h2>
+<label class="item"><input type="checkbox" data-id="ec1"><span>Coins page reflects per-DUNA Coins and holdings. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="ec2"><span>Add <b>Team</b> under Economics (after Codes), Founders only: name roles, set revenue splits, assign people, add co-founders, reassign the Founder role. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=team" target="_blank">open ↗</a> · <em class="st spec">To build</em> (editing)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="codes">15. Codes &amp; Claims</h2>
+<p>New header copy — eyebrow "BUILDING MODE · ECONOMICS", title "Codes", line "<b>Everything Starts With a Connection</b>", then: "Kinship Codes make it easy to invite people, welcome new members, connect intelligent agents, and establish trusted relationships throughout the network."</p>
+<p>Primary code box copy — "<b>Your Primary Kinship Code</b> / ADA—WV—4K2 / Share your code to welcome new members. When someone joins through your code, you become their Host, earn [Coin] rewards together, and establish a lasting connection in the DUNAVERSE. / Copy &amp; share."</p>
+<label class="item"><input type="checkbox" data-id="c1"><span>Apply the new Codes header and Primary Kinship Code copy. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=codes" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="c2"><span>Below the CTA, an <b>expand</b> reveals all <b>Claims</b> on the Code (issuer, wallet, agent, context, role, scope, splash, ref, redeem_by, ttl, max_uses, bound-to, actions, benefits, vibes, price, terms, access). <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="c3"><span>Replace the "people joined" box with a <b>Metrics</b> tab: per-code joins and earnings (in that DUNA's Coin), across multiple Codes. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="c4"><span>"Your Host" links to the Host's page (member, DUNA, or alliance). For now it routes to the in-app WV DUNA page. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=host" target="_blank">open ↗</a> · <em class="st spec">To build</em> (full index of hosts)</span></label>
+<label class="item"><input type="checkbox" data-id="c5"><span>For other DUNAs, the Primary Code earns rewards in that DUNA's Coin. <em class="st done">In prototype</em> (Coin name follows current DUNA)</span></label>
+<label class="item"><input type="checkbox" data-id="c6"><span>Creating a Code walks the Claims and sets what is <b>unlocked</b> via the Code (the "splash"/scope) — which can be allies and Vibes. Each Code can act for a member, DUNA, Alliance, or Program. <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=codenew" target="_blank">open ↗</a> · <em class="st spec">To build</em> (advanced Claims editor + signing)</span></label>
+<label class="item"><input type="checkbox" data-id="c7"><span>Any Member or above can create Codes; Guests cannot. <em class="st done">In prototype</em> (documented) · <em class="st spec">To build</em> (enforce on create)</span></label>
+<label class="item"><input type="checkbox" data-id="c8"><span>Codes are JWT-based and verified cryptographically; treat any Code arriving outside the app as unverified until checked against the verification endpoint. <em class="st spec">To build</em> (backend)</span></label>
+
+<!-- ============================================================ -->
+<h2 id="directory">16. Directory</h2>
+<label class="item"><input type="checkbox" data-id="dir1"><span>Link the Directory to the people icon in the header (between Search and the trophy). <em class="st done">In prototype</em> <a class="openlink" href="app.html?skiplogin=1&amp;view=directory" target="_blank">open ↗</a></span></label>
+<label class="item"><input type="checkbox" data-id="dir2"><span>One page, searchable and sortable, tabs: DUNAs / Members / Alliances / Programs; home-style cards; each links to its Ally (→ chat). <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="dock">17. Contextual DUNA-Ally chat dock</h2>
+<p>A chat with the <b>current DUNA's Ally</b> is docked on the right and always open unless the user collapses it. It carries contextual chips that either answer in place or navigate elsewhere in the app (or to the web).</p>
+<label class="item"><input type="checkbox" data-id="k1"><span>Right-side dock, persistent + collapsible; titled with the current DUNA's Ally; re-themes per DUNA. <em class="st done">In prototype</em> (open on wide screens; collapse via the chevron, reopen via the side tab)</span></label>
+<label class="item"><input type="checkbox" data-id="k2"><span>Per-page contextual chips (e.g. on Codes: "What's a Claim?", "Create a Code", "Who is my Host?"). Chips can answer or navigate. <em class="st done">In prototype</em></span></label>
+<label class="item"><input type="checkbox" data-id="k3"><span>Responsive: on desktop the dock pushes content left; on tablet/mobile it overlays as a sheet and collapses to a tab/button so it never blocks the main task. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="persistence">18. Persistence</h2>
+<label class="item"><input type="checkbox" data-id="p1"><span>Prototype persists: per-DUNA Coin holdings (→ level), current DUNA, home DUNA, first-purchase done, Ally created, dock open/closed, model, mode, environment, OS. <em class="st done">In prototype</em> (localStorage)</span></label>
+<label class="item"><input type="checkbox" data-id="p2"><span>Prototype panel "Reset state" restores defaults; URL params <code>?skiplogin=1</code>, <code>?onboarded=1</code>, <code>?level=</code>, <code>?duna=</code>, <code>?view=</code>, <code>?mode=</code>, <code>?reset=1</code> drive demos. <em class="st done">In prototype</em></span></label>
+
+<!-- ============================================================ -->
+<h2 id="changelog">19. Change log vs published apps</h2>
+<h3>vs the Studio — <code>kiduna.studio/agents</code> (Building Mode)</h3>
+<ul>
+<li>Re-skin from the magenta/orange Kiduna identity to WV DUNA gold-on-navy; fold into the same app as Active Mode behind a mode toggle.</li>
+<li>Workspace selector ("Kiduna · 3 experiences") becomes the <b>DUNA selector</b> with Genesis tag, Home pill, and Set-as-Home.</li>
+<li><b>Agents &amp; Allies → Allies</b>; the "AVATAR" tag → "Ally"; five Ally types; states <b>Active/Published → Draft/Testing/Published</b>; one Primary; level-gated creation.</li>
+<li><b>Align → Enact</b>; "Skill" creation → "<b>Program</b>" (Programs bundle Skills; <code>Skill.md</code> editable).</li>
+<li><b>Approve → Actions</b>; from approval list to a full inbox (approve / review / read / watch) with filters and a contextual chat.</li>
+<li>Economics: <b>Coins</b> (per-DUNA), <b>Codes</b> rebuilt around Claims + Metrics + Host, and a new <b>Team</b> page (Founders).</li>
+<li>Add the always-on contextual DUNA-Ally chat dock to every Studio screen.</li>
+<li>New-DUNA creation gains a theme step.</li>
+</ul>
+<h3>vs the end-user app — <code>kiduna.app</code> (Active Mode)</h3>
+<ul>
+<li>Re-skin to WV DUNA; remove the greyhound mark; same app shell as Building Mode.</li>
+<li>Keep Chat / Vibe / Seek / Vote / Earn; "tokens" → <b>Coins</b>; wallet shows per-DUNA Coin + USDC and the level meter.</li>
+<li>The header button that jumped to Earn now opens <b>Account / role management</b> (Load Wallet when logged in).</li>
+<li>First-run lands in a chat with the Host's Ally; the people icon opens the <b>Directory</b>.</li>
+<li>Add the contextual DUNA-Ally chat dock; add per-DUNA theming and the selector/Home controls.</li>
+</ul>
+<h3>New, in neither published app</h3>
+<ul>
+<li>Buy-Coins / Set-your-role screen (Stripe), and Load-Wallet (external wallet, deposit address, on-ramps: Stripe, Onramper, Sphere; USDC only; top-to-level).</li>
+<li>Multi-DUNA themes + economics (Mountain Mesh, WV Commerce Club fleshed out).</li>
+<li>Codes/Claims detail, Code creation, per-code Metrics, Host page.</li>
+<li>The unified Directory (replacing the separate visitor audience pages).</li>
+<li>The whole new visitor website built on this structure.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="rationale">20. Rationale for design calls</h2>
+<p>A few places where I moved beyond a literal reading of the brief, and why.</p>
+<h4>The account button is the level badge</h4>
+<p>The brief asked to move the button between the profile and the bell away from Earn toward account management. The element sitting there is the level badge. Making the badge itself the entry to role management reads naturally: you tap your standing to change your standing. Earn (the wallet ledger) stays in the Active rail, and "Reload" there deep-links to Load Wallet, so nothing is lost.</p>
+<h4>One Account screen, two modes</h4>
+<p>Buy-Coins (first run, Stripe) and Manage-role (logged-in, Load Wallet) are the same screen with the payment area swapped. It keeps the tier boxes identical so the mental model "your role is the Coins you hold" is taught once and reused. The reader-app note appears in both when the environment is mobile-installed.</p>
+<h4>The contextual dock collapses rather than competes</h4>
+<p>An always-open right rail is generous on a wide monitor and oppressive on a phone. On desktop it pushes content; below 1100px it overlays as a sheet and falls back to a single tab/button. The DUNA Ally is the same entity you would chat with full-screen, so the dock is a shortcut, not a second system.</p>
+<h4>Locked sections stay visible</h4>
+<p>Rather than hide what a Guest or Member cannot yet do, the navigation shows the locked items with a small lock and a "hold more Coins" nudge. It teaches the ladder and gives the upgrade a reason. If this reads as clutter at the lowest tiers, the fallback is to hide locked items and surface them only on the account page.</p>
+<h4>Coins, not tokens; and a real price</h4>
+<p>"Coins" everywhere avoids collision with LLM tokens. I anchored WVDUNA at $0.10 (matching the earlier "$1,240 ≈ 12,400 WVDUNA" figure) so the Coin counts on the buy screen are concrete, and set Mountain Mesh and WV Commerce Club at 1/3 and 2/3 of that with half/double join prices, so engineering can see the math flow through the boxes.</p>
+<h4>Chat context on DUNA switch</h4>
+<p>Switching DUNA re-themes everything and updates the contextual dock to that DUNA's Ally. The main Chat list is treated as the member's personal, cross-DUNA conversations, so it does not reset on switch. If you would rather the main thread also follow the DUNA, that is a small change and worth deciding (see §21).</p>
+
+<!-- ============================================================ -->
+<h2 id="questions">21. Open questions</h2>
+<label class="item"><input type="checkbox" data-id="q1"><span>Confirm the Coin prices and join-price multipliers for Mountain Mesh and WV Commerce Club (prototype uses $0.0333 / half and $0.0667 / double).</span></label>
+<label class="item"><input type="checkbox" data-id="q2"><span>Confirm the bonus-Coin rule per Kinship Code (prototype uses 10% WV / 15% Mesh / 5% CC as placeholders).</span></label>
+<label class="item"><input type="checkbox" data-id="q3"><span>Should the main Chat thread follow the active DUNA, or stay cross-DUNA personal? (Prototype: cross-DUNA.)</span></label>
+<label class="item"><input type="checkbox" data-id="q4"><span>Exact level for each create-Ally option and each locked section — confirm the gating matrix in §11.</span></label>
+<label class="item"><input type="checkbox" data-id="q5"><span>Mobile funding compliance: web hand-off vs. external-wallet-only on iOS/Android (§9, with legal).</span></label>
+
+<hr>
+<p class="meta">Files in this handoff: <code>index.html</code> + the visitor pages, <code>app.html</code> (+ <code>assets/app.css</code>, <code>assets/app.js</code>), the shared <code>assets/colors_and_type.css</code> and <code>assets/styles.css</code>, <code>WVDUNA-Integrated-App-Rationale.html</code> (the v1 narrative), and this punchlist. The prototype runs with no build step; open <code>app.html</code> in a browser.</p>
+
+</div>
+<script>
+(function(){
+  var KEY="wvduna_punchlist_v2";
+  var boxes=[].slice.call(document.querySelectorAll('.item input[type=checkbox]'));
+  var saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){}
+  function update(){
+    var done=0;
+    boxes.forEach(function(b){ if(b.checked){done++;} b.closest('.item').classList.toggle('done-look', b.checked); });
+    var total=boxes.length;
+    document.getElementById('done').textContent=done;
+    document.getElementById('total').textContent=total;
+    var pct=total?Math.round(done/total*100):0;
+    document.getElementById('pct').textContent=pct+'%';
+    document.getElementById('bar').style.width=pct+'%';
+  }
+  boxes.forEach(function(b){
+    if(saved[b.dataset.id]) b.checked=true;
+    b.addEventListener('change',function(){
+      saved[b.dataset.id]=b.checked;
+      try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+      update();
+    });
+  });
+  document.getElementById('reset-checks').addEventListener('click',function(){
+    if(!confirm('Clear all checkmarks on this device?')) return;
+    saved={}; try{ localStorage.removeItem(KEY); }catch(e){}
+    boxes.forEach(function(b){ b.checked=false; }); update();
+  });
+  update();
+})();
+</script>
+</body>
+</html>
